@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@font-face{
+    font-family: 'Raleway-black';
+    src: url('/Ce PC/Documents/EDna/Standard Web/PORTOFOLIO/Raleway/Raleway-Black.ttf');
+    font-weight: black;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Raleway-bold';
+    src: url('/Ce PC/Documents/EDna/Standard Web/PORTOFOLIO/Raleway/Raleway-Light.ttf');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Raleway-medium';
+    src: url('/Ce PC/Documents/EDna/Standard Web/PORTOFOLIO/Raleway/Raleway-Mediumt.ttf');
+    font-weight: medium;
+    font-style: normal;
+}
+
+@font-face{
+    font-family: 'Raleway-light';
+    src: url('/Ce PC/Documents/EDna/Standard Web/PORTOFOLIO/Raleway/Raleway-Light.ttf');
+    font-weight: thin;
+    font-style: normal;
+}

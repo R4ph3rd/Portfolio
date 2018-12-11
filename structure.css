@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,700,900');
+
+html{
+    box-sizing:border-box;
+    text-align: center;
+}
+*,*:after, *:before{
+    box-sizing:inherit;
+} /* pour avoir un modele de boite plus intuitif, à copiercoller à chaque fois */
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: rgb(25,25,25);
+    font-family: Raleway;
+}
+
+.container{
+    display:grid;
+    grid-template-rows: 8vh 2vh;
+    border:1px red solid;
+}
+
+div h1{
+text-transform: uppercase;
+font-weight: 700;
+color: #F4ECC6;
+font-size: 300%;
+border:1px solid red;
+}
+
+

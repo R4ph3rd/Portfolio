@@ -1,108 +1,95 @@
-var vitessemax = 5;
-var CF = 0.8; //coefficient of friction;
+var vitessemax = 4;
+var frictioncoef = 0.8; //coefficient of friction;
 var particulesmax = 1000; //will change depending on screen size
-Particle particles = new Particle[particulesmax];
-mouse = createVector();
-
+var particules = [particulesmax];
+var mouse;
+let G = 9; //constant of gravitation
+let mouseMass = 400.0; // will change depeing on screen size
 function setup() {
+    canvas = createCanvas(windowWidth, windowHeight);
+    //pixelDensity(1)
     background(30);
     mouse = createVector(mouseX, mouseY);
-    size(1900, 900);
+
 
     //initialize paticles
-    for (int i = 0; i < particles.length; i++) {
-        particles[i] = new Particle(random(0, width), //x
+    for (i = 0; i < particulesmax; i++) {
+        particules[i] = new Particle(random(0, width), //x
             random(0, height), //y
             random(2, 50), //mass
             random(1, 4), //size
-            random(100, 150)); //rotation threshold
+            random(100, 150)); //seuil
     }
 }
 
 function draw() {
     noStroke();
+    //background
     fill(30, 20);
     rect(0, 0, width, height);
-    updateMouseVector();
+    //update x and y depending on mouseposition or mobile inclination
+    mouse.set(mouseX, mouseY)
+
+    //billes
     fill(23, 175, 135);
-    for (int i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].display();
+    for (i = 0; i < particules.length; i++) {
+        particules[i].update();
+        particules[i].display();
 
     }
 }
 
-//update x and y depending on mouseposition or mobile inclination
-function updateMouseVector() {
-    mouse.x = mouseX;
-    mouse.y = mouseY;
-}
 
-//class particle
-function Particle {
+//class particule
+function Particle(x, y, _mass, _size, _seuil) {
 
-    this.location = createVector(),
-    this.velocity,
-    this.acceleration;
-    this.mass,
-    this.size,
-    this.threshold;
-    this.dir;
+    // particule class should have location, velocity, acceleration, friction, and gravity
+    // particules should be attracted to mouse
+    this.location = createVector(x, y);
+    this.velocity = createVector(0, 0);
+    this.acceleration = createVector(0, 0);
+    this.size = _size;
+    this.seuil = _seuil;
+    this.mass = _mass;
+    this.direction = (random(0, 2) < 1) ? 1 : -1;
 
-    Particle(this.x, this.y, this. _mass, this._size, this._threshold) {
-        // particle class should have location, velocity, acceleration, friction, and gravity
-        // particles should be attracted to mouse
-        this.location = createVector(x, y);
-        this.velocity = createVector(0, 0);
-        this.acceleration = createVector(0, 0);
-        this.mass = _mass;
-        this.size = _size;
-        this.threshold = _threshold;
 
-        //set rotation direction
-        this.dir = (random(0, 2) < 1) ? 1 : -1;
-    }
-
-    function display() {
-        ellipse(this.location.x, this.location.y, this.size * 2, this.size * 2);
-    }
-
-    function calculateFriction() {
-        this.friction = createVector(this.velocity.get());
-        this.friction.normalize();
-        this.friction.mult(-1);
-        this.normal = 1; //simplified normal force value
-        this.frictionMag = CF * normal;
-        this.friction.mult(frictionMag);
+    this.calculateFriction = function () {
+        let friction = createVector(this.velocity.x, this.velocity.y);
+        friction.normalize();
+        friction.mult(-1);
+        friction.mult(frictioncoef);
 
         return friction;
     }
 
-    function calculateGravity() {
-        this.gravity = createVector(sub(this.mouse, this.location)); //make vector pointing towards mouse
-        this.distance = this.gravity.mag(); //distance between particle and mouse
-        this.mouseMass = 500.0; //arbitrary value, will change depeing on screen size
-        this.G = 9.0; //arbitrary gravitational constant, idem
-        this.gravitation = (this.G * this.mouseMass * this.mass) / (this.distance * this.distance); // formule de gravite pour la force gravitionnelle
-        this.gravity.normalize();
-        this.gravity.mult(gravitation);
-        return this.gravity;
+    this.calculateGravity = function () {
+        let gravity = p5.Vector.sub(mouse, this.location); //make vector pointing towards mouse
+        let distance = p5.Vector.mag(gravity); //distance between particle and mouse
+        //let distance = dist(mouse.x, mouse.y, location.x, location.y)
+        let gravitation = (G * mouseMass * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
+        gravity.normalize();
+        gravity.mult(gravitation);
+        // console.log(gravity)
+        return gravity;
     }
 
-   function calculateTangent(this.gravity) {
-        this.tangent;
+    this.calculateTangent = function (gravite) {
+        let tangent;
 
-        if (this.dir == 1) {
-            this.tangent = createVector(-this.gravity.y, this.gravity.x);
+        //direction of rotation
+        if (this.direction == 1) {
+            tangent = createVector(-gravite.y, gravite.x);
         } else {
-            this.tangent = createVector((this.gravity.y, -this.gravity.x));
+            tangent = createVector(gravite.y, -gravite.x);
+
+            tangent.mult(gravite.mag());
         }
-        this.tangent.mult(this.gravity.mag());
-        return this.tangent;
+        return tangent;
     }
 
     //ensure that the particles stay on screen
-    function check() {
+    this.check = function () {
         if (this.location.x > width || this.location.x < 0) {
             this.velocity.x = -this.velocity.x;
         }
@@ -111,37 +98,44 @@ function Particle {
         }
     }
 
-   function applyForce(force) {
-        this.acceleration.add(createVector(div(this.force, this.mass)));
+    this.applyForce = function (force) {
+        this.acceleration.add(p5.Vector.div(force, this.mass));
     }
 
 
+    this.update = function () {
 
-    function update() {
-        this.gravity = createVector(calculateGravity());
-        this.friction = createVector(calculateFriction());
-        this.distance = dist(this.location, this.mouse);
+        let gravity = this.calculateGravity();
+        //console.log("gravity")
+        let friction = this.calculateFriction();
+        let distance = dist(this.location.x, this.location.y, mouse.x, mouse.y);
 
-        //particles should be repelled on click
-        if (mousePressed) {
-            this.antigrav = createVector(calculateGravity());
-            this.antigrav.mult(-1.1);
-            applyForce(this.antigrav);
+        //particules should be repelled on click ; remove that and see the  black hole !
+         if (canvas.mousePressed() == true) {
+            // console.log("je suis dans le if foireux")
+             let antigrav = createVector(this.calculateGravity());
+             antigrav.mult(-1);
+             this.applyForce(antigrav);
+         }
+
+        this.applyForce(gravity);
+        this.applyForce(friction);
+
+        if (distance <= this.seuil) {
+            let tangent = (this.calculateTangent(gravity));
+            this.applyForce(tangent);
         }
 
-        applyForce(this.gravity);
-        applyForce(this.friction);
-
-        if (dist(this.location, this.mouse) <= this.threshold) {
-            this.tangent = createVector(calculateTangent(this.gravity));
-            applyForce(this.tangent);
-        }
-
+        //vecteur d'accéleration
         this.velocity.add(this.acceleration);
-
-        this.velocity.limit(this.vitessemax);
+        this.velocity.limit(vitessemax);
         this.location.add(this.velocity);
-        check();
+        this.check();
         this.acceleration.mult(0); //clear acceleration each frame
     }
+    
+     this.display = function () {
+        ellipse(this.location.x, this.location.y, this.size * 2, this.size * 2);
+    }
+
 }

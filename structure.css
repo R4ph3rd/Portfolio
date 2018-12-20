@@ -1,32 +1,150 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,700,900');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,600,700,900');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
 
-html{
-    box-sizing:border-box;
+html {
+    box-sizing: border-box;
     text-align: center;
 }
-*,*:after, *:before{
-    box-sizing:inherit;
-} /* pour avoir un modele de boite plus intuitif, à copiercoller à chaque fois */
 
-body{
+*,
+*:after,
+*:before {
+    box-sizing: inherit;
+}
+
+/* pour avoir un modele de boite plus intuitif, à copiercoller à chaque fois */
+
+body {
     padding: 0;
     margin: 0;
-    background-color: rgb(25,25,25);
-    font-family: Raleway;
-}
-
-.container{
-    display:grid;
-    grid-template-rows: 8vh 2vh;
-    border:1px red solid;
-}
-
-div h1{
-text-transform: uppercase;
-font-weight: 700;
-color: #F4ECC6;
-font-size: 300%;
-border:1px solid red;
+    font-family: 'Raleway';
 }
 
 
+
+div h1 {
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #F4ECC6;
+    font-size: 600%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+
+}
+
+h2{
+    font-family: 'Source Sans Pro';
+font-weight:700;
+font-size: 1.8em;
+color:#F0F0F0;
+text-transform:uppercase;
+left:30px;
+position: absolute;
+text-align:left;
+}
+
+h2 span {
+    color:#1CAE87;
+}
+
+.h2contact{
+    text-transform:none;
+    width:50vw;
+}
+
+.nom {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    width: 60%;
+}
+
+.raphael {
+    top: 0%;
+    left: 5%;
+}
+
+.perraud {
+    bottom: 0%;
+    left: 5%;
+}
+
+footer{
+    background-color:#F0F0F0;
+    padding:20px;
+    position:absolute;
+    bottom:0;
+}
+
+img{
+   max-height:100%
+}
+
+.boiteimg{
+    height:35px;
+    left:50%;
+    margin-bottom: 20px;
+}
+
+footer a{
+    margin:5px;
+}
+
+footer button {
+    background:#1E1E1E;
+}
+
+.bouton {
+    left:50%;
+    width:11rem;
+    height: 3rem;
+    border-radius: 6px;
+    line-height: 0.23rem;
+    padding: 0 0rem;
+    font-size:1.2em;
+    font-weight:700;
+    color:#1CAE87;
+}
+
+
+#copyr{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    color:#1E1E1E;
+    font-size:0.8em;
+    margin-bottom:20px;
+}
+
+footer label{
+    font-weight:600;
+}
+
+footer label div {
+    font-weight:900;
+    widows: 10rem;
+    left:50%
+}
+
+form {
+    position:absolute;
+}
+
+.champs{
+    border-style:none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    background:#F0F0F0;
+    color:#7A7979;
+    font-family:'Raleway';
+    font-weight:500;
+}
+
+form button {
+    text-transform: uppercase;
+    border : none;
+    background:#000000;
+}

@@ -6,3 +6,4 @@
     ga('create', 'UA-46156385-1', 'cssscript.com');
     ga('send', 'pageview');
   
+//const menuhamburger = elementNodeReference.classList;

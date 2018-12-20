@@ -1,5 +1,4 @@
 
-/* faire media queries pour taille du label*/
 label .menu {
   z-index: 100;
   position: absolute;
@@ -9,7 +8,6 @@ label .menu {
   -moz-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
   cursor: pointer;
-  background-color: rgb(25,25,25);
   opacity:1;
 }
 
@@ -21,7 +19,7 @@ label .hamburger {
   left: 22%;
   width: 14%;
   height: 1%;*/
-  background: rgb(220,220,220);
+  background: rgba(220,220,220);
   display: block;
   -webkit-transform-origin: center;
   -o-transform-origin: center;
@@ -59,6 +57,7 @@ label input:checked + .menu .hamburger {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
+  box-shadow: 0 0 0 100vw rgb(25,25,25)
 }
 
 label input:checked + .menu .hamburger:after {
@@ -77,7 +76,11 @@ label input:checked + .menu .hamburger:before {
   top: 0;
 }
 
-label input:checked + .menu + ul { opacity: 1; }
+/*apparition des menus trop tôt */  
+label input:checked + .menu + ul { 
+  opacity: 1; 
+  display: initial;
+}
 
 label ul {
   z-index: 200;
@@ -89,12 +92,13 @@ label ul {
   -o-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   opacity: 0;
-  -webkit-transition: .25s 0s ease-in-out;
-  -moz-transition: .25s 0s ease-in-out;
-  -o-transition: .25s 0s ease-in-out;
-  transition: .25s 0s ease-in-out;
+  -webkit-transition: 2s 0.5s ease-in-out;
+  -moz-transition: 2s 0.5s ease-in-out;
+  -o-transition: 2s 0.5s ease-in-out;
+  transition: 2s 0.5s ease-in-out;
   list-style:none;
   font-size: 8vh;
+  display:none;
 }
 
 label a {
@@ -106,19 +110,7 @@ label a {
   font-size: 8vh;
 
 }
-
-h1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  -moz-transform: translate(-50%, -50%);
-  -o-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  width: 80%;
-  text-align: center;
-}
-
+²
 
 @media (min-width:200px){
     label .menu{

@@ -3,7 +3,6 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="fonts.css">
         <link rel="stylesheet" href="structure.css">
         <link rel="stylesheet" href="hamburger.css">
         <title>PERRAUD Raphael Portofolio</title>
@@ -11,15 +10,29 @@
     </head>
     
 <body>
-    <h2>
-        <ul>
-           <li><a href="#filter" data-option-value=".all" title="View all post filed under ">all</a></li> 
-            <li><a href="#filter" data-option-value=".uxui" title="View all post filed under ">UX/UI</a></li>
-            <li><a href="#filter" data-option-value=".exp" title="View all post filed under ">Experiments</a></li>
-            <li><a href="#filter" data-option-value=".graphisme" title="View all post filed under ">graphic design</a></li>
-            <li><a href="#filter" data-option-value=".random" title="View all post filed under ">random works</a></li>
-        </ul>
-    </h2 class="h2works">
+    <div class="bourin">
+            <label>
+                    <input type='checkbox'>
+                    <span class='menu'> <span class='hamburger'></span> </span>
+                    <ul>
+                        <li> <a href='#'>Home</a> </li>
+                        <li> <a href='#'>Works</a> </li>
+                        <li> <a href='#'>About</a> </li>
+                        <li> <a href='#'>Contact</a> </li>
+                    </ul>
+                </label>
+
+            <h2>
+                    <ul>
+                       <li><a href="#filter" data-option-value=".all" title="View all post filed under ">all</a></li> 
+                        <li><a href="#filter" data-option-value=".uxui" title="View all post filed under ">UX/UI</a></li>
+                        <li><a href="#filter" data-option-value=".exp" title="View all post filed under ">Experiments</a></li>
+                        <li><a href="#filter" data-option-value=".graphisme" title="View all post filed under ">graphic design</a></li>
+                        <li><a href="#filter" data-option-value=".random" title="View all post filed under ">random works</a></li>
+                    </ul>
+                </h2 class="h2works">
+    </div>
+  
     <script src="../p5/p5.min.js"></script>
     <script src="../p5/addons/p5.dom.min.js"></script>
     <script src="../p5/addons/p5.sound.min.js"></script>

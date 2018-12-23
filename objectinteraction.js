@@ -5,9 +5,20 @@ var fps;
 var displayedparticules
 var particules = [particulesmax];
 var mouse;
-let G = 9; //constant of gravitation
-let mouseMass = 400.0; // will change depeing on screen size
+var G = 9; //constant of gravitation
+var mouseMass = 400.0; // will change depeing on screen size
 
+function windowResized(){
+    resizeCanvas(windowWidth,windowHeight)
+        //initialize paticles
+    for (i = 0; i < particulesmax; i++) {
+        particules[i] = new Particle(random(0, width), //x
+            random(0, height), //y
+            random(2, 50), //mass
+            random(1, 4), //size
+            random(100, 150)); //seuil
+    }
+}
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     //pixelDensity(1)
@@ -17,7 +28,7 @@ function setup() {
     particulesmax = 1000;
     displayedparticules = particulesmax
 
-    //initialize paticles
+    //reset balls positions
     for (i = 0; i < particulesmax; i++) {
         particules[i] = new Particle(random(0, width), //x
             random(0, height), //y
@@ -53,6 +64,24 @@ function draw() {
         particules[i].update();
         particules[i].display();
     }
+    
+    //mediaqueries 
+    if (width<1200){
+        displayedparticules = 800
+         mouseMass = 350
+    } 
+    if (width<800){ 
+        displayedparticules = 700
+         mouseMass = 300
+    }
+    if (width<600) {
+        displayedparticules = 600
+         mouseMass = 250
+    }
+    if (width<400) {
+        displayedparticules = 500
+        mouseMass = 200
+    }
 }
 
 //attention ! MouseWheel renvoie un booléen et event.deltaY est inversé si c'est un mac...
@@ -79,7 +108,7 @@ function Particle(x, y, _mass, _size, _seuil) {
     this.size = _size;
     this.seuil = _seuil;
     this.mass = _mass;
-    this.direction = (random(0, 2) < 1) ? 1 : -1;
+    this.direction = int (random(0, 2) < 1) ? 1 : -1;
 
 
     this.calculateFriction = function () {
@@ -159,6 +188,12 @@ function Particle(x, y, _mass, _size, _seuil) {
         this.location.add(this.velocity);
         this.check();
         this.acceleration.mult(0); //clear acceleration each frame
+        
+        //mediaqueries 
+    if (width<1200)        this.seuil = random(100,120)
+    if (width<800)       this.seuil = random(80,100)
+    if (width<600)       this.seuil = random(70,95)
+    if (width<400)       this.seuil = random(60,75)
     }
 
     this.display = function () {

@@ -27,6 +27,11 @@ body {
     font-family: 'Raleway';
 }
 
+.bourin{
+position:absolute;
+width:90%;
+}
+
 img{
     max-height:100%
  }
@@ -49,8 +54,8 @@ font-weight:900;
 font-size: 1.8em;
 color:#F0F0F0;
 text-transform:uppercase;
-margin: 5vh 4vw;
-position: absolute;
+margin: 4vh 4vw;
+position: relative;
 text-align:left;
 width:100%
 }
@@ -66,15 +71,12 @@ h2 span {
 
 .h2contact{
     text-transform:none;
-    width:80vw;
-    margin-left:4%;
-    margin-bottom:20px;
 }
 
 .nom {
     top: 50%;
     left: 50%;
-    position: absolute;
+    position: relative;
     width: 60%;
 }
 
@@ -91,7 +93,7 @@ h2 span {
 footer{
     background-color:#F0F0F0;
     padding:20px;
-    position:absolute;
+    position:relative;
     bottom:0%;
     width:100%
 }
@@ -108,22 +110,52 @@ footer a{
 
 footer button {
     background:#1E1E1E;
-    border:none;
-    box-shadow: 1px 4px 30px rgba(0, 0, 0, 0.5);
+    left:50%;
+}
+
+footer button:hover{
+    color:#1E1E1E;
+    background:#1CAE87;
 }
 
 .bouton {
-    left:50%;
+    cursor: pointer;
     width:11rem;
     height: 3rem;
     border-radius: 6px;
     line-height: 0.23rem;
-    padding: 0 0rem;
     font-size:1.2em;
     font-weight:700;
     color:#1CAE87;
+    border:none;
+    box-shadow: 1px 4px 30px rgba(0, 0, 0, 0.5);
 }
 
+.progress-bar {
+    position: relative;
+    height: 10px;
+    width: 0;
+    right: 0;
+    border-radius: 200px;
+    background: lighten(#2B2D2F, 15%);
+  }
+  
+  svg {
+    width: 30px;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    left: 50%;
+    right: 0;
+  }
+  
+  .check {
+    fill: none;
+    stroke: #FFFFFF;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
 
 #copyr{
     font-family: 'Source Sans Pro', sans-serif;
@@ -144,11 +176,10 @@ footer label div {
 }
 
 form {
-    position:absolute;
+    position:relative;
     display: block;
-    width:85vw;
+    width:100%;
     margin-left:3vw;
-    margin-top:30vh;
 }
 
 
@@ -176,7 +207,6 @@ width:700px;
     padding:10px;
     box-shadow: 1px 1px 1px #4C6E91;
     text-align: left;
-
 }
 
 textarea{
@@ -186,6 +216,12 @@ resize: none;
 
 form button {
     text-transform: uppercase;
-    border : none;
     background:#000000;
+    float:right;
+
+}
+
+form button:hover{
+    background:#1CAE87;
+    color: #000000;
 }

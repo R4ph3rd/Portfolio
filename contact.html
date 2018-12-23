@@ -4,31 +4,44 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="fonts.css">
+
     <link rel="stylesheet" href="structure.css">
     <link rel="stylesheet" href="hamburger.css">
     <title>PERRAUD Raphael Portofolio</title>
     <style> body {padding: 0; margin: 0;} </style>
 </head>
 
-<body >
-<h2 class="h2contact">Feel free to <br />  <span>contact</span> me. I will<br />  get back as soon as<br />  possible.</h2>
+<body>
+    <div class="bourin">
+            <label>
+                    <input type='checkbox'>
+                    <span class='menu'> <span class='hamburger'></span> </span>
+                    <ul>
+                        <li> <a href='#'>Home</a> </li>
+                        <li> <a href='#'>Works</a> </li>
+                        <li> <a href='#'>About</a> </li>
+                        <li> <a href='#'>Contact</a> </li>
+                    </ul>
+                </label>
+                
+        <h2 class="h2contact">Feel free to <br /> <span>contact</span> me. I will<br /> get back as soon as<br /> possible.</h2>
 
         <form action="" method="get">
-                <input type="text" id="nom" class="champs" placeholder="Your name" type="text" value="" required="" x-autocompletetype="family-name">
-            
-            
-                <input type="email" id="mail" class="champs" placeholder="Email" type="text" value="" required="" x-autocompletetype="family-name">
-            
-                <input type="text" id="objet" class="champs" placeholder="Subject" type="text" value="" required="" x-autocompletetype="family-name">
-            
-                <textarea name="" id="" cols="" rows="10" placeholder="Your Message" x-autocompletetype="email" class="champs"></textarea>
-                <button type="submit" class="bouton">submit</button>
-            </form>
+            <input type="text" id="nom" class="champs" placeholder="Your name" type="text" value="" required="" x-autocompletetype="family-name">
 
 
+            <input type="email" id="mail" class="champs" placeholder="Email" type="text" value="" required="" x-autocompletetype="family-name">
 
+            <input type="text" id="objet" class="champs" placeholder="Subject" type="text" value="" required="" x-autocompletetype="family-name">
 
+            <textarea name="" id="" cols="" rows="10" placeholder="Your Message" x-autocompletetype="email" class="champs"></textarea>
+            <button type="submit" class="bouton text">submit</button>
+           <!--  <div class="progress-bar"></div>
+            <svg x="0px" y="0px" viewBox="0 0 25 30" style="enable-background:new 0 0 25 30;">
+                <path class="check" class="st0" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
+            </svg>-->
+        </form>
+    </div>
 
     <script src="../p5/p5.min.js"></script>
     <script src="../p5/addons/p5.dom.min.js"></script>

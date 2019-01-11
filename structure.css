@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,600,700,900');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,500i,600,700,,800,900');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700');
 
 html {
     box-sizing: border-box;
@@ -22,31 +22,28 @@ html {
 /* pour avoir un modele de boite plus intuitif, à copiercoller à chaque fois */
 
 body {
+    background-color:rgba(30,30,30,20);
     padding: 0;
     margin: 0;
+    width:100%;
+    height:100%;
     font-family: 'Raleway';
+}
+
+canvas {
+    position:relative;
+    z-index:1;
 }
 
 .bourin{
 position:absolute;
-width:90%;
+width:100%;
+z-index:2;
 }
 
 img{
     max-height:100%
  }
-
-div h1 {
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #F4ECC6;
-    font-size: 600%;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
 
 h2{
 font-family: 'Raleway';
@@ -54,7 +51,6 @@ font-weight:900;
 font-size: 1.8em;
 color:#F0F0F0;
 text-transform:uppercase;
-margin: 4vh 4vw;
 position: relative;
 text-align:left;
 width:100%
@@ -64,59 +60,22 @@ h2 span {
     color:#1CAE87;
 }
 
+.zonecentrale{
+    width:90%;
+    margin:5%;
+    padding:0px;
+    margin-bottom:100px;
+    }
+
 .h2works{
-    text-decoration:none;
-    
+    text-decoration:none; 
 }
 
 .h2contact{
     text-transform:none;
+    margin:0px;
 }
 
-.nom {
-    top: 50%;
-    left: 50%;
-    position: relative;
-    width: 60%;
-}
-
-.raphael {
-    top: 0%;
-    left: 5%;
-}
-
-.perraud {
-    bottom: 0%;
-    left: 5%;
-}
-
-footer{
-    background-color:#F0F0F0;
-    padding:20px;
-    position:relative;
-    bottom:0%;
-    width:100%
-}
-
-.boiteimg{
-    height:35px;
-    left:50%;
-    margin-bottom: 20px;
-}
-
-footer a{
-    margin:5px;
-}
-
-footer button {
-    background:#1E1E1E;
-    left:50%;
-}
-
-footer button:hover{
-    color:#1E1E1E;
-    background:#1CAE87;
-}
 
 .bouton {
     cursor: pointer;
@@ -125,103 +84,18 @@ footer button:hover{
     border-radius: 6px;
     line-height: 0.23rem;
     font-size:1.2em;
-    font-weight:700;
+    font-weight:600;
     color:#1CAE87;
     border:none;
     box-shadow: 1px 4px 30px rgba(0, 0, 0, 0.5);
 }
 
-.progress-bar {
-    position: relative;
-    height: 10px;
-    width: 0;
-    right: 0;
-    border-radius: 200px;
-    background: lighten(#2B2D2F, 15%);
-  }
-  
-  svg {
-    width: 30px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    left: 50%;
-    right: 0;
-  }
-  
-  .check {
-    fill: none;
-    stroke: #FFFFFF;
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-#copyr{
-    font-family: 'Source Sans Pro', sans-serif;
-    font-weight: 400;
-    color:#1E1E1E;
-    font-size:0.8em;
-    margin-bottom:20px;
-}
-
-footer label{
-    font-weight:600;
-}
-
-footer label div {
-    font-weight:900;
-    widows: 10rem;
-    left:50%
-}
-
-form {
-    position:relative;
-    display: block;
-    width:100%;
-    margin-left:3vw;
-}
-
-
-
-@media (min-width:900px){
-form{
-width:700px;
-}
-}
-
-.champs{
-    list-style-type: none;
-    width:100%;
-    height:3.3em;
-    margin:8px;
-    border-style:none;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -o-border-radius: 4px;
-    background:#F0F0F0;
-    color:#7A7979;
-    font-family:'Raleway';
-    font-weight:500;
-    padding:10px;
-    box-shadow: 1px 1px 1px #4C6E91;
-    text-align: left;
-}
-
-textarea{
-height:60%;
-resize: none;
-}
-
-form button {
-    text-transform: uppercase;
+.buttonblack {
     background:#000000;
     float:right;
-
 }
 
-form button:hover{
+.buttonblack:hover{
     background:#1CAE87;
     color: #000000;
 }

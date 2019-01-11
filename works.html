@@ -5,39 +5,68 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="structure.css">
         <link rel="stylesheet" href="hamburger.css">
+        <link rel="stylesheet" href="footer.css">
+        <link rel="stylesheet" href="work_style.css">
         <title>PERRAUD Raphael Portofolio</title>
         <style> body {padding: 0; margin: 0;} </style>
     </head>
     
 <body>
     <div class="bourin">
+            <div class=" zonecentrale">
             <label>
                     <input type='checkbox'>
                     <span class='menu'> <span class='hamburger'></span> </span>
                     <ul>
-                        <li> <a href='#'>Home</a> </li>
-                        <li> <a href='#'>Works</a> </li>
-                        <li> <a href='#'>About</a> </li>
-                        <li> <a href='#'>Contact</a> </li>
+                        <li> <a href='index.html'>Home</a> </li>
+                        <li> <a href='works.html'>Works</a> </li>
+                        <li> <a href='about.html'>About</a> </li>
+                        <li> <a href='contact.html'>Contact</a> </li>
                     </ul>
                 </label>
 
             <h2>
-                    <ul>
-                       <li><a href="#filter" data-option-value=".all" title="View all post filed under ">all</a></li> 
+                    <ul  class="h2works">
+                       <li class="filtres"><a href="#filter" data-option-value=".all" title="View all post filed under ">all</a></li> 
                         <li><a href="#filter" data-option-value=".uxui" title="View all post filed under ">UX/UI</a></li>
                         <li><a href="#filter" data-option-value=".exp" title="View all post filed under ">Experiments</a></li>
                         <li><a href="#filter" data-option-value=".graphisme" title="View all post filed under ">graphic design</a></li>
                         <li><a href="#filter" data-option-value=".random" title="View all post filed under ">random works</a></li>
                     </ul>
-                </h2 class="h2works">
+                </h2>
+            </div>
+                <footer>
+                    <div class="boiteimg">
+                        <a href="">
+                            <img src="medias_portofolio/1x/behance.png" alt="Behance logo">
+                        </a>
+                        <a href="">
+                            <img src="medias_portofolio/1x/dribble.png" alt="Dribble logo" >
+                        </a>
+                        <a href="https://github.com/R4ph3rd">
+                            <img src="medias_portofolio/1x/github.png" alt="github logo" >
+                        </a>
+                        <a href="">
+                            <img src="medias_portofolio/1x/linkedn.png" alt="linkedin logo" >
+                        </a>
+                        <a href="">
+                            <img src="medias_portofolio/1x/mail.png" alt="mail logo" >
+                        </a>
+                    </div>
+                    <button class="bouton"><p>My resume</p></button>
+                    <p id="copyr">&copy;Raphaël Perraud 2019</p>
+                    <label for="back">  
+                        <div id="back">^</div>
+                        <p id="back">Back to top</p>
+                    </label>
+                </footer>
+
     </div>
   
     <script src="../p5/p5.min.js"></script>
     <script src="../p5/addons/p5.dom.min.js"></script>
     <script src="../p5/addons/p5.sound.min.js"></script>
     <script language="javascript" type="text/javascript" src="path/to/p5.dom.js"></script>
-    <script src="jquery-1.11.0.min.js"></script>
     <script src="works.js"></script>
     <script src="menu.js"></script>
 </body>

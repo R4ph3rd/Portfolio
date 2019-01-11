@@ -6,95 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="structure.css">
+    <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="hamburger.css">
+    <link rel="stylesheet" href="contact_style.css">
     <title>PERRAUD Raphael Portofolio</title>
     <style> body {padding: 0; margin: 0;} </style>
 </head>
 
 <body>
     <div class="bourin">
+        <div class=" zonecentrale">
+
+
             <label>
-                    <input type='checkbox'>
-                    <span class='menu'> <span class='hamburger'></span> </span>
-                    <ul>
-                        <li> <a href='#'>Home</a> </li>
-                        <li> <a href='#'>Works</a> </li>
-                        <li> <a href='#'>About</a> </li>
-                        <li> <a href='#'>Contact</a> </li>
-                    </ul>
-                </label>
-                
-        <h2 class="h2contact">Feel free to <br /> <span>contact</span> me. I will<br /> get back as soon as<br /> possible.</h2>
+                <input type='checkbox'>
+                <span class='menu'> <span class='hamburger'></span> </span>
+                <ul>
+                    <li> <a href='index.html'>Home</a> </li>
+                    <li> <a href='works.html'>Works</a> </li>
+                    <li> <a href='about.html'>About</a> </li>
+                    <li> <a href='contact.html'>Contact</a> </li>
+                </ul>
+            </label>
 
-        <form action="" method="get">
-            <input type="text" id="nom" class="champs" placeholder="Your name" type="text" value="" required="" x-autocompletetype="family-name">
+            <h2 class="h2contact">Feel free to <br /> <span>contact</span> me. I will<br /> get back as soon as<br /> possible.</h2>
+
+            <form action="" method="get">
+                <input type="text" id="nom" class="champs" placeholder="Your name" type="text" value="" required="" x-autocompletetype="family-name">
 
 
-            <input type="email" id="mail" class="champs" placeholder="Email" type="text" value="" required="" x-autocompletetype="family-name">
+                <input type="email" id="mail" class="champs" placeholder="Email" type="text" value="" required="" x-autocompletetype="family-name">
 
-            <input type="text" id="objet" class="champs" placeholder="Subject" type="text" value="" required="" x-autocompletetype="family-name">
+                <input type="text" id="objet" class="champs" placeholder="Subject" type="text" value="" required="" x-autocompletetype="family-name">
 
-            <textarea name="" id="" cols="" rows="10" placeholder="Your Message" x-autocompletetype="email" class="champs"></textarea>
-            <button type="submit" class="bouton text">submit</button>
-           <!--  <div class="progress-bar"></div>
-            <svg x="0px" y="0px" viewBox="0 0 25 30" style="enable-background:new 0 0 25 30;">
-                <path class="check" class="st0" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
-            </svg>-->
-        </form>
+                <textarea name="" id="" cols="" rows="10" placeholder="Your Message" x-autocompletetype="email" class="champs textarea_"></textarea>
+                <button type="submit" class="bouton buttonblack">submit</button>
+                <!--  <div class="progress-bar"></div>
+    <svg x="0px" y="0px" viewBox="0 0 25 30" style="enable-background:new 0 0 25 30;">
+        <path class="check" class="st0" d="M2,19.2C5.9,23.6,9.4,28,9.4,28L23,2" />
+    </svg>-->
+            </form>
+        </div>
+        <footer>
+            <div class="boiteimg">
+                <a href="">
+                    <img src="medias_portofolio/1x/behance.png" alt="Behance logo">
+                </a>
+                <a href="">
+                    <img src="medias_portofolio/1x/dribble.png" alt="Dribble logo">
+                </a>
+                <a href="https://github.com/R4ph3rd">
+                    <img src="medias_portofolio/1x/github.png" alt="github logo">
+                </a>
+                <a href="">
+                    <img src="medias_portofolio/1x/linkedn.png" alt="linkedin logo">
+                </a>
+                <a href="">
+                    <img src="medias_portofolio/1x/mail.png" alt="mail logo">
+                </a>
+            </div>
+            <button class="bouton">
+                <p>My resume</p>
+            </button>
+            <p id="copyr">&copy;Raphaël Perraud 2019</p>
+            <label for="back">
+                <div id="back">^</div>
+                <p id="back" >Back to top</p>
+            </label>
+        </footer>
+
     </div>
 
     <script src="../p5/p5.min.js"></script>
     <script src="../p5/addons/p5.dom.min.js"></script>
     <script src="../p5/addons/p5.sound.min.js"></script>
     <script language="javascript" type="text/javascript" src="path/to/p5.dom.js"></script>
-    <script src="jquery-1.11.0.min.js"></script>
     <script src="objectinteraction.js"></script>
     <script src="menu.js"></script>
 </body>
 
 </html>
-
-
-<!--
-<form action="get">
-    <label for="toto">votre nom</label>
-    <input type="text" id="toto">
-
-    <label for="mail">votre nom</label>
-    <input type="email" id="mail">
-
-    <label for="number">votre nom</label>
-    <input type="number" id="number">
-
-    <label for="color">votre nom</label>
-    <input type="color" id="color">
-
-    <label for="mess">votre message</label>
-    <textarea name="" id="" cols="" rows="10"></textarea>
-
-    <label for="sel">votre pays</label>
-    <select>
-        <optgroup label="Afrique">
-            <option value="1">FranceAfrique</option>
-            <option value="2">Algérie</option>
-            <option value="3">Cheik</option>
-            <option value="4">rwanda</option>
-            <option value="5">congo</option>
-        </optgroup>
-
-
-        <optgroup label="Europe">
-            <option value="1">France</option>
-            <option value="2">allemagne</option>
-        </optgroup>
-    </select>
-    
-    <input type="radio" id="a" name="boutonradio"><label for="a">Mâle</label>
-    <input type="radio" id="b" name="boutonradio"><label for="b">Femelle</label>
-    <input type="radio" id="c" name="boutonradio"><label for="c">Divers</label>
-    
-     <input type="checkbox" id="c"><label for="c">Banane</label>
-    
-    <button type="submit">valider</button>
-
-</form>-->

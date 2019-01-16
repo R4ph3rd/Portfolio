@@ -83,7 +83,7 @@ function handleOrientation(event) {
   // x and y to [0,180]
   x += 90;
   y += 90;
-    console.log(x)
+    alert(x)
 }
 
 function draw() {

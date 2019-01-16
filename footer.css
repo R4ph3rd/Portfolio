@@ -2,10 +2,12 @@
 footer{
     background-color:#F0F0F0;
     padding:20px;
+    padding-bottom:10px;
     position:relative;
     bottom:0px;
     width:100vw;
     margin-top:40px;
+    
 }
 
 .boiteimg{
@@ -46,4 +48,9 @@ footer label div {
     color:#1E1E1E;
     font-size:0.8em;
     margin-bottom:15px;
+
+}
+
+#back{
+    margin : 5px;
 }

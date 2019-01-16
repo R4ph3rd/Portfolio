@@ -1,6 +1,6 @@
 .filtres{
-    text-decoration:none;
-    font-family: 'Raleway';
+text-decoration:none;
+font-family: 'Raleway';
 font-weight:900;
 font-size: 1.8em;
 color:#F0F0F0;
@@ -9,4 +9,33 @@ position: relative;
 text-align:left;
 width:100%;
 background-color:red;
+}
+
+h3 {
+text-decoration:none;
+font-family: 'Raleway';
+font-weight:700;
+font-size: 1.2em;
+line-height:1.7rem;
+color:#F0F0F0;
+margin:0px;
+}
+
+.resume{
+
+color: #F0F0F0;
+font-family:"Source Sans Pro";
+font-weight:300;
+font-size: 1rem;
+line-height:1.5rem;
+margin:0px;
+}
+
+#postxt{
+    left:50%;
+    margin:10px;
+}
+
+.workfloating{
+    margin:20px;
 }

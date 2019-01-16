@@ -1,16 +1,28 @@
-var vitessemax = 4;
-var frictioncoef = 0.8; //coefficient of friction;
-var particulesmax; //will change depending on screen size
-var fps;
-var displayedparticules
-var particules = [particulesmax];
-var mouse;
-var G = 9; //constant of gravitation
-var mouseMass = 400.0; // will change depeing on screen size
+let vitessemax = 4;
+let frictioncoef = 0.8; //coefficient of friction;
+let particulesmax; //will change depending on screen size
+let fps;
+let displayedparticules
+let particules = [particulesmax];
+let centralPoint;
+let G = 9; //constant of gravitation
+let massPoint = 400; // will change depeing on screen size
+const heightless = document.querySelector("footer").clientHeight
+//pour le portrait dans about
+let position
+let largeur
+let hauteur
+let xpos
+let ypos
+//what page are we reading ?
+const el = location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
+const workpage = "work.html"
+const aboutpage = "about.html"
+console.log(el)
 
-function windowResized(){
-    resizeCanvas(windowWidth,windowHeight)
-        //initialize paticles
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight)
+    //initialize paticles
     for (i = 0; i < particulesmax; i++) {
         particules[i] = new Particle(random(0, width), //x
             random(0, height), //y
@@ -18,15 +30,35 @@ function windowResized(){
             random(1, 4), //size
             random(100, 150)); //seuil
     }
+    
+        if ((el == workpage) || (el == aboutpage)) {
+        position = document.querySelector(".taillezone").getBoundingClientRect()
+        largeur = position.width
+        hauteur = position.height
+        xpos = position.x
+        ypos = position.y
+        }
 }
+
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     //pixelDensity(1)
     background(30);
-    mouse = createVector(mouseX, mouseY);
+    centralPoint = createVector(mouseX, mouseY)
+    //create gravitation points on fixed objects for work & about pages
+    if ((el == workpage) || (el == aboutpage)) {
+        position = document.querySelector(".taillezone").getBoundingClientRect()
+        largeur = position.width
+        hauteur = position.height
+        xpos = position.x
+        ypos = position.y
+
+        centralPoint = createVector(xpos + (largeur * 0.5), ypos + (hauteur * 0.5));
+    }
 
     particulesmax = 1000;
     displayedparticules = particulesmax
+    massPoint = width  / 4
 
     //reset balls positions
     for (i = 0; i < particulesmax; i++) {
@@ -39,48 +71,28 @@ function setup() {
 }
 
 function draw() {
+    console.log(massPoint)
     noStroke();
     //background
     fill(30, 20);
     rect(0, 0, width, height);
-    //update x and y depending on mouseposition or mobile inclination
-    mouse.set(mouseX, mouseY)
+
+
+    if ((el == workpage) || (el == aboutpage)) centralPoint = createVector(xpos + (largeur * 0.5), ypos + (hauteur * 0.5));
+    else centralPoint = createVector(mouseX, mouseY)
     fps = frameRate()
 
-    //adapter le nombre de particules en fonction des fps
-    if (fps < 25) {
-        displayedparticules -= 10;
-    }
+    //adapter le nombre de particules en fonction des fps & taille de l'écran
+    displayedparticules = width / 1.6
+    if (fps < 25) displayedparticules -= 10;
     if (fps > 40) {
-        if (displayedparticules < 1000) {
-            displayedparticules += 10;
-        }
+        if (displayedparticules < 1000) displayedparticules += 10
     }
-    console.log(displayedparticules)
-
     //particles
     fill(23, 175, 135);
     for (i = 0; i < displayedparticules; i++) {
         particules[i].update();
         particules[i].display();
-    }
-    
-    //mediaqueries 
-    if (width<1200){
-        displayedparticules = 800
-         mouseMass = 350
-    } 
-    if (width<800){ 
-        displayedparticules = 700
-         mouseMass = 300
-    }
-    if (width<600) {
-        displayedparticules = 600
-         mouseMass = 250
-    }
-    if (width<400) {
-        displayedparticules = 500
-        mouseMass = 200
     }
 }
 
@@ -88,27 +100,27 @@ function draw() {
 // comment différencier descente et montée ? Pour que l'on puisse revenir tout en haut et de nouveau avoir la densité de points initiale...
 
 //to be readable, have to decrease points density   
-function mouseWheel(event) {
+/*function mouseWheel(event) {
     console.log("eventdelta = " + event.delta);
     //move the square according to the vertical scroll amount
     if (displayedparticules > 500) {
         displayedparticules -= event.delta / 4
         console.log("--------------particules = " + displayedparticule+ "--------------------------------------------")
     }
-}
+}*/
 
 //class particule
 function Particle(x, y, _mass, _size, _seuil) {
 
     // particule class should have location, velocity, acceleration, friction, and gravity
-    // particules should be attracted to mouse
+    // particules should be attracted to centralPoint
     this.location = createVector(x, y);
     this.velocity = createVector(0, 0);
     this.acceleration = createVector(0, 0);
     this.size = _size;
     this.seuil = _seuil;
     this.mass = _mass;
-    this.direction = int (random(0, 2) < 1) ? 1 : -1;
+    this.direction = int(random(0, 2) < 1) ? 1 : -1;
 
 
     this.calculateFriction = function () {
@@ -121,10 +133,10 @@ function Particle(x, y, _mass, _size, _seuil) {
     }
 
     this.calculateGravity = function () {
-        let gravity = p5.Vector.sub(mouse, this.location); //make vector pointing towards mouse
-        let distance = p5.Vector.mag(gravity); //distance between particle and mouse
-        //let distance = dist(mouse.x, mouse.y, location.x, location.y)
-        let gravitation = (G * mouseMass * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
+        let gravity = p5.Vector.sub(centralPoint, this.location); //make vector pointing towards centralPoint
+        let distance = p5.Vector.mag(gravity); //distance between particle and centralPoint
+        //let distance = dist(centralPoint.x, centralPoint.y, location.x, location.y)
+        let gravitation = (G * massPoint * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
         gravity.normalize();
         gravity.mult(gravitation);
         // console.log(gravity)
@@ -133,13 +145,11 @@ function Particle(x, y, _mass, _size, _seuil) {
 
     this.calculateTangent = function (gravite) {
         let tangent;
-
         //direction of rotation
         if (this.direction == 1) {
             tangent = createVector(-gravite.y, gravite.x);
         } else {
             tangent = createVector(gravite.y, -gravite.x);
-
             tangent.mult(gravite.mag());
         }
         return tangent;
@@ -150,7 +160,7 @@ function Particle(x, y, _mass, _size, _seuil) {
         if (this.location.x > width || this.location.x < 0) {
             this.velocity.x = -this.velocity.x;
         }
-        if (this.location.y > height || this.location.y < 0) {
+        if (this.location.y > height - heightless || this.location.y < 0) {
             this.velocity.y = -this.velocity.y;
         }
     }
@@ -165,15 +175,7 @@ function Particle(x, y, _mass, _size, _seuil) {
         let gravity = this.calculateGravity();
         //console.log("gravity")
         let friction = this.calculateFriction();
-        let distance = dist(this.location.x, this.location.y, mouse.x, mouse.y);
-
-        //particules should be repelled on click ; remove that and see the  black hole !
-        if (canvas.mousePressed() == true) {
-            let antigrav = createVector(this.calculateGravity());
-            antigrav.mult(-1);
-            this.applyForce(antigrav);
-        }
-
+        let distance = dist(this.location.x, this.location.y, centralPoint.x, centralPoint.y);
         this.applyForce(gravity);
         this.applyForce(friction);
 
@@ -188,12 +190,12 @@ function Particle(x, y, _mass, _size, _seuil) {
         this.location.add(this.velocity);
         this.check();
         this.acceleration.mult(0); //clear acceleration each frame
-        
+
         //mediaqueries 
-    if (width<1200)        this.seuil = random(100,120)
-    if (width<800)       this.seuil = random(80,100)
-    if (width<600)       this.seuil = random(70,95)
-    if (width<400)       this.seuil = random(60,75)
+        if (width < 1200) this.seuil = random(100, 120)
+        if (width < 800) this.seuil = random(80, 100)
+        if (width < 600) this.seuil = random(70, 95)
+        if (width < 400) this.seuil = random(60, 75)
     }
 
     this.display = function () {

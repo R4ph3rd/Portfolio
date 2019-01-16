@@ -11,3 +11,12 @@ line-height:1.5rem;
     color: #1CAE87;
 }
 
+#portrait{
+    margin-top: 20px;
+    width:45vw;
+    object-fit:contain;
+}
+
+#verscontact{
+    left:50%;
+}

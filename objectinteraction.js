@@ -7,7 +7,7 @@ let particules = [particulesmax];
 let centralPoint;
 let G = 9; //constant of gravitation
 let massPoint = 400; // will change depeing on screen size
-const heightless = document.querySelector("footer").clientHeight
+let heightless = document.querySelector("footer").getBoundingClientRect().height
 //pour le portrait dans about
 let position
 let largeur
@@ -18,7 +18,6 @@ let ypos
 const el = location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
 const workpage = "work.html"
 const aboutpage = "about.html"
-console.log(el)
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
@@ -30,14 +29,15 @@ function windowResized() {
             random(1, 4), //size
             random(100, 150)); //seuil
     }
-    
-        if ((el == workpage) || (el == aboutpage)) {
+
+    if ((el == workpage) || (el == aboutpage)) {
         position = document.querySelector(".taillezone").getBoundingClientRect()
         largeur = position.width
         hauteur = position.height
         xpos = position.x
         ypos = position.y
-        }
+    }
+    heightless = document.querySelector("footer").getBoundingClientRect().height
 }
 
 function setup() {
@@ -58,7 +58,7 @@ function setup() {
 
     particulesmax = 1000;
     displayedparticules = particulesmax
-    massPoint = width  / 3.5
+    massPoint = width / 3.5
 
     //reset balls positions
     for (i = 0; i < particulesmax; i++) {
@@ -66,28 +66,31 @@ function setup() {
             random(0, height), //y
             random(2, 50), //mass
             random(1, 4), //size
-            random(16*width, (1600/150)*width)); //seuil //correspond to my values (100,150 that I used on a screen of 1600px length
+            random(100, 150)); //seuil //seuil //correspond to my values (100,150 that I used on a screen of 1600px length
     }
 }
 
 function handleOrientation(event) {
-  var x = event.beta;  // In degree in the range [-180,180]
-  var y = event.gamma; // In degree in the range [-90,90]
+    var x = event.beta; // In degree in the range [-180,180]
+    var y = event.gamma; // In degree in the range [-90,90]
 
-  // Because we don't want to have the device upside down
-  // We constrain the x value to the range [-90,90]
-  if (x >  90) { x =  90};
-  if (x < -90) { x = -90};
+    // Because we don't want to have the device upside down
+    // We constrain the x value to the range [-90,90]
+    if (x > 90) {
+        x = 90
+    };
+    if (x < -90) {
+        x = -90
+    };
 
-  // To make computation easier we shift the range of 
-  // x and y to [0,180]
-  x += 90;
-  y += 90;
+    // To make computation easier we shift the range of 
+    // x and y to [0,180]
+    x += 90;
+    y += 90;
     alert(x)
 }
 
 function draw() {
-    console.log(massPoint)
     noStroke();
     //background
     fill(30, 20);
@@ -135,9 +138,10 @@ function Particle(x, y, _mass, _size, _seuil) {
     this.acceleration = createVector(0, 0);
     this.size = _size;
     this.seuil = _seuil;
-    if ((el == workpage) || (el == aboutpage)) this.seuil = largeur //radius de l'objet pour que les points pivotent autour
+    if ((el == workpage) || (el == aboutpage)) this.seuil = largeur *2 //radius de l'objet pour que les points pivotent autour
     this.mass = _mass;
-    this.direction = int(random(0, 2) < 1) ? 1 : -1;
+    this.direction = (int(random(0, 2)) == 0) ? 1 : -1;
+    //console.log(this.direction)
 
 
     this.calculateFriction = function () {
@@ -165,6 +169,7 @@ function Particle(x, y, _mass, _size, _seuil) {
         //direction of rotation
         if (this.direction == 1) {
             tangent = createVector(-gravite.y, gravite.x);
+            tangent.mult(gravite.mag());
         } else {
             tangent = createVector(gravite.y, -gravite.x);
             tangent.mult(gravite.mag());
@@ -174,10 +179,21 @@ function Particle(x, y, _mass, _size, _seuil) {
 
     //ensure that the particles stay on screen
     this.check = function () {
-        if (this.location.x > width || this.location.x < 0) {
+        let x1border = 0
+        let x2border = width
+        let y1border = 0
+        let y2border = height
+     /*   if ((el == workpage) || (el == aboutpage)) { //set myphoto position
+            x1border = xpos - (largeur * 0.5)
+            x2border = xpos + (largeur * 0.5)
+            y1border = ypos - (largeur * 0.5)
+            y2border = ypos + (largeur * 0.5)
+        }*/
+        
+        if (this.location.x > x2border || this.location.x < x1border) {
             this.velocity.x = -this.velocity.x;
         }
-        if (this.location.y > height - heightless || this.location.y < 0) {
+        if (this.location.y > y2border || this.location.y < y1border) {
             this.velocity.y = -this.velocity.y;
         }
     }

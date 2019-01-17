@@ -1,0 +1,56 @@
+
+footer{
+    background-color:#F0F0F0;
+    padding:20px;
+    padding-bottom:10px;
+    position:relative;
+    bottom:0px;
+    width:100vw;
+    margin-top:40px;
+    
+}
+
+.boiteimg{
+    height:35px;    
+    margin-bottom: 20px;
+    display:block;
+}
+
+footer a{
+    margin:5px;
+}
+
+footer button {
+    background:#1E1E1E;
+    left:50%;
+}
+
+footer button:hover{
+    color:#1E1E1E;
+    background:#1CAE87;
+}
+
+
+footer label{
+    font-weight:600;
+}
+
+footer label div {
+    font-weight:900;
+    widows: 10rem;
+    left:50%
+}
+
+
+#copyr{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 400;
+    color:#1E1E1E;
+    font-size:0.8em;
+    margin-bottom:15px;
+
+}
+
+#back{
+    margin : 5px;
+}

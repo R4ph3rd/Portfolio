@@ -26,7 +26,7 @@ let scrollPos = 0
 //window.addEventListener("scroll", scrollEvent);
 
 function preload(){
-   jsonData = loadJSON('../data.json') 
+  jsonData = loadJSON('../data.json') 
 }
 
 function windowResized() {
@@ -91,10 +91,10 @@ function draw() {
     fill(30, 20);
     rect(0, 0, width, height);
     
-    for( let i = 0 ; i < data.length ; i++){
-        img = createImage(jsonDate[i]['img'])
-        titre = createImage(jsonData[i]['title'])
-       txt = createP(jsonData[i]['resume'])
+    for( let i = 0 ; i < jsonData.length ; i++){
+//        img = createImage(jsonDate[i].['img'])
+//        titre = createImage(jsonData[i].['title'])
+//       txt = createP(jsonData[i].['resume'])
         
     }
     

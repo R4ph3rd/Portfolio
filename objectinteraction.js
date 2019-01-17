@@ -78,7 +78,7 @@ function setup() {
 
 function mouseWheel(event) {
   scrollPos += event.delta;
-     print(scrollPos)
+     alert(scrollPos)
 }
 
 function draw() {

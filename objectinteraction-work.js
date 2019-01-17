@@ -26,7 +26,7 @@ let scrollPos = 0
 //window.addEventListener("scroll", scrollEvent);
 
 function preload(){
-   jsonData = loadJSON("../data.json") 
+   jsonData = loadJSON('../data.json') 
 }
 
 function windowResized() {

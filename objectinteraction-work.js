@@ -18,12 +18,16 @@ let ypos
 const el = location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
 const workpage = "work.html"
 const aboutpage = "about.html"
-
+const jsonData
 //get scroll position
 let scrollPos = 0
 //var scrollEvent = new WheelEvent("scrollWheel",{"deltaX": 0,"deltaY": 0, "deltaMode": 1});
 //let scrollEvent = function (evt){ }
 //window.addEventListener("scroll", scrollEvent);
+
+function preload(){
+   jsonDate = loadJSON(data.json) 
+}
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
@@ -86,6 +90,10 @@ function draw() {
     //background
     fill(30, 20);
     rect(0, 0, width, height);
+    
+    for( let i = 0 ; i < data.length ; i++){
+       createP = jsonData[i]['title']
+    }
     
 
 

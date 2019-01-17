@@ -58,7 +58,7 @@ function setup() {
 
     particulesmax = 1000;
     displayedparticules = particulesmax
-    massPoint = width  / 4
+    massPoint = width  / 3.5
 
     //reset balls positions
     for (i = 0; i < particulesmax; i++) {
@@ -66,7 +66,7 @@ function setup() {
             random(0, height), //y
             random(2, 50), //mass
             random(1, 4), //size
-            random(100, 150)); //seuil
+            random(16*width, (1600/150)*width)); //seuil //correspond to my values (100,150 that I used on a screen of 1600px length
     }
 }
 
@@ -135,6 +135,7 @@ function Particle(x, y, _mass, _size, _seuil) {
     this.acceleration = createVector(0, 0);
     this.size = _size;
     this.seuil = _seuil;
+    if ((el == workpage) || (el == aboutpage)) this.seuil = largeur //radius de l'objet pour que les points pivotent autour
     this.mass = _mass;
     this.direction = int(random(0, 2) < 1) ? 1 : -1;
 

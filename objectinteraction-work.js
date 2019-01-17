@@ -18,7 +18,7 @@ let ypos
 const el = location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
 const workpage = "work.html"
 const aboutpage = "about.html"
-const jsonData
+var jsonData
 //get scroll position
 let scrollPos = 0
 //var scrollEvent = new WheelEvent("scrollWheel",{"deltaX": 0,"deltaY": 0, "deltaMode": 1});
@@ -26,7 +26,7 @@ let scrollPos = 0
 //window.addEventListener("scroll", scrollEvent);
 
 function preload(){
-   jsonDate = loadJSON(data.json) 
+   jsonData = loadJSON("../data.json") 
 }
 
 function windowResized() {
@@ -82,7 +82,7 @@ function setup() {
 
 function mouseWheel(event) {
   scrollPos += event.delta;
-     print(scrollPos)
+     alert(scrollPos)
 }
 
 function draw() {
@@ -92,7 +92,10 @@ function draw() {
     rect(0, 0, width, height);
     
     for( let i = 0 ; i < data.length ; i++){
-       createP = jsonData[i]['title']
+        img = createImage(jsonDate[i]['img'])
+        titre = createImage(jsonData[i]['title'])
+       txt = createP(jsonData[i]['resume'])
+        
     }
     
 

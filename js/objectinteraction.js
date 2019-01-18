@@ -105,7 +105,7 @@ function setup() {
                 print(err);
             } else {
                 font = f;
-                pnts = getPoints(typedKey);
+                pnts = getPoints("Raphael Perraud");
                 loop();
             }
         })
@@ -115,6 +115,21 @@ function setup() {
 function mouseWheel(event) {
     scrollPos += event.delta;
     console.log(scrollPos)
+}
+
+//loaded only on home page 
+function getPoints() {
+    fontPath = font.getPath("Raphael Perraud", 50, 600, 200);
+    var path = new g.Path(fontPath.commands);
+    path = g.resampleByLength(path, 25);
+    textW = path.bounds().width;
+    // remove all commands without a coordinate
+    for (var i = path.commands.length - 1; i >= 0; i--) {
+        if (path.commands[i].x == undefined) {
+            path.commands.splice(i, 1);
+        }
+    }
+    return path.commands;
 }
 
 function draw() {
@@ -135,10 +150,43 @@ function draw() {
 
     //particles
     fill(23, 175, 135);
-    for (i = 0; i < displayedparticules; i++) {
-        if ((scrollPos > 1000) && (el == homepage)) particules[i].updateToTypo()
-        else particules[i].update()
 
-        particules[i].display();
-    }
-}
+    //verify : are we ovrpass the limit of scroll ?
+    if ((scrollPos > 1000) && (el == homepage)) {
+        //set new positions of points (typography) if we want to draw the text
+        G = 0.03125* width // change attraction, yes, but proportionnaly to screen size to avoid some particles in this new attraction
+        if (pnts.length > 0) {
+            // let the points dance
+            for (var i = 0; i < pnts.length; i++) {
+                pnts[i].x += random(-1, 1) * 1
+                pnts[i].y += random(-1, 1) * 1
+            }
+        }
+        //then update particules
+        //use the loop to draw a form between particles
+        beginShape()
+        for (i = 0; i < displayedparticules; i++) {
+            let index = int(map(i, 0, 1000, 0, pnts.length)) //faire correspondre une particule à un point de typo
+            particules[i].update(index,G)
+            particules[i].display();
+            push()
+            vertex(pnts[index].x,pnts[index].y)
+            pop()
+        }
+        endShape()
+    } else {
+        //just update particles
+        for (i = 0; i < displayedparticules; i++) {
+            index = -1
+            particules[i].update(index,G)
+            particules[i].display();
+        }
+    } //else
+}//draw
+
+//    //draw form between point user scrolled to see my name
+//    if ((scrollPos > 1000) && (el == homepage)) {
+//        beginShape()
+//        vertex(this.location.x, this.location.y)
+//    }
+//    endShape()

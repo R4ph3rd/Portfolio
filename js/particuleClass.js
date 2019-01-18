@@ -1,4 +1,13 @@
 //class particule
+//typography : inspired by a sketch of :
+// Generative Gestaltung – Creative Coding im Web
+// ISBN: 978-3-87439-902-9, First Edition, Hermann Schmidt, Mainz, 2018
+// Benedikt Groß, Hartmut Bohnacker, Julia Laub, Claudius Lazzeroni
+// with contributions by Joey Lee and Niels Poldervaart
+// Copyright 2018
+//
+// http://www.generative-gestaltung.de
+
 function Particle(x, y, _mass, _size, _seuil) {
 
     // particule class should have location, velocity, acceleration, friction, and gravity
@@ -11,14 +20,9 @@ function Particle(x, y, _mass, _size, _seuil) {
     if (el == aboutpage) this.seuil = largeur * 2 //radius de l'objet pour que les points pivotent autour
     this.mass = _mass;
     this.direction = (int(random(0, 2)) == 0) ? 1 : -1;
-    //console.log(this.direction)
-    
-    this.fontPoints = font.textToPoints('Raphaël Perraud', 0, 0, 10, {
-        sampleFactor: 5,
-        simplifyThreshold: 0
-    })
-    this.bounds = font.textBounds('Raphaël Perraud', 0, 0, 10)
+    this.scrollbound = 0
 
+    //console.log(this.direction)
 
     //mediaqueries 
     if (width < 1200) this.seuil = random(100, 120)
@@ -36,11 +40,10 @@ function Particle(x, y, _mass, _size, _seuil) {
         return friction;
     }
 
-    this.calculateGravity = function () {
-        let gravity = p5.Vector.sub(centralPoint, this.location); //make vector pointing towards centralPoint
+    this.calculateGravity = function (_target,_G) {
+        let gravity = p5.Vector.sub(_target, this.location); //make vector pointing towards centralPoint
         let distance = p5.Vector.mag(gravity); //distance between particle and centralPoint
-        //let distance = dist(centralPoint.x, centralPoint.y, location.x, location.y)
-        let gravitation = (G * massPoint * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
+        let gravitation = (_G * massPoint * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
         gravity.normalize();
         gravity.mult(gravitation);
         // console.log(gravity)
@@ -86,16 +89,24 @@ function Particle(x, y, _mass, _size, _seuil) {
     }
 
 
-    this.update = function () {
 
-        let gravity = this.calculateGravity();
+    this.update = function (index,_G) {
+        if ((scrollPos > 1000) && (el == homepage)){
+            centralPoint.x = pnts[index].x
+            centralPoint.y = pnts[index].y
+            this.scrollbound = 1
+        } else {
+            this.scrollbound = 0 //centralPoint is reset in the draw at every iteration
+        }
+
+        let gravity = this.calculateGravity(centralPoint,_G);
         //console.log("gravity")
         let friction = this.calculateFriction();
         let distance = dist(this.location.x, this.location.y, centralPoint.x, centralPoint.y);
         this.applyForce(gravity);
         this.applyForce(friction);
-
-        if (distance <= this.seuil) {
+        //index != pour éviter une mise en orbite lorsque je veux afficher la typo
+        if ((distance <= this.seuil) && (this.scrollbound == 0)) {
             let tangent = (this.calculateTangent(gravity));
             this.applyForce(tangent);
         }
@@ -106,17 +117,6 @@ function Particle(x, y, _mass, _size, _seuil) {
         this.location.add(this.velocity);
         this.check();
         this.acceleration.mult(0); //clear acceleration each frame
-    }
-
-    this.updateToTypo = function () {
-        beginShape();
-        translate(-bounds.x * width / bounds.w, -bounds.y * height / bounds.h);
-        for (let i = 0; i < points.length; i++) {
-            let p = points[i];
-            vertex(p.x * width / bounds.w + sin(20 * p.y / bounds.h + millis() / 1000) * width / 30,
-                p.y * height / bounds.h)
-        }
-        endShape(CLOSE);
     }
 
     this.display = function () {

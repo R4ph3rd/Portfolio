@@ -28,19 +28,26 @@ const contactpage = "contact.html"
 
 //for home page typo event
 var font
+let typoSize
 
 //get scroll position
 let scrollPos = 0
-//var scrollEvent = new WheelEvent("scrollWheel",{"deltaX": 0,"deltaY": 0, "deltaMode": 1});
-//let scrollEvent = function (evt){ }
-//window.addEventListener("scroll", scrollEvent);
+let val
+addEventListener("load", function () {
+    document.addEventListener("wheel", wheele, false);
+});
 
+//typo
+let coordFixed = []
+let pnts = []
 
 function windowResized() {
     //canvas on all page
     //    heightPage = document.body.offsetHeight
     //    console.log(heightPage)
     resizeCanvas(windowWidth, windowHeight)
+    //    typoSize = (width * 0.8) /7
+    //    console.log("size = " + typoSize)
 
     //reinitialize paticles
     for (i = 0; i < particulesmax; i++) {
@@ -66,10 +73,25 @@ function windowResized() {
 
 }
 
+function wheele(e) {
+    // Je supprime le comportement par défaut
+    e.preventDefault();
+    var delta = e.deltaY; //scroll variable
+    //launch handle function if this happens
+    handle(delta);
+}
+
+
+
 function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     //pixelDensity(1)
     background(30);
+    //set typo caracteristics
+    //        typoSize = (width * 0.8) /7
+    //        console.log("size = " + typoSize)
+    typoSize = 200
+
     centralPoint = createVector(mouseX, mouseY)
     //create gravitation points centered on differents objects depeding on the current page
     if ((el == homepage) || (el == contactpage)) centralPoint = createVector(mouseX, mouseY)
@@ -106,25 +128,33 @@ function setup() {
             } else {
                 font = f;
                 pnts = getPoints("Raphael Perraud");
+                for (let i = 0; i < pnts.length; i++) {
+                    coordFixed[i] = pnts[i]
+                }
                 loop();
             }
         })
     }
 }
 
-function mouseWheel(event) {
-    scrollPos += event.delta;
-    console.log(scrollPos)
+//reset data of typography
+function handle(delta) {
+    scrollPos += delta;
+    pnts = getPoints("Raphael Perraud");
+    for (let i = 0; i < pnts.length; i++) {
+        coordFixed[i] = pnts[i]
+    }
+
 }
 
 //loaded only on home page 
-function getPoints() {
-    fontPath = font.getPath("Raphael Perraud", 50, 600, 200);
+function getPoints(fontPath) {
+    fontPath = font.getPath("Raphaelxx  ", 100, 600, typoSize); //why do I have to enter two characters more that aren't displayed ?
     var path = new g.Path(fontPath.commands);
-    path = g.resampleByLength(path, 25);
+    path = g.resampleByLength(path, 2); //quantity of points
     textW = path.bounds().width;
     // remove all commands without a coordinate
-    for (var i = path.commands.length - 1; i >= 0; i--) {
+    for (let i = path.commands.length - 1; i >= 0; i--) {
         if (path.commands[i].x == undefined) {
             path.commands.splice(i, 1);
         }
@@ -153,37 +183,39 @@ function draw() {
 
     //verify : are we ovrpass the limit of scroll ?
     if ((scrollPos > 1000) && (el == homepage)) {
+        overPassed = 1
         //set new positions of points (typography) if we want to draw the text
-        G = 0.03125* width // change attraction, yes, but proportionnaly to screen size to avoid some particles in this new attraction
+        G = 0.03125 * width // change attraction, yes, but proportionnaly to screen size to avoid some particles in this new attraction
         if (pnts.length > 0) {
             // let the points dance
-            for (var i = 0; i < pnts.length; i++) {
+            for (let i = 0; i < pnts.length; i++) {
                 pnts[i].x += random(-1, 1) * 1
+                constrain(pnts[i].x, coordFixed[i].x - 1, coordFixed[i].x + 1)
                 pnts[i].y += random(-1, 1) * 1
+                constrain(pnts[i].y, coordFixed[i].y - 1, coordFixed[i].y + 1)
             }
         }
         //then update particules
         //use the loop to draw a form between particles
         beginShape()
-        for (i = 0; i < displayedparticules; i++) {
+        for (let i = 0; i < displayedparticules; i++) {
             let index = int(map(i, 0, 1000, 0, pnts.length)) //faire correspondre une particule à un point de typo
-            particules[i].update(index,G)
+            particules[i].update(index, G)
             particules[i].display();
             push()
-            vertex(pnts[index].x,pnts[index].y)
+            vertex(pnts[index].x, pnts[index].y)
             pop()
         }
         endShape()
     } else {
-        //reset G value
+        //reset G value & pnts value
         G = 9
+        pnts = []
         //just update particles
         for (i = 0; i < displayedparticules; i++) {
             index = -1
-            particules[i].update(index,G)
+            particules[i].update(index, G)
             particules[i].display();
         }
     } //else
-}//draw
-
-
+} //draw

@@ -175,6 +175,8 @@ function draw() {
         }
         endShape()
     } else {
+        //reset G value
+        G = 9
         //just update particles
         for (i = 0; i < displayedparticules; i++) {
             index = -1
@@ -184,9 +186,4 @@ function draw() {
     } //else
 }//draw
 
-//    //draw form between point user scrolled to see my name
-//    if ((scrollPos > 1000) && (el == homepage)) {
-//        beginShape()
-//        vertex(this.location.x, this.location.y)
-//    }
-//    endShape()
+

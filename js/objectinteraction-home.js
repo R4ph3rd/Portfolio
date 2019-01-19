@@ -28,10 +28,6 @@ let scrollPos = 0
 //let scrollEvent = function (evt){ }
 //window.addEventListener("scroll", scrollEvent);
 
-function preload() {
-  font = loadFont("https://fonts.googleapis.com/css?family=Raleway")
-}
-
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight)
     //initialize paticles
@@ -236,20 +232,6 @@ function Particle(x, y, _mass, _size, _seuil) {
         if (width < 800) this.seuil = random(80, 100)
         if (width < 600) this.seuil = random(70, 95)
         if (width < 400) this.seuil = random(60, 75)
-    }
-
-    this.updateToTypo = function() {
-        beginShape();
-        translate(-bounds.x * width / bounds.w, -bounds.y * height / bounds.h);
-        for (let i = 0; i < points.length; i++) {
-            let p = points[i];
-            vertex(
-                p.x * width / bounds.w +
-                sin(20 * p.y / bounds.h + millis() / 1000) * width / 30,
-                p.y * height / bounds.h
-            );
-        }
-        endShape(CLOSE);
     }
 
     this.display = function () {

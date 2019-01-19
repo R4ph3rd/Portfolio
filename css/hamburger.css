@@ -120,6 +120,7 @@ label a {
   label .menu{
   width:5vw;
   height: 4vh;
+  right:4vw;
 }
 label .hamburger{
   width:5vw;
@@ -132,24 +133,15 @@ label .hamburger:after { bottom: -7px; }
 @media (min-width:600px){
   label .menu{
  top:6vw;
- width:5vw;
+ width:3vw;
  right:4vw;
   }
     label .hamburger{
 width:4vw;
+right:4vw;
   }
     label .hamburger:before { top: -8px; }
   label .hamburger:after { bottom: -8px; }
-}
-
-@media (min-width:600px){
-  label .hamburger{
-width:3vw;
-  }
-
-  label .menu{
-    right:4vw;
-  }
 }
 
 @media (min-width:1200px){

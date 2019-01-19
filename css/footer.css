@@ -3,11 +3,10 @@ footer{
     background-color:#F0F0F0;
     padding:20px;
     padding-bottom:10px;
-    position:relative;
+    position:fixed;
     bottom:0px;
     width:100vw;
-    margin-top:40px;
-    
+    margin-top:100vh;   
 }
 
 .boiteimg{

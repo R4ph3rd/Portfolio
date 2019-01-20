@@ -1,80 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
-        <head>
-                <meta charset="utf-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <link rel="stylesheet" href="css/structure.css">
-                <link rel="stylesheet" href="css/hamburger.css">
-                <link rel="stylesheet" href="css/footer.css">
-                <link rel="stylesheet" href="css/about_style.css">
-                <title>PERRAUD Raphael Portofolio</title>
-                <style> body {padding: 0; margin: 0;} </style>
-            </head>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/structure.css">
+    <link rel="stylesheet" href="css/hamburger.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/about_style.css">
+    <title>PERRAUD Raphael Portofolio</title>
+    <style> body {padding: 0; margin: 0;} </style>
+</head>
+
 <body>
-  <div class="bourin">
+    <div class="bourin">
         <div class=" zonecentrale">
 
 
-      <label>
-          <input type='checkbox'>
-          <span class='menu'> <span class='hamburger'></span> </span>
-          <ul>
-            <li> <a href='index.html'>Home</a> </li>
-            <li> <a href='works.html'>Works</a> </li>
-            <li> <a href='about.html'>About</a> </li>
-            <li> <a href='contact.html'>Contact</a> </li>
-          </ul>
-      </label>
- 
+            <label>
+                <input type='checkbox'>
+                <span class='menu'> <span class='hamburger'></span> </span>
+                <ul>
+                    <li> <a href='index.html'>Home</a> </li>
+                    <li> <a href='works.html'>Works</a> </li>
+                    <li> <a href='about.html'>About</a> </li>
+                    <li> <a href='contact.html'>Contact</a> </li>
+                </ul>
+            </label>
 
-      <h2 id="pageapropos">about <span>me</span></h2>  
 
-      <div class="moimoietmoi">
-          <img src="maphoto.png" alt="Autoportrait" class="taillezone" id="portrait" width="100%" height="100%">
-          <p>
-                My name is Raphaël Perraud. I am currently a two year student in Interaction Design at L'École de design Nantes Atlantique, France. I am studying UX/UI Design, Graphic Design, wireframing and Web languages. I am also interested by experiments in coding using Processing or Arduino . If you want to know more about me,  check my resume !
-          </p>
-          <p id="internship">
-                I am looking for a 2-to-3 months internship from August to November 2019.
-          </p>
-          <div id="verscontact">
-            <a href="contact.html"> <button class="bouton buttonblack" ><p id="contact">Contact me</p></button></a>
-          </div>
-          
-      </div>
-</div>
+            <h2 id="pageapropos">about <span>me</span></h2>
 
-      <footer>
-        <div class="boiteimg">
-            <a href="">
-                <img src="medias_portofolio/1x/behance.png" alt="Behance logo">
-            </a>
-            <a href="">
-                <img src="medias_portofolio/1x/dribble.png" alt="Dribble logo" >
-            </a>
-            <a href="https://github.com/R4ph3rd">
-                <img src="medias_portofolio/1x/github.png" alt="github logo" >
-            </a>
-            <a href="">
-                <img src="medias_portofolio/1x/linkedn.png" alt="linkedin logo" >
-            </a>
-            <a href="">
-                <img src="medias_portofolio/1x/mail.png" alt="mail logo" >
-            </a>
+            <div class="moimoietmoi">
+                <div class="description">
+                    <img src="maphoto.png" alt="Autoportrait" class="taillezone" id="portrait" width="100%" height="100%">
+
+                    <article>
+                        <h1>
+                            <p id="ra">raphaël</p>
+                            <p id="pe">perraud</p>
+                        </h1>
+                        <p>
+                            My name is Raphaël Perraud. I am currently a two year student in Interaction Design at L'École de design Nantes Atlantique, France. I am studying UX/UI Design, Graphic Design, wireframing and Web languages. I am also interested by experiments in coding using Processing or Arduino . If you want to know more about me, check my resume !
+                        </p>
+                        <p id="internship">
+                            I am looking for a 2-to-3 months internship from August to November 2019.
+                        </p>
+                    </article>
+                </div>
+
+                <div id="lesboutons">
+                   <div></div> <a href="contact.html"> <button class="bouton buttonblack"><p id="contact">Contact me</p></button></a>
+                    <button class="bouton buttonblack" id="hiddenbutton"><p id="cv">My resume</p></button>
+                </div>
+            </div>
         </div>
-        <button class="bouton"><p>My resume</p></button>
-        <p id="copyr">&copy;Raphaël Perraud 2019</p>
 
-    </footer>
+        <footer>
+            <div class="boiteimg">
+                <a href="">
+                    <img src="medias_portofolio/1x/behance.png" alt="Behance logo">
+                </a>
+                <a href="">
+                    <img src="medias_portofolio/1x/dribble.png" alt="Dribble logo">
+                </a>
+                <a href="https://github.com/R4ph3rd">
+                    <img src="medias_portofolio/1x/github.png" alt="github logo">
+                </a>
+                <a href="">
+                    <img src="medias_portofolio/1x/linkedn.png" alt="linkedin logo">
+                </a>
+                <a href="">
+                    <img src="medias_portofolio/1x/mail.png" alt="mail logo">
+                </a>
+            </div>
+            <button class="bouton">
+                <p>My resume</p>
+            </button>
+            <p id="copyr">&copy;Raphaël Perraud 2019</p>
 
-  </div>
-  
+        </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
- <script src="js/objectinteraction.js"></script>
- <script src="js/particuleClass.js"></script>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
+    <script src="js/objectinteraction.js"></script>
+    <script src="js/particuleClass.js"></script>
 </body>
+
 </html>
 
 <!--

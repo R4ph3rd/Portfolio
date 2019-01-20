@@ -5,9 +5,7 @@ footer{
     padding-bottom:10px;
     position:relative;
     width:100vw;
-   bottom:0vh; 
-  
-
+    margin-top:50px;
 }
 
 .boiteimg{
@@ -83,7 +81,7 @@ footer label div {
         fill:#F0F0F0;
     }
 
-    img{
+    footer img{
 height:35px;
 width:35px;
     }

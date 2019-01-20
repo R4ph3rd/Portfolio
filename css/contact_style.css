@@ -66,3 +66,65 @@ resize: none;
     stroke-linecap: round;
     stroke-linejoin: round;
   }
+
+.buttonblack{
+  float:right;
+}
+
+
+
+@media (min-width:800px){
+
+  #formulaire{
+    width:90%;
+    margin-left:5%;
+  }
+}
+
+@media (min-width:1000px){
+
+  #formulaire{
+    width:80%;
+    margin-left:10%;
+  }
+}
+
+@media (min-width:1200px){
+
+  #formulaire{
+    width:70%;
+    margin-left:15%;
+  }
+}
+
+@media (min-width:1400px){
+
+  #formulaire{
+    width:60%;
+    margin-left:20%;
+  }
+}
+
+@media (min-width:1600px){
+
+  #formulaire{
+    width:50%;
+    margin-left:25%;
+  }
+}
+
+@media (min-width:1800px){
+
+  #formulaire{
+    width:40%;
+    margin-left:30%;
+  }
+}
+
+@media (min-width:2000px){
+
+  #formulaire{
+    width:30%;
+    margin-left:35%;
+  }
+}

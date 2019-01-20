@@ -29,6 +29,7 @@ const contactpage = "contact.html"
 //for home page typo event
 var font
 let typoSize
+let index
 
 //get scroll position
 let scrollPos = 0
@@ -200,7 +201,7 @@ function draw() {
         //use the loop to draw a form between particles
         beginShape()
         for (let i = 0; i < displayedparticules; i++) {
-            let index = int(map(i, 0, 1000, 0, pnts.length)) //faire correspondre une particule à un point de typo
+            index = int(map(i, 0, 1000, 0, pnts.length)) //faire correspondre une particule à un point de typo
             particules[i].update(index, G)
             particules[i].display();
             push()

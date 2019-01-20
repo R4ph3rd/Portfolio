@@ -140,11 +140,12 @@ function setup() {
 //reset data of typography
 function handle(delta) {
     scrollPos += delta;
+    if (el == homepage) {
     pnts = getPoints("Raphael Perraud");
     for (let i = 0; i < pnts.length; i++) {
         coordFixed[i] = pnts[i]
     }
-
+    }
 }
 
 //loaded only on home page 

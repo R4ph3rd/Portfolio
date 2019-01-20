@@ -8,6 +8,7 @@ line-height:1.5rem;
 
 #internship{
     color: #1CAE87;
+    text-align:left;
 }
 
 #portrait{
@@ -24,14 +25,23 @@ line-height:1.5rem;
     .moimoietmoi{
         text-align: center;
     }
+
+    .moimoietmoi p {
+        text-align:justify;
+        text-align-last:left;
+    }
+
+    #internship{
+        text-align-last:left;
+    }
+
+    #contact{
+        text-align-last:center;
+    }
 }
 
 @media (min-width:400px){
-    .moimoietmoi{
-        text-align: justify;
-        text-align-last: center;
-        -moz-text-align-last: center;
-    }
+
 
     #verscontact{
         left:50%;

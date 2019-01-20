@@ -3,10 +3,9 @@ footer{
     background-color:#F0F0F0;
     padding:20px;
     padding-bottom:10px;
-    position:fixed;
-    bottom:0px;
+    position:relative;
     width:100vw;
-    margin-top:100vh;   
+   bottom:0px;
 }
 
 .boiteimg{
@@ -15,8 +14,10 @@ footer{
     display:block;
 }
 
+
 footer a{
     margin:5px;
+    text-decoration:none;
 }
 
 footer button {
@@ -52,4 +53,33 @@ footer label div {
 
 #back{
     margin : 5px;
+}
+
+
+@media (min-width:1000px){
+    footer{
+        background-color:rgba(0,0,0,0); 
+    }
+
+    .boiteimg{
+      right:50px;
+      display: flex;
+      flex-direction: row;
+      justify-content:space-between;
+    }
+    .boiteimg img{
+        fill:#F0F0F0;
+    }
+
+    #copyr{
+        color:#F0F0F0;
+        bottom:0px;
+        margin-bottom:0px;
+        text-align:right;
+    }
+
+    footer button {
+        display:none;
+    }
+    
 }

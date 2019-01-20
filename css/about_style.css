@@ -37,3 +37,10 @@ line-height:1.5rem;
         left:50%;
     }
 }
+
+
+@media (min-width:600px){
+    #portrait{
+        width:274px;
+    }
+}

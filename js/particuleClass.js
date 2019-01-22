@@ -40,7 +40,7 @@ function Particle(x, y, _mass, _size, _seuil) {
         return friction;
     }
 
-    this.calculateGravity = function (_target,_G) {
+    this.calculateGravity = function (_target, _G) {
         let gravity = p5.Vector.sub(_target, this.location); //make vector pointing towards centralPoint
         let distance = p5.Vector.mag(gravity); //distance between particle and centralPoint
         let gravitation = (_G * massPoint * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
@@ -90,8 +90,8 @@ function Particle(x, y, _mass, _size, _seuil) {
 
 
 
-    this.update = function (index,_G) {
-        if ((scrollPos > 1000) && (el == homepage)){
+    this.update = function (index, _G) {
+        if ((scrollPos > 1000) && (el == homepage)) {
             centralPoint.x = pnts[index].x
             centralPoint.y = pnts[index].y
             this.scrollbound = 1
@@ -99,7 +99,7 @@ function Particle(x, y, _mass, _size, _seuil) {
             this.scrollbound = 0 //centralPoint is reset in the draw at every iteration
         }
 
-        let gravity = this.calculateGravity(centralPoint,_G);
+        let gravity = this.calculateGravity(centralPoint, _G);
         //console.log("gravity")
         let friction = this.calculateFriction();
         let distance = dist(this.location.x, this.location.y, centralPoint.x, centralPoint.y);
@@ -120,6 +120,10 @@ function Particle(x, y, _mass, _size, _seuil) {
     }
 
     this.display = function () {
+        push()
+        fill(23, 175, 135);
+        noStroke()
         ellipse(this.location.x, this.location.y, this.size * 2, this.size * 2);
+        pop()
     }
 }

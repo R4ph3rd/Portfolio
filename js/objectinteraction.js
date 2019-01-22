@@ -47,6 +47,7 @@ function windowResized() {
     //    heightPage = document.body.offsetHeight
     //    console.log(heightPage)
     resizeCanvas(windowWidth, windowHeight)
+    typoSize = (300/1600)*width
     //    typoSize = (width * 0.8) /7
     //    console.log("size = " + typoSize)
 
@@ -91,7 +92,7 @@ function setup() {
     //set typo caracteristics
     //        typoSize = (width * 0.8) /7
     //        console.log("size = " + typoSize)
-    typoSize = 200
+    typoSize = (300/1600)*width
 
     centralPoint = createVector(mouseX, mouseY)
     //create gravitation points centered on differents objects depeding on the current page
@@ -151,17 +152,24 @@ function handle(delta) {
 
 //loaded only on home page 
 function getPoints(fontPath) {
-    fontPath = font.getPath("Raphaelxx  ", 100, 600, typoSize); //why do I have to enter two characters more that aren't displayed ?
+    let centerPointY = (height/2) + ( 2 * typoSize /5 )
+    let centerPointX = (width - (typoSize * 4)) /2 //calculate approximatively the margin to put 
+    fontPath = font.getPath("Raphael", centerPointX, centerPointY, typoSize); //why do I have to enter two characters more that aren't displayed ?
     var path = new g.Path(fontPath.commands);
     path = g.resampleByLength(path, 2); //quantity of points
     textW = path.bounds().width;
+    let min = 1600
+    let max = 0
     // remove all commands without a coordinate
     for (let i = path.commands.length - 1; i >= 0; i--) {
         if (path.commands[i].x == undefined) {
             path.commands.splice(i, 1);
         }
+     //   if(min > path.commands[i].x) min = path.commands[i].x
+     //   if(max < path.commands[i].x) max = path.commands[i].x
     }
     return path.commands;
+  //  console.log("min= " + min + "  max =" + max)
 }
 
 function draw() {
@@ -177,11 +185,10 @@ function draw() {
     fps = frameRate()
     //adapter le nombre de particules en fonction des fps & taille de l'écran
     displayedparticules = width / 1.6
-    if (fps < 25) displayedparticules -= 10;
+    if (fps < 25) displayedparticules -= 20;
     if ((fps > 40) && (displayedparticules < 1000)) displayedparticules += 10
 
     //particles
-    fill(23, 175, 135);
 
     //verify : are we ovrpass the limit of scroll ?
     if ((scrollPos > 1000) && (el == homepage)) {
@@ -199,6 +206,10 @@ function draw() {
         }
         //then update particules
         //use the loop to draw a form between particles
+        push()
+        noFill()
+        stroke(23, 175, 135)
+        strokeWeight(2)
         beginShape()
         for (let i = 0; i < displayedparticules; i++) {
             index = int(map(i, 0, 1000, 0, pnts.length)) //faire correspondre une particule à un point de typo
@@ -209,6 +220,7 @@ function draw() {
             pop()
         }
         endShape()
+        pop()
     } else {
         //reset G value & pnts value
         G = 9

@@ -4,7 +4,8 @@
   }
 
   footer{
-    position:fixed;
+    position:relative;
+    margin-top:100vh;
   }
 
   h1 {
@@ -21,24 +22,18 @@ footer{
     bottom:0px;
 }
 
-.nom {
-    position: relative;
-    width: 60%;
-    margin-bottom: 20px;
+#home{
+    margin-right:25px;   
 }
 
-.raphael {
-    top: 0%;
-    margin:0px;
-    color:#F0F0F0;
+@media(max-width:400px){
+    #home{
+        font-size:1.5em;
 }
-
-.perraud {
-    bottom: 0%;
-    margin:0px;
-    color:#1CAE87;
+label .hamburger {
+line-height:1.5em;
 }
-
+}
 
 .presentation{
 text-align:left;
@@ -47,7 +42,6 @@ font-family:"Source Sans Pro";
 font-size:700;
 font-size: 1rem;
 line-height:1.4rem;
-margin-left:1.57vw;
 }
 
 .txtprez{

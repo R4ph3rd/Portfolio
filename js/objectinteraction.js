@@ -154,12 +154,14 @@ function handle(delta) {
 function getPoints(fontPath) {
     let centerPointY = (height/2) + ( 2 * typoSize /5 )
     let centerPointX = (width - (typoSize * 4)) /2 //calculate approximatively the margin to put 
-    fontPath = font.getPath("Raphael", centerPointX, centerPointY, typoSize); //why do I have to enter two characters more that aren't displayed ?
+    let name = "Raphaël \
+Perraud"
+    fontPath = font.getPath(name, centerPointX, centerPointY, typoSize); //why do I have to enter two characters more that aren't displayed ?
     var path = new g.Path(fontPath.commands);
     path = g.resampleByLength(path, 2); //quantity of points
     textW = path.bounds().width;
-    let min = 1600
-    let max = 0
+    //let min = 1600
+    //let max = 0
     // remove all commands without a coordinate
     for (let i = path.commands.length - 1; i >= 0; i--) {
         if (path.commands[i].x == undefined) {
@@ -184,7 +186,9 @@ function draw() {
 
     fps = frameRate()
     //adapter le nombre de particules en fonction des fps & taille de l'écran
+   // if(frameCount%50 ==0) console.log(fps)
     displayedparticules = width / 1.6
+    if (fps < 18) displayedparticules -= 100;
     if (fps < 25) displayedparticules -= 20;
     if ((fps > 40) && (displayedparticules < 1000)) displayedparticules += 10
 

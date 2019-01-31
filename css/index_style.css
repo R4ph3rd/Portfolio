@@ -4,8 +4,10 @@
   }
 
   footer{
-    position:relative;
-    top:100vh;
+    -webkit-transform: translateY(230%);
+    -moz-transform: translateY(230%);
+    -o-transform: translateY(230%);
+    transform: translateY(230%);
   }
 
   h1 {
@@ -22,17 +24,11 @@ footer{
     bottom:0px;
 }
 
-#home{
-    margin-right:25px;   
-}
+#home{margin-right:25px;   }
 
 @media(max-width:400px){
-    #home{
-        font-size:1.5em;
-}
-label .hamburger {
-line-height:1.5em;
-}
+    #home{font-size:1.5em;}
+label .hamburger {line-height:1.5em;}
 }
 
 .presentation{
@@ -47,12 +43,6 @@ line-height:1.4rem;
 .txtprez{
     margin-top:0px;
     margin-bottom:0px;
-}
-
-@media(min-width:200px){
-    h1{
-
-}
 }
 
 @media(min-width:1200px){

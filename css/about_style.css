@@ -53,6 +53,7 @@ h1 {
     object-fit: contain;
     display: inline;
     order: 1;
+    z-index:20
 }
 
 article {
@@ -117,7 +118,7 @@ article {
     #pe {
         margin: 0px;
         line-height: 7vw;
-        padding-left: 18.7%;
+        padding-left: 19.8%;
         margin-bottom: 35px;
     }
 
@@ -128,7 +129,6 @@ article {
     #lesboutons {
         display: flex;
         justify-content: space-around;
-        float:right;  
         width:60%;
     }
 }
@@ -147,6 +147,7 @@ article {
 
     #lesboutons{
         width: 70%;
+        margin-left:25%;
     }
 
     #ra {

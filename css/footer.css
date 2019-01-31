@@ -8,11 +8,21 @@ footer{
     margin-top:50px;
 }
 
+footer a {
+    text-decoration:none;
+    color:#1CAE87;
+}
+
 .boiteimg{
     height:35px;    
     margin-bottom: 20px;
     display:block;
 }
+
+.boiteimgLAT{
+    display:none;
+}
+
 
 
 footer a{
@@ -31,6 +41,10 @@ footer button:hover{
     background:#1CAE87;
 }
 
+footer a:hover{
+  color:#1E1E1E;
+}
+
 
 footer label{
     font-weight:600;
@@ -43,13 +57,12 @@ footer label div {
 }
 
 
-#copyr{
+.copyr{
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 400;
     color:#1E1E1E;
     font-size:0.8em;
     margin-bottom:15px;
-
 }
 
 #back{
@@ -58,43 +71,38 @@ footer label div {
 
 
 @media (min-width:1000px){
-    footer{
-        background-color:rgba(0,0,0,0); 
+    footer{display:none;}
 
+    .bigfoot{display:initial;}
+
+    .boiteimgLAT{
+        fill:#F0F0F0;
+       position:fixed;
+       z-index:920;
+       width:35px;
+        top:27%;
+        right:2vw;
+        margin-left: 3vw;
     }
 
-    .boiteimg{
-      right:50px;
-      display: flex;
-      height:35px;
-      width:35px;
-      right:50px;
-      left:95%;
-      flex-direction: column;
-      justify-content:space-between;
-      align-content:stretch;
-      text-align:right;
-      
-    }
-
-    .boiteimg img{
+    .boiteimgLAT img{
+        width:100%;
+        height:100%;
+        margin : 3vh 0px;
         fill:#F0F0F0;
     }
 
-    footer img{
-height:35px;
-width:35px;
-    }
 
-    #copyr{
+    .copyr{
+        position: fixed;
         color:#F0F0F0;
-        bottom:0px;
-        margin-bottom:0px;
         text-align:right;
-    }
+        bottom:10px;
+        right:2vw;
+        margin:0px;
+    }   
 
-    footer button {
-        display:none;
+    .zonecentrale{
+       width: 85%;
     }
-    
 }

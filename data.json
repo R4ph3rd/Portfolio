@@ -1,0 +1,14 @@
+{
+    "name": "My projects",
+    "projets": [
+
+        {
+            "title" : "Réveille la rue !",
+            "resume": "Augmented reality",
+             "img": "works/Reveille_la_rue/reveillelarue_logo.png",
+             "alt": "logo of the app reveille la rue",
+            "link":"work1.html"
+           
+        }
+    ]
+}

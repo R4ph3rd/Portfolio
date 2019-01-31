@@ -1,0 +1,104 @@
+.flexPrez{
+display:inline-block;
+
+}
+
+.flexPrez article {
+    display: flex;
+    align:left;
+}
+
+.titleP{
+margin-top:7vh;
+background-color:rgba(0,0,0,0.65);
+align-content: left;
+padding : 5px 20px;
+margin-bottom:8vh;
+display:block;
+flex-direction: column;
+max-width:313px;
+}
+
+h3{
+    font-family: 'Raleway';
+    font-weight:900;
+    font-size: 2em;
+    color:#1CAE87;
+    text-transform:uppercase;
+    position: relative;
+    text-align:left;
+    white-space:nowrap;
+    width:100%;
+    margin: 15px 0px 0px 0px;
+}
+
+.flexPrez .titleP p {
+    color: #F0F0F0;
+    font-family: "Raleway";
+    font-weight: 300;
+    font-size: 1.6em;
+    text-align: left;
+    text-transform:uppercase;
+    white-space:nowrap;
+    margin: 0px 0px 15px 0px;
+}
+
+#prezImg{
+    width:50vw;
+    max-width:350px;
+}
+
+.NOTREPROJET{
+    background-color:rgba(0,0,0,0.65);
+    align-content: left;
+    padding : 30px 20px 30px 20px;
+    margin-top:10vh;
+    margin-bottom:10vh;
+}
+
+.NOTREPROJET p {
+    color: rgb(204, 202, 202);
+    font-family:"Source Sans Pro";
+    font-weight:300;
+    font-size: 1rem;
+    line-height:1.5rem;
+    margin:0px;
+    text-align: left;
+}
+
+#troisphrases{
+font-weight:400;
+font-size:1.2rem;
+}
+
+.bandeau{
+object-fit: cover; /*bien pratique mais les pixels non affichés sont quand même chargés, alors qu'une image déjà croppée avant pèse moins lourd */
+left:0px;
+width:100vw;
+height:40vw;
+margin-bottom:10vh;
+max-height:400px;
+}
+
+
+
+.stockImg{
+align-content:center;
+align-self:center;
+background-color:rgba(46,46,46,0.65);
+margin-bottom:5vh;
+max-height: 90vh;
+}
+
+.imgDisp{
+    width:90%;
+    height:80%;
+    margin:5%;
+    max-height: 80vh;
+}
+
+.imgVert{
+    margin:2%;
+    display:inline-block;
+    width:45%;
+}

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,500,500i,600,700,,800,900');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,600,700');
-
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300i,400,400i,600,700');
+/* ilfaut virer les graisses non utilisées */
 html {
     box-sizing: border-box;
     text-align: center;
-    scrollbar-width: none; /*for Firefox*/
+    scrollbar-width: none; /*for Firefox (en principe, selon mdn*/
 }
 
 html::-webkit-scrollbar { 
@@ -35,16 +35,16 @@ body {
 canvas {
     position:relative;
     z-index:1;
+    height:100vh;
 }
 
 .bourin{
 position:absolute;
 z-index:2;
+
 }
 
-img{
-    max-height:100%
- }
+img{max-height:100%}
 
 h2{
 font-family: 'Raleway';
@@ -57,17 +57,15 @@ text-align:left;
 width:100%
 }
 
-h2 span {
-    color:#1CAE87;
-}
+h2 span {color:#1CAE87}
 
 .zonecentrale{
     width:90%;
-    margin:5%;
+    margin:0px 5% 100px 5%;
     padding:0px;
-    margin-bottom:100px;
     position:relative;
     }
+
 
 .h2works{
     text-decoration:none; 

@@ -1,33 +1,38 @@
+       
 .filtres{
 text-decoration:none;
 font-family: 'Raleway';
-font-weight:900;
+font-weight:700;
 font-size: 1.8em;
 color:#F0F0F0;
 text-transform:uppercase;
 position: relative;
 text-align:left;
 width:100%;
-background-color:red;
 }
 
-h3 {
+noscript{
+    position:relative;
+color:#1CAE87;
+font-size:2em;
+font-family: 'Raleway';
+font-weight:800;
+top:60%;
+text-align:center;
+}
+
+noscript p + p{
+    color:#F0F0F0; 
+    font-weight:400; 
+    font-size:0.6em;
+}
+
+h4 {
 text-decoration:none;
 font-family: 'Raleway';
-font-weight:700;
-font-size: 1.2em;
-line-height:1.7rem;
-color:#F0F0F0;
-margin:0px;
-}
-
-.resume{
-
-color: #F0F0F0;
-font-family:"Source Sans Pro";
-font-weight:300;
-font-size: 1rem;
-line-height:1.5rem;
+font-weight:800;
+font-size: 1.3em;
+color:#1CAE87;
 margin:0px;
 }
 
@@ -36,6 +41,33 @@ margin:0px;
     margin:10px;
 }
 
+
 .workfloating{
-    margin:20px;
+display:inline-block;
+}
+
+.workfloating a{
+text-decoration:none;
+    }
+
+.workfloating div{
+background-color:rgba(0,0,0,0.5);
+padding : 15px 20px 15px 20px;
+margin:0px;
+z-index:31;
+}
+
+
+
+.workfloatin img{
+    z-index:30;
+    display:inline;
+}
+
+.workfloating p{
+    font-family:"Source Sans Pro";
+    font-weight:200;
+    font-size: 1em;
+    margin:0px;
+    color: #F0F0F0;
 }

@@ -17,7 +17,7 @@ header{
 
   
 label .hamburger {
-  position:absolute;
+  position:fixed;
   z-index:50;
   background: rgba(220,220,220);
   -webkit-transform-origin: center;
@@ -33,6 +33,8 @@ label .hamburger {
   line-height: 1.8em;
   height: 2px;
   width:25px;
+  right:20px; 
+  top:25px;
 }
 
 label .hamburger:before { top: -7px; }
@@ -44,7 +46,7 @@ label .hamburger:after, label .hamburger:before {
   -moz-transition: .5s ease-in-out;
   transition: .5s ease-in-out;
   content: "";
-  position: absolute;
+  position:absolute;
   display: block;
   width: 100%;
   height:100%;
@@ -54,8 +56,8 @@ label .hamburger:after, label .hamburger:before {
 
 label input { display: none; }
 
-label input:checked + .menu {
-  box-shadow: 0 0 0 300vw rgb(25,25,25), 0 0 0 300vh rgb(180,180,180);
+label input:checked  {
+  box-shadow: 0 0 0 600vh rgb(25,25,25), 0 0 0 600vh rgb(180,180,180); /* ne prenons pas de risques ! allons-y pour 6 ! */
   border-radius: 0;
 }
 
@@ -64,7 +66,7 @@ label input:checked + .hamburger {
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
   transform: rotate(45deg);
-  box-shadow: 0 0 0 200vw rgb(25,25,25)
+  box-shadow: 0 0 0 600vh rgb(25,25,25)
 }
 
 label input:checked + .hamburger:after {
@@ -91,9 +93,9 @@ label input:checked + .hamburger + ul {
 
 label ul {
   z-index: 200;
-  position: absolute;
+  position: fixed;
   top:45vh;
-  left: 45vw;
+  left: 50vw;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   -o-transform: translate(-50%, -50%);
@@ -123,13 +125,14 @@ label a {
 @media (min-width:400px){
 label .hamburger{
   width:30px;
-
+  right:25px;
 }
 }
 
 @media (min-width:600px){
-    label .hamburger{
-
+  label .hamburger{
+    top:30px;
+    right:25px;
   }
     label .hamburger:before { top: -8px; }
   label .hamburger:after { bottom: -8px; }
@@ -137,27 +140,27 @@ label .hamburger{
 
 @media (min-width:800px){
   label .hamburger{
-width:35px;
-
-
+    right:2vw;
+    top:35px;
+  }
 }
+@media (min-width:800px){
+  label .hamburger{width:35px}
 }
+
 @media (min-width:1200px){
-  
     label .hamburger{
       width:40px;
-  }
+      top:40px;
+    }
+
   label .hamburger:before { top: -9px; }
   label .hamburger:after { bottom: -9px; }
 
-  label ul {
-    top:43vh;
-  }
-
+  label ul {top:43vh;}
 }
 
 @media (min-width:1600px){
-
   label .hamburger:before { top: -10px; }
   label .hamburger:after { bottom: -10px; }
 }

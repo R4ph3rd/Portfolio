@@ -5,8 +5,25 @@
         {
             "title" : "Réveille la rue !",
             "resume": "Augmented reality",
-             "img": "'works/Reveille_la_rue/reveillelarue_logo.png'",
-             "alt": "logo of the app reveille la rue"
+             "img": "works/Reveille_la_rue/reveillelarue_logo.png",
+             "alt": "logo of the app reveille la rue",
+            "link":"work1.html"
+           
+        },
+        {
+            "title" : "Patitap",
+            "resume": "Sound visualization",
+             "img": "works/patitap/patitap.gif",
+             "alt": "gif of the project",
+            "link":"work2.html"
+           
+        },
+           {
+            "title" : "VOID",
+            "resume": "Video mapping, creative coding",
+             "img": "works/void/logo_void.svg",
+             "alt": "logo of the project",
+            "link":"work3.html"
            
         }
     ]

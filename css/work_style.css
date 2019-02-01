@@ -1,4 +1,16 @@
-       
+
+
+.zonecentrale{
+    height:100vh;
+}
+
+footer{
+    -webkit-transform: translateY(230%);
+    -moz-transform: translateY(230%);
+    -o-transform: translateY(230%);
+    transform: translateY(230%);
+  }
+
 .filtres{
 text-decoration:none;
 font-family: 'Raleway';
@@ -50,16 +62,15 @@ display:inline-block;
 text-decoration:none;
     }
 
-.workfloating div{
+.workfloating div {
+    white-space: nowrap;
 background-color:rgba(0,0,0,0.5);
 padding : 15px 20px 15px 20px;
 margin:0px;
 z-index:31;
 }
 
-
-
-.workfloatin img{
+.workfloating img{
     z-index:30;
     display:inline;
 }
@@ -70,4 +81,13 @@ z-index:31;
     font-size: 1em;
     margin:0px;
     color: #F0F0F0;
+}
+
+.sideright{
+    text-align: left;
+    
+}
+
+.sideleft{
+    text-align:right;
 }

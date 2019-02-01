@@ -13,12 +13,23 @@ let massPoint = 400; // will change depeing on screen size
 let position
 let largeur
 let hauteur
-let xpos
-let ypos
+
+//affichage des projets
+let X = []
+let Y = []
+let xpos = []
+let ypos = []
+let x1 = []
+let y1 = []
+
+let foundAspot = true
+
 
 //get data from html
 let heightless = document.querySelector("footer").getBoundingClientRect().height
 let heightPage = document.body.offsetHeight
+let larg, haut
+
 //what page are we reading ?
 const el = location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
 const workpage = "work.html"
@@ -36,52 +47,113 @@ let index
 let scrollPos = 0
 let val
 
-addEventListener("load", function () {
-    document.addEventListener("wheel", wheele, false);
-});
-
 
 function preload() {
     loadJSON("works/data.json", displayData)
 }
 
+
 function displayData(data) {
     jsonData = data;
-    let el = document.getElementById("zonecentraleW")
+    let el2 = select('.zonecentrale')
+    larg = el2.size().width
+    haut = el2.size().height
+    //console.log(larg + "  " + haut)
+    console.log("data.length = " + jsonData.projets.length)
 
-    for (let i = 0 ; i < 1; i++) {
-        let radiusMax = 0.4 * width
-        let radiusMin = 0.15 * width
-        let imgSrc = data.projets[0].img
+    for (let i = 0; i < jsonData.projets.length; i++) {
+        let imgSrc = data.projets[i].img
         console.log("image source = " + imgSrc)
-        let imgAlt = data.projets[0].alt
-        let title = data.projets[0].title
-        let resume = data.projets[0].resume
-        let work = createDiv('')
-        work.position(500,500)
-        let workImg = createImg('works/Reveille_la_rue/reveillelarue_logo.png',).size(radiusMin, radiusMax)
-        workImg.id(0)
-        workImg.position(500,500)
-        let workTitle = createElement('h3', title)
-        workImg.id('img0')
-        console.log("workkimg"+workImg.position().Object)
-        nbproj += 1
+        let imgAlt = data.projets[i].alt
+        let title = data.projets[i].title
+        let resume = data.projets[i].resume
+        let link = data.projets[i].link
+        work = createDiv('')
+        workLink = createA(link, '')
+        titleLink = createA(link, '')
+        workImg = createImg(imgSrc)
+        workTitle = createElement('h4', title) //j'ai une fin de div en trop qui n'est pas comptabilisée dans le flux apparement...doublement étrange
+        workResume = createP(resume)
+        workArticle = createElement('div')
 
-        //console.log("position work = " + work.position)
+        //intégration des élèments dans leurs parents
+        el2.child(work) // on range ma div dans la zone centrale
+        work.child(workArticle)
+        work.child(workLink)
+        workArticle.child(titleLink)
+        titleLink.child(workTitle)
+        workArticle.child(workResume)
+        workLink.child(workImg)
+
+        work.addClass('workfloating')
+
+        //foundAspot = false
+        displayProjects(i)
     }
 }
 
+function displayProjects(i) {
+    //taille random
+    let size = random(80, 150)
 
-//typo
-let coordFixed = []
-let pnts = []
+    workImg.size(size, size)
+    console.log("width = " + windowWidth)
+    console.log("size =" + size)
+
+    //encadrement de la zone de pop
+    let borderTop = select('header').size().height
+    let borderRight = select('.hamburger').position().x
+    let borderBottom = select('.copyr').position().y
+    // console.log(borderRight) valeurs ici ok
+
+    //positionnement alétoire dans la fenêtre 
+    //verification in order to avoid superposition
+    while (foundAspot == false) {
+    X[i] = random(20 + (size / 2), borderRight - (20 + (size / 2)))
+    Y[i] = random(borderTop + 20 + (size / 2), borderBottom - (20 + (size / 2)))
+        //compare à toutes les positions des rectangles déjà affichés
+        overlapping = false
+        for (let j = 0; j < X.length; j++) {
+            if (abs(X[i] - X[j]) < size + 5 && abs(Y[i] - Y[j]) < size + 5) {
+                overlapping = true
+            }
+        }
+        //reverify with new coordinates
+        if (!overlapping) {
+            foundAspot = true
+        }
+    }
+
+    // console.log("****" + X + "  " + Y +"****") valeurs ici ok aussi
+    //ça devient tricky : xpos,ypos centre du cercle, pour retrouver x1,y1 pos de l'article
+    xpos[i] = X[i] + (size / 2)
+    ypos[i] = Y[i] + (size / 2)
+    let widthArticle = workArticle.size().width
+    let heightArticle = workArticle.size().height
+    //and add class to put content on the good side
+    let side = (int(random(0, 2)) == 0) ? 1 : -1
+    if (side == 1) {
+        x1[i] = xpos
+        y1[i] = ypos - heightArticle
+        workArticle.addClass('sideright')
+    } else {
+        workArticle.addClass('sideleft')
+        x1[i] = xpos - widthArticle
+        y1[i] = ypos - heightArticle
+    }
+
+    console.log("position work =" + X[i] + "  " + Y[i] + "\n" + "position article = " + x1[i], "  " + y1[i])
+    work.position(X[i], Y[i])
+    workArticle.position(x1[i], y1[i])
+}
 
 function windowResized() {
     //canvas on all page
     //    heightPage = document.body.offsetHeight
     //    console.log(heightPage)
     resizeCanvas(windowWidth, windowHeight)
-    typoSize = (300/1600)*width
+    typoSize = (300 / 1600) * width
+    displayProjects()
     //    typoSize = (width * 0.8) /7
     //    console.log("size = " + typoSize)
 
@@ -106,7 +178,7 @@ function setup() {
     //set typo caracteristics
     //        typoSize = (width * 0.8) /7
     //        console.log("size = " + typoSize)
-    typoSize = (300/1600)*width
+    typoSize = (300 / 1600) * width
 
     centralPoint = createVector(mouseX, mouseY)
     //create gravitation points centered on differents objects depeding on the current page
@@ -128,8 +200,8 @@ function setup() {
     //charge typo only if we are on home page
 }
 
-
-
+//en attente d'une version stable du pop des projets
+/*
 function draw() {
     noStroke();
     //background
@@ -140,7 +212,7 @@ function draw() {
     centralPoint = createVector(mouseX, mouseY)
     fps = frameRate()
     //adapter le nombre de particules en fonction des fps & taille de l'écran
-   // if(frameCount%50 ==0) console.log(fps)
+    // if(frameCount%50 ==0) console.log(fps)
     displayedparticules = width / 1.6
     if (fps < 18) displayedparticules -= 100;
     if (fps < 25) displayedparticules -= 20;
@@ -148,9 +220,10 @@ function draw() {
 
     //particles
 
-        //just update particles
-        for (i = 0; i < displayedparticules; i++) {
-            particules[i].update()
-            particules[i].display();
+    //just update particles
+    for (i = 0; i < displayedparticules; i++) {
+        particules[i].update()
+        particules[i].display();
     }
 } //draw
+*/

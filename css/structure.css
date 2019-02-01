@@ -41,7 +41,7 @@ canvas {
 .bourin{
 position:absolute;
 z-index:2;
-
+width:100%;
 }
 
 img{max-height:100%}
@@ -76,7 +76,7 @@ h2 span {color:#1CAE87}
     margin:0px;
 }
 
-
+a{text-decoration:none}
 .bouton {
     cursor: pointer;
     width:11rem;

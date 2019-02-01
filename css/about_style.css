@@ -70,28 +70,18 @@ article {
 }
 
 @media(min-width:500px) {
-    
-    #lesboutons{
-        margin-left:35%;
-    }
-
-    .buttonblack {
-        align-items: unset;
-        float:right;
-    }
-
+    .buttonblack {align-items: unset;}
 }
 
 @media (min-width:600px) {
-    #portrait {
-        width: 274px;
-    }
+    #portrait {width: 274px;}
 }
 
-@media (min-width:800px) {
+@media (min-width:817px) {
 
     .description {
         justify-content: space-between;
+        flex-direction:row-reverse; 
         /* comment inverser l'affichage (miroir) ?*/
     }
 
@@ -128,18 +118,14 @@ article {
 
     #lesboutons {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         width:60%;
+        margin-left:0px;
     }
 }
 
 
-@media (min-width:1100px) {
-
-    .description {
-        justify-content: space-between;
-        /* comment inverser l'affichage (miroir) ?*/
-    }
+@media (min-width:1153px) {
 
     article {
         width: 70%;
@@ -147,7 +133,7 @@ article {
 
     #lesboutons{
         width: 70%;
-        margin-left:25%;
+
     }
 
     #ra {

@@ -1,12 +1,4 @@
 //class particule
-//typography : inspired by a sketch of :
-// Generative Gestaltung – Creative Coding im Web
-// ISBN: 978-3-87439-902-9, First Edition, Hermann Schmidt, Mainz, 2018
-// Benedikt Groß, Hartmut Bohnacker, Julia Laub, Claudius Lazzeroni
-// with contributions by Joey Lee and Niels Poldervaart
-// Copyright 2018
-//
-// http://www.generative-gestaltung.de
 
 function Particle(x, y, _mass, _size, _seuil) {
 
@@ -17,6 +9,7 @@ function Particle(x, y, _mass, _size, _seuil) {
     this.acceleration = createVector(0, 0);
     this.size = _size;
     this.seuil = _seuil;
+    if (el == aboutpage) this.seuil = largeur * 2 //radius de l'objet pour que les points pivotent autour
     this.mass = _mass;
     this.direction = (int(random(0, 2)) == 0) ? 1 : -1;
     this.scrollbound = 0
@@ -40,14 +33,12 @@ function Particle(x, y, _mass, _size, _seuil) {
     }
 
     this.calculateGravity = function (_target, _G) {
-       // console.log("*****taget =" + _target)
-        //console.log("centrl =" + centralPoint + "******")
         let gravity = p5.Vector.sub(_target, this.location); //make vector pointing towards centralPoint
         let distance = p5.Vector.mag(gravity); //distance between particle and centralPoint
         let gravitation = (_G * massPoint * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
         gravity.normalize();
         gravity.mult(gravitation);
-         //console.log(gravity)
+        // console.log(gravity)
         return gravity;
     }
 
@@ -70,12 +61,6 @@ function Particle(x, y, _mass, _size, _seuil) {
         let x2border = width
         let y1border = 0
         let y2border = height
-        /*   if ((el == workpage) || (el == aboutpage)) { //set myphoto position
-               x1border = xpos - (largeur * 0.5)
-               x2border = xpos + (largeur * 0.5)
-               y1border = ypos - (largeur * 0.5)
-               y2border = ypos + (largeur * 0.5)
-           }*/
 
         if (this.location.x > x2border || this.location.x < x1border) {
             this.velocity.x = -this.velocity.x;
@@ -91,19 +76,10 @@ function Particle(x, y, _mass, _size, _seuil) {
 
 
 
-    this.update = function (index, _G) {
+    this.update = function ( _G) {
         
-        if (el == aboutpage) this.seuil = largeur  //radius de l'objet pour que les points pivotent autour
-        if ((scrollPos > 50) && (el == homepage)) {
-            centralPoint.x = pnts[index].x
-            centralPoint.y = pnts[index].y
-            this.scrollbound = 1
-        } else {
-            this.scrollbound = 0 //centralPoint is reset in the draw at every iteration
-        }
         let gravity = this.calculateGravity(centralPoint, _G);
-
-        
+        //console.log("gravity")
         let friction = this.calculateFriction();
         let distance = dist(this.location.x, this.location.y, centralPoint.x, centralPoint.y);
         this.applyForce(gravity);

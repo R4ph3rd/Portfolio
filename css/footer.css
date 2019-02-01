@@ -9,7 +9,6 @@ footer{
 }
 
 footer a {
-    text-decoration:none;
     color:#1CAE87;
 }
 
@@ -27,7 +26,6 @@ footer a {
 
 footer a{
     margin:5px;
-    text-decoration:none;
     text-decoration-line: none;
 }
 
@@ -78,7 +76,7 @@ footer label div {
     .boiteimgLAT{
         fill:#F0F0F0;
        position:fixed;
-       z-index:920;
+       z-index:30;
        width:35px;
         top:27%;
         right:2vw;

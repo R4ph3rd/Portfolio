@@ -2,40 +2,40 @@
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300i,400,400i,600,700');
 /* ilfaut virer les graisses non utilisées */
 html {
-    box-sizing: border-box;
-    text-align: center;
-    scrollbar-width: none; /*for Firefox (en principe, selon mdn*/
+box-sizing: border-box;
+text-align: center;
+scrollbar-width: none; /*for Firefox (en principe, selon mdn*/
 }
 
 html::-webkit-scrollbar { 
-    display: none; }
+display: none; }
 
 
 @media print {
-    #ghostery-purple-box {
-     display:none !important
-    }
-   }
-   
-   
+#ghostery-purple-box {
+    display:none !important
+}
+}
+
+
 *,
 *:after,
 *:before {
-    box-sizing: inherit;
+box-sizing: inherit;
 }
 /* pour avoir un modele de boite plus intuitif, à copiercoller à chaque fois */
 
 body {
-    background-color:rgba(30,30,30,20);
-    padding: 0;
-    margin: 0;
-    font-family: 'Raleway';
+background-color:rgba(30,30,30,20);
+padding: 0;
+margin: 0;
+font-family: 'Raleway';
 }   
 
 canvas {
-    position:relative;
-    z-index:1;
-    height:100vh;
+position:relative;
+z-index:1;
+height:100vh;
 }
 
 .bourin{
@@ -46,7 +46,7 @@ width:100%;
 
 img{max-height:100%}
 
-h2{
+h1{
 font-family: 'Raleway';
 font-weight:900;
 font-size: 1.8em;
@@ -54,47 +54,73 @@ color:#F0F0F0;
 text-transform:uppercase;
 position: relative;
 text-align:left;
-width:100%
+line-height:1em;
+width:100%;
+top:25px;
+margin-top:0px
 }
 
-h2 span {color:#1CAE87}
+h1 span {color:#1CAE87}
 
 .zonecentrale{
-    width:90%;
-    margin:0px 5% 100px 5%;
-    padding:0px;
-    position:relative;
-    }
-
-
-.h2works{
-    text-decoration:none; 
-}
-
-.h2contact{
-    text-transform:none;
-    margin:0px;
+width:90%;
+margin:0px 5% 100px 5%;
+padding:0px;
+position:relative;
 }
 
 a{text-decoration:none}
+
 .bouton {
-    cursor: pointer;
-    width:11rem;
-    height: 3rem;
-    border-radius: 6px;
-    line-height: 0.23rem;
-    font-size:1.2em;
-    font-weight:600;
-    color:#1CAE87;
-    border:none;
-    box-shadow: 1px 4px 30px rgba(0, 0, 0, 0.5);
+cursor: pointer;
+width:11rem;
+height: 3rem;
+border-radius: 6px;
+line-height: 0.23rem;
+font-size:1.2em;
+font-weight:600;
+color:#1CAE87;
+border:none;
+box-shadow: 1px 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .buttonblack {
-    background:#000000;
+background:#000000;
 }
 
 .buttonblack:hover{
-    background:#1CAE87;
-    color: #000000;
+background:#1CAE87;
+color: #000000;
+}
+
+noscript{
+position:relative;
+color:#1CAE87;
+font-size:2em;
+font-family: 'Raleway';
+font-weight:800;
+top:60%;
+text-align:center;
+}
+
+noscript p + p{
+color:#F0F0F0; 
+font-weight:400; 
+font-size:0.6em;
+}
+
+@media (min-width:600px){
+h2{margin-top:30px}
+}
+
+@media (min-width:800px){
+h2{margin-top:35px}
+}
+
+@media (min-width:1200px){
+h2{margin-top:40px}
+}
+
+@media (min-width:600px){
+h2{margin-top:30px}
 }

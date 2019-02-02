@@ -142,10 +142,8 @@ label .hamburger{
   label .hamburger{
     right:2vw;
     top:35px;
-  }
+ width:35px
 }
-@media (min-width:800px){
-  label .hamburger{width:35px}
 }
 
 @media (min-width:1200px){

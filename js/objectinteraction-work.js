@@ -86,6 +86,7 @@ function displayData(data) {
         workLink.child(workImg)
 
         work.addClass('workfloating')
+        if (title = "Patitap") workImg.id('resize')
 
         //foundAspot = false
         displayProjects(i)
@@ -94,11 +95,11 @@ function displayData(data) {
 
 function displayProjects(i) {
     //taille random
-    let size = random(80, 150)
+    let siz = random(80, 150)
 
-    workImg.size(size, size)
+    workImg.size(siz, siz)
     console.log("width = " + windowWidth)
-    console.log("size =" + size)
+    console.log("size =" + siz)
 
     //encadrement de la zone de pop
     let borderTop = select('header').size().height
@@ -108,13 +109,16 @@ function displayProjects(i) {
 
     //positionnement alétoire dans la fenêtre 
     //verification in order to avoid superposition
-    while (foundAspot == false) {
-    X[i] = random(20 + (size / 2), borderRight - (20 + (size / 2)))
-    Y[i] = random(borderTop + 20 + (size / 2), borderBottom - (20 + (size / 2)))
+     X = random(20 + (size / 2), width - (borderRight + (20 + (size / 2))))
+    Y = random(borderTop + 20 + (size / 2), height - (borderBottom + (20 + (size / 2))))
+    
+   /* while (foundAspot == false) {
+    X[i] = random(20 + (siz / 2), borderRight - (20 + (siz / 2)))
+    Y[i] = random(borderTop + 20 + (siz / 2), borderBottom - (20 + (siz / 2)))
         //compare à toutes les positions des rectangles déjà affichés
         overlapping = false
         for (let j = 0; j < X.length; j++) {
-            if (abs(X[i] - X[j]) < size + 5 && abs(Y[i] - Y[j]) < size + 5) {
+            if (abs(X[i] - X[j]) < siz + 5 && abs(Y[i] - Y[j]) < siz + 5) {
                 overlapping = true
             }
         }
@@ -123,7 +127,7 @@ function displayProjects(i) {
             foundAspot = true
         }
     }
-
+*/
     // console.log("****" + X + "  " + Y +"****") valeurs ici ok aussi
     //ça devient tricky : xpos,ypos centre du cercle, pour retrouver x1,y1 pos de l'article
     xpos[i] = X[i] + (size / 2)
@@ -153,7 +157,7 @@ function windowResized() {
     //    console.log(heightPage)
     resizeCanvas(windowWidth, windowHeight)
     typoSize = (300 / 1600) * width
-    displayProjects()
+    for (let p of jsonData.projets) displayProjects(p)
     //    typoSize = (width * 0.8) /7
     //    console.log("size = " + typoSize)
 

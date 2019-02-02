@@ -17,13 +17,16 @@ let xpos
 let ypos
 
 //get data from html
-let Page,heightPage
+let Page, heightPage
 //what page are we reading ?
 const el = location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
 const workpage = "work.html"
 const aboutpage = "about.html"
 const homepage = "index.html"
 const contactpage = "contact.html"
+const mywork = "work"
+let nameWorkPage = 20
+let workInPage = false
 
 //for home page typo event
 var font
@@ -43,15 +46,16 @@ let pnts = []
 
 function windowResized() {
     //canvas on all page
-    //    heightPage = document.body.offsetHeight
-    //    console.log(heightPage)
+
     heightPage = Page.size().height
     if (el == homepage || el == workpage) heightPage = windowHeight
-        if (el ==  aboutpage && windowWidth >1000) heightPage = windowHeight
+    if (el == contactpage || el == aboutpage){
+        if( windowWidth > 1000) heightPage = windowHeight
+    }
+    finePage()
     resizeCanvas(windowWidth, heightPage)
+
     typoSize = (300 / 1600) * width
-    //    typoSize = (width * 0.8) /7
-    //    console.log("size = " + typoSize)
 
     //reinitialize paticles
     for (i = 0; i < particulesmax; i++) {
@@ -61,6 +65,31 @@ function windowResized() {
             random(1, 4), //size
             random(100, 150)); //seuil
     }
+
+}
+
+function wheele(e) {
+    var delta = e.deltaY; //scroll variable
+    //launch handle function if this happens
+    handle(delta);
+}
+
+
+function finePage() {
+    //are we in a work page ?
+    for (let i = 1; i < nameWorkPage; i++) { //je ne compte pas afficher beaucoup de projets, donc ça suffira
+        if (el.indexOf(i) != -1) { //sil'url contient un chiffre, ok ; seules les pages de projets en auront
+            position = document.querySelector(".prezImg").getBoundingClientRect()
+            largeur = position.width
+            hauteur = position.height
+            xpos = position.x
+            ypos = position.y
+
+            centralPoint = createVector(xpos + (largeur * 0.5), ypos + (hauteur * 0.5))
+           // console.log("centralPoint" + centralPoint)
+        }
+    }
+
     //redefine position of the center of gravitation for fixed objects
     if (el == aboutpage) {
         position = document.querySelector(".taillezone").getBoundingClientRect()
@@ -71,24 +100,18 @@ function windowResized() {
 
         centralPoint = createVector(xpos + (largeur * 0.5), ypos + (hauteur * 0.5))
     }
+
 }
-
-function wheele(e) {
-    // Je supprime le comportement par défaut
-    e.preventDefault();
-    var delta = e.deltaY; //scroll variable
-    //launch handle function if this happens
-    handle(delta);
-}
-
-
 
 function setup() {
     Page = select('.bourin')
     heightPage = Page.size().height
-        if (el == homepage || el == workpage) heightPage = windowHeight
-    if (el ==  aboutpage && windowWidth >1000) heightPage = windowHeight
-   // console.log("taille page = " + heightPage)
+    if (el == homepage || el == workpage) heightPage = windowHeight
+    if (el == contactpage || el == aboutpage){
+        if( windowWidth > 1000) heightPage = windowHeight
+    }
+
+    // console.log("taille page = " + heightPage)
     canvas = createCanvas(windowWidth, heightPage);
     //pixelDensity(1)
     background(30);
@@ -98,17 +121,8 @@ function setup() {
     //create gravitation points centered on differents objects depeding on the current page
     if ((el == homepage) || (el == contactpage)) centralPoint = createVector(mouseX, mouseY)
 
-    if (el == aboutpage) {
-        position = document.querySelector(".taillezone").getBoundingClientRect()
-        largeur = position.width
-        hauteur = position.height
-        xpos = position.x
-        ypos = position.y
+    finePage()
 
-        centralPoint = createVector(xpos + (largeur * 0.5), ypos + (hauteur * 0.5));
-    }
-
-    if (el == workpage) {}
 
     particulesmax = 1000;
     displayedparticules = particulesmax
@@ -181,7 +195,6 @@ function draw() {
 
     fps = frameRate()
     //adapter le nombre de particules en fonction des fps & taille de l'écran
-    // if(frameCount%50 ==0) console.log(fps)
     displayedparticules = width / 1.6
     if (fps < 18) displayedparticules -= 100;
     if (fps < 25) displayedparticules -= 20;
@@ -231,10 +244,10 @@ function draw() {
         G = 15
         pnts = []
         //just update particles
-        
+
         for (let p = 0; p < displayedparticules; p++) {
             index = -1
-            
+
             particules[p].update(index, G)
             particules[p].display();
         }

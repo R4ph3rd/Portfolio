@@ -1,20 +1,11 @@
-
-
-  footer{
-    -webkit-transform: translateY(230%);
-    -moz-transform: translateY(230%);
-    -o-transform: translateY(230%);
-    transform: translateY(230%);
-  }
-
-  h1 {
-    text-transform: uppercase;
-    font-weight: 800;
-    color: #F4ECC6;
-    font-size: 26vw;
-    text-align:left;
-    line-height:23vw;
+footer{
+    -webkit-transform: translateY(250%);
+    -moz-transform: translateY(250%);
+    -o-transform: translateY(250%);
+    transform: translateY(250%);
 }
+
+
 
 footer{
     position:0px;
@@ -24,8 +15,8 @@ footer{
 #home{margin-right:25px;   }
 
 @media(max-width:400px){
-    #home{font-size:1.5em;}
-label .hamburger {line-height:1.5em;}
+    #home{font-size:1.5em}
+label .hamburger {line-height:1.5em}
 }
 
 .presentation{
@@ -40,31 +31,4 @@ line-height:1.4rem;
 .txtprez{
     margin-top:0px;
     margin-bottom:0px;
-}
-
-@media(min-width:1200px){
-    h1{
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-}
-
-@media(min-width:1200px){
-    h1{
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-}
-}
-
-@media(min-width:1200px){
-        h1{
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        -o-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-    }
 }

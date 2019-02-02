@@ -1,5 +1,3 @@
-
-
 .zonecentrale{
     height:100vh;
 }
@@ -23,21 +21,6 @@ text-align:left;
 width:100%;
 }
 
-noscript{
-    position:relative;
-color:#1CAE87;
-font-size:2em;
-font-family: 'Raleway';
-font-weight:800;
-top:60%;
-text-align:center;
-}
-
-noscript p + p{
-    color:#F0F0F0; 
-    font-weight:400; 
-    font-size:0.6em;
-}
 
 h4 {
 text-decoration:none;
@@ -60,20 +43,28 @@ display:inline-block;
 
 .workfloating a{
 text-decoration:none;
-    }
+}
 
 .workfloating div {
-    white-space: nowrap;
+white-space: nowrap;
 background-color:rgba(0,0,0,0.5);
 padding : 15px 20px 15px 20px;
-margin:0px;
 z-index:31;
 }
 
 .workfloating img{
     z-index:30;
     display:inline;
+    position:relative;
+    margin:50px; /*pas top mais ça permet de les espacer en attendant que je place correctement enjs */ 
 }
+
+/*
+.workfloating img :hover{
+background-color:#1CAE87;
+opacity:0.3;
+}
+*/
 
 .workfloating p{
     font-family:"Source Sans Pro";
@@ -84,10 +75,21 @@ z-index:31;
 }
 
 .sideright{
-    text-align: left;
-    
+    left:50%;
+    text-align: left;   
 }
 
 .sideleft{
+
+right:50%;
     text-align:right;
 }
+
+/*solution rapide */
+#resize{
+object-fit: fill;
+-o-object-fit: fill;
+border-radius: 50%;
+}
+
+@media (min-width:1200px)

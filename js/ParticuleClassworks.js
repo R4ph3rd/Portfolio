@@ -32,10 +32,10 @@ function Particle(x, y, _mass, _size, _seuil) {
         return friction;
     }
 
-    this.calculateGravity = function (_target, _G) {
+    this.calculateGravity = function (_target) {
         let gravity = p5.Vector.sub(_target, this.location); //make vector pointing towards centralPoint
         let distance = p5.Vector.mag(gravity); //distance between particle and centralPoint
-        let gravitation = (_G * massPoint * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
+        let gravitation = (9.81 * massPoint * this.mass) / (distance * distance * 1.2); // formule de gravite pour la force gravitionnelle
         gravity.normalize();
         gravity.mult(gravitation);
         // console.log(gravity)
@@ -76,10 +76,9 @@ function Particle(x, y, _mass, _size, _seuil) {
 
 
 
-    this.update = function ( _G) {
-        
-        let gravity = this.calculateGravity(centralPoint, _G);
-        //console.log("gravity")
+    this.update = function () {
+        let gravity = this.calculateGravity(centralPoint);
+        //console.log("gravity" + gravity)
         let friction = this.calculateFriction();
         let distance = dist(this.location.x, this.location.y, centralPoint.x, centralPoint.y);
         this.applyForce(gravity);

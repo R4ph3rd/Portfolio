@@ -25,6 +25,46 @@
              "alt": "logo of the project",
             "link":"work3.html"
            
+        },
+        {
+            "title" : "Tabmaker",
+            "resume": "UX/UI",
+             "img": "works/tabmaker/tabmaker_logo.png",
+             "alt": "logo of the project",
+            "link":"work4.html"
+           
+        },
+         {
+            "title" : "ERSCI",
+            "resume": "Urban furniture",
+             "img": "works/ERSCI/ersci_logo.png",
+             "alt": "logo of the project",
+            "link":"work5.html"
+           
+        },
+         {
+            "title" : "Twitter4j",
+            "resume": "Experiment",
+             "img": "works/experiments/void_review/void_review_mini.jpg",
+             "alt": "logo of the project",
+            "link":"work6.html"
+           
+        },
+          {
+            "title" : "Vanités",
+            "resume": "Vidéo",
+             "img": "works/experiments/vanites_/vanites.png",
+             "alt": "logo of the project",
+            "link":"work6.html"
+           
+        },
+        {
+            "title" : "Electricrime",
+            "resume": "Motion",
+             "img": "works/experiments/electricrime/electricrime.png",
+             "alt": "logo of the project",
+            "link":"work6.html"
+           
         }
     ]
 }

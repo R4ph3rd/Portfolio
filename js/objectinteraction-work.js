@@ -17,11 +17,12 @@ let hauteur
 //affichage des projets
 let X = []
 let Y = []
+/*
 let xpos = []
 let ypos = []
 let x1 = []
-let y1 = []
-
+let y1 = []*/
+let xpos, ypos, x1, y1
 let foundAspot = true
 
 
@@ -59,11 +60,11 @@ function displayData(data) {
     larg = el2.size().width
     haut = el2.size().height
     //console.log(larg + "  " + haut)
-    console.log("data.length = " + jsonData.projets.length)
+   // console.log("data.length = " + jsonData.projets.length)
 
     for (let i = 0; i < jsonData.projets.length; i++) {
         let imgSrc = data.projets[i].img
-        console.log("image source = " + imgSrc)
+        //console.log("image source = " + imgSrc)
         let imgAlt = data.projets[i].alt
         let title = data.projets[i].title
         let resume = data.projets[i].resume
@@ -72,7 +73,7 @@ function displayData(data) {
         workLink = createA(link, '')
         titleLink = createA(link, '')
         workImg = createImg(imgSrc)
-        workTitle = createElement('h4', title) //j'ai une fin de div en trop qui n'est pas comptabilisée dans le flux apparement...doublement étrange
+        workTitle = createElement('h4', title)
         workResume = createP(resume)
         workArticle = createElement('div')
 
@@ -86,33 +87,43 @@ function displayData(data) {
         workLink.child(workImg)
 
         work.addClass('workfloating')
-        if (title = "Patitap") workImg.id('resize')
+        if ((title = "Patitap") || (title = "void_review") || (title = "What's the France ?")) workImg.id('resize')
 
         //foundAspot = false
         displayProjects(i)
     }
 }
 
+
 function displayProjects(i) {
     //taille random
     let siz = random(80, 150)
+    if (i > 4 ) siz = random(25,40)
 
     workImg.size(siz, siz)
-    console.log("width = " + windowWidth)
-    console.log("size =" + siz)
+    //console.log("width = " + windowWidth)
+    //console.log("size =" + siz)
 
     //encadrement de la zone de pop
-    let borderTop = select('header').size().height
-    let borderRight = select('.hamburger').position().x
-    let borderBottom = select('.copyr').position().y
-    // console.log(borderRight) valeurs ici ok
+    Page = select('.bourin')
+    heightPage = Page.size().height
+    let borderTop = (select('header').size().height) + 20
+    let borderRight = (select('.hamburger').position().x) - 20
+    if (windowWidth > 1000) borderRight = windowWidth - 70
+    let borderBottom = heightPage - ((select('footer').size().height) + 20)
+    if (windowWidth > 1000) borderBottom = windowHeight - 20
+    let borderLeft = 20
+   // console.log("boundsBottom = " + /*" +borderRight+ " "*/ +borderBottom) //+ "  " + borderBottom) //valeurs ici ok
+    //console.log("taille = " + siz ) // idem
 
     //positionnement alétoire dans la fenêtre 
     //verification in order to avoid superposition
-     X = random(20 + (size / 2), width - (borderRight + (20 + (size / 2))))
-    Y = random(borderTop + 20 + (size / 2), height - (borderBottom + (20 + (size / 2))))
-    
-   /* while (foundAspot == false) {
+    X[i] = random(borderLeft, borderRight - siz) //random(1000) + (i * 5) // EUREKA !!!!!!!!
+    Y[i] = random(borderTop, borderBottom - siz) // random(300) + (i*6)   // J'AI TROUVE MON SALAUPIAUD DE PROBLEME !!!
+  //  console.log("*************" + X[i] + "  " + Y[i] + "************")
+
+//à voir plus tard : ne pas superposer les projets
+    /* while (foundAspot == false) {
     X[i] = random(20 + (siz / 2), borderRight - (20 + (siz / 2)))
     Y[i] = random(borderTop + 20 + (siz / 2), borderBottom - (20 + (siz / 2)))
         //compare à toutes les positions des rectangles déjà affichés
@@ -130,32 +141,39 @@ function displayProjects(i) {
 */
     // console.log("****" + X + "  " + Y +"****") valeurs ici ok aussi
     //ça devient tricky : xpos,ypos centre du cercle, pour retrouver x1,y1 pos de l'article
-    xpos[i] = X[i] + (size / 2)
-    ypos[i] = Y[i] + (size / 2)
+    xpos = X[i] + (size / 2)
+    ypos = Y[i] + (size / 2)
     let widthArticle = workArticle.size().width
     let heightArticle = workArticle.size().height
     //and add class to put content on the good side
     let side = (int(random(0, 2)) == 0) ? 1 : -1
+
+    //vérifier qu'il déborde pas de l'écran en x
+    if (xpos + widthArticle > windowWidth || xpos - widthArticle < 0) side = side * -1
+    //placer l'article
     if (side == 1) {
-        x1[i] = xpos
-        y1[i] = ypos - heightArticle
+        x1 = xpos
+        y1 = ypos - heightArticle
         workArticle.addClass('sideright')
     } else {
         workArticle.addClass('sideleft')
-        x1[i] = xpos - widthArticle
-        y1[i] = ypos - heightArticle
+        x1 = xpos - widthArticle
+        y1 = ypos - heightArticle
     }
+    //ne pas sortir en y
+    if (ypos - heightArticle < 0 || ypos > heightPage) y1 = ypos
 
-    console.log("position work =" + X[i] + "  " + Y[i] + "\n" + "position article = " + x1[i], "  " + y1[i])
+   // console.log("position work =" + X + "  " + Y + "\n" + "position article = " + x1, "  " + y1)
     work.position(X[i], Y[i])
-    workArticle.position(x1[i], y1[i])
+    workArticle.position(x1, y1)
 }
 
 function windowResized() {
-    //canvas on all page
-    //    heightPage = document.body.offsetHeight
-    //    console.log(heightPage)
-    resizeCanvas(windowWidth, windowHeight)
+    Page = select('.bourin')
+    heightPage = Page.size().height
+    if (windowWidth > 1000) heightPage = windowHeight
+
+    resizeCanvas(windowWidth, heightPage)
     typoSize = (300 / 1600) * width
     for (let p of jsonData.projets) displayProjects(p)
     //    typoSize = (width * 0.8) /7
@@ -170,8 +188,7 @@ function windowResized() {
             random(100, 150)); //seuil
     }
 
-    if (el == workpage) {}
-    //  heightless = document.querySelector("footer").getBoundingClientRect().height
+
 
 }
 
@@ -179,15 +196,8 @@ function setup() {
     canvas = createCanvas(windowWidth, windowHeight);
     //pixelDensity(1)
     background(30);
-    //set typo caracteristics
-    //        typoSize = (width * 0.8) /7
-    //        console.log("size = " + typoSize)
     typoSize = (300 / 1600) * width
-
-    centralPoint = createVector(mouseX, mouseY)
     //create gravitation points centered on differents objects depeding on the current page
-
-    if (el == workpage) {}
 
     particulesmax = 1000;
     displayedparticules = particulesmax
@@ -202,10 +212,11 @@ function setup() {
             random(100, 150)); //seuil 
     }
     //charge typo only if we are on home page
+   // console.log("arrays = " + X + "  " + Y)
 }
 
-//en attente d'une version stable du pop des projets
-/*
+
+
 function draw() {
     noStroke();
     //background
@@ -213,7 +224,7 @@ function draw() {
     rect(0, 0, width, height);
 
 
-    centralPoint = createVector(mouseX, mouseY)
+
     fps = frameRate()
     //adapter le nombre de particules en fonction des fps & taille de l'écran
     // if(frameCount%50 ==0) console.log(fps)
@@ -221,13 +232,17 @@ function draw() {
     if (fps < 18) displayedparticules -= 100;
     if (fps < 25) displayedparticules -= 20;
     if ((fps > 40) && (displayedparticules < 1000)) displayedparticules += 10
+    
 
     //particles
-
+    let G = 0.03125 * width
     //just update particles
-    for (i = 0; i < displayedparticules; i++) {
-        particules[i].update()
-        particules[i].display();
-    }
+    //en attente d'une version stable du pop des projets
+      for (i = 0 ; i < displayedparticules ; i++) {
+          let p  = int(random(3))
+          centralPoint = createVector(X[p],Y[p])
+         // console.log("centralpoint =" + centralPoint.x + "  " + centralPoint.y)
+          particules[i].update()
+          particules[i].display();
+      }
 } //draw
-*/

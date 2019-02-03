@@ -239,7 +239,7 @@ function draw() {
     //just update particles
     //en attente d'une version stable du pop des projets
       for (i = 0 ; i < displayedparticules ; i++) {
-          let p  = int(random(3))
+          let p  = int(random(6))
           centralPoint = createVector(X[p],Y[p])
          // console.log("centralpoint =" + centralPoint.x + "  " + centralPoint.y)
           particules[i].update()

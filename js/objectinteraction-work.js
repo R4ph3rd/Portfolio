@@ -113,27 +113,20 @@ function displayProjects() {
     //taille random
     let siz = random(80, 150)
     if (i > 4 ) siz = random(25,40)
-
     workImg.size(siz, siz)
-    //console.log("width = " + windowWidth)
-    //console.log("size =" + siz)
 
     //encadrement de la zone de pop
-    Page = select('.bourin')
-    heightPage = Page.size().height
+    Page = select('.zonecentrale')
     let borderTop = (select('header').size().height) + 20
-    let borderRight = (select('.hamburger').position().x) - 20
-    if (windowWidth > 1000) borderRight = windowWidth - 70
-    let borderBottom = heightPage - ((select('footer').size().height) + 20)
-    if (windowWidth > 1000) borderBottom = windowHeight - 20
-    let borderLeft = 20
-   // console.log("boundsBottom = " + /*" +borderRight+ " "*/ +borderBottom) //+ "  " + borderBottom) //valeurs ici ok
-    //console.log("taille = " + siz ) // idem
+    let borderRight = Page.position().x + Page.size().width - (siz + 20) 
+    let borderBottom = Page.size().height - (siz + 20)
+    let borderLeft = Page.position().x + 20
+
 
     //positionnement alétoire dans la fenêtre 
     //verification in order to avoid superposition
-    X[i] = random(borderLeft, borderRight - siz) //random(1000) + (i * 5) 
-    Y[i] = random(borderTop, borderBottom - siz) // random(300) + (i*6)   
+    X[i] = random(borderLeft, borderRight) //random(1000) + (i * 5) 
+    Y[i] = random(borderTop, borderBottom) // random(300) + (i*6)   
   //  console.log("*************" + X[i] + "  " + Y[i] + "************")
 
 //à voir plus tard : ne pas superposer les projets

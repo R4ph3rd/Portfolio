@@ -12,7 +12,20 @@
   margin:0px 0px 40px 0px;
 
   }
-  
+ 
+  h2{
+    font-family: 'Raleway';
+font-weight:900;
+font-size: 1.8em;
+color:#F0F0F0;
+position: relative;
+text-align:left;
+line-height:1em;
+width:100%;
+top:25px;
+margin:0px 0px 40px 0px;
+  }
+
   h2 span {color:#1CAE87}
   
   form {

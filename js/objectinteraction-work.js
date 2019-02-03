@@ -38,6 +38,8 @@ const aboutpage = "about.html"
 const homepage = "index.html"
 const contactpage = "contact.html"
 let nbproj = 0
+let jsonData
+let worksContent = [] 
 
 //for home page typo event
 var font
@@ -88,14 +90,26 @@ function displayData(data) {
 
         work.addClass('workfloating')
         if ((title = "Patitap") || (title = "void_review") || (title = "What's the France ?")) workImg.id('resize')
+        
+        worksContent.push({
+            div : work,
+            a : workLink,
+            img : workImg,
+            divchild : workArticle,
+            title : workTitle,
+            aTitle : titleLink,
+            resume : workResume
+        }
+        )
 
         //foundAspot = false
-        displayProjects(i)
+        displayProjects()
     }
 }
 
 
-function displayProjects(i) {
+function displayProjects() {
+    for (let i = 0 ; i < worksContent.length ; i ++){
     //taille random
     let siz = random(80, 150)
     if (i > 4 ) siz = random(25,40)
@@ -118,8 +132,8 @@ function displayProjects(i) {
 
     //positionnement alétoire dans la fenêtre 
     //verification in order to avoid superposition
-    X[i] = random(borderLeft, borderRight - siz) //random(1000) + (i * 5) // EUREKA !!!!!!!!
-    Y[i] = random(borderTop, borderBottom - siz) // random(300) + (i*6)   // J'AI TROUVE MON SALAUPIAUD DE PROBLEME !!!
+    X[i] = random(borderLeft, borderRight - siz) //random(1000) + (i * 5) 
+    Y[i] = random(borderTop, borderBottom - siz) // random(300) + (i*6)   
   //  console.log("*************" + X[i] + "  " + Y[i] + "************")
 
 //à voir plus tard : ne pas superposer les projets
@@ -166,6 +180,7 @@ function displayProjects(i) {
    // console.log("position work =" + X + "  " + Y + "\n" + "position article = " + x1, "  " + y1)
     work.position(X[i], Y[i])
     workArticle.position(x1, y1)
+    }
 }
 
 function windowResized() {
@@ -175,7 +190,7 @@ function windowResized() {
 
     resizeCanvas(windowWidth, heightPage)
     typoSize = (300 / 1600) * width
-    for (let p of jsonData.projets) displayProjects(p)
+
     //    typoSize = (width * 0.8) /7
     //    console.log("size = " + typoSize)
 
@@ -187,8 +202,7 @@ function windowResized() {
             random(1, 4), //size
             random(100, 150)); //seuil
     }
-
-
+    for (let p = 0 ; p < 6 ; p ++) displayProjects(p)
 
 }
 
@@ -235,7 +249,7 @@ function draw() {
     
 
     //particles
-    let G = 0.03125 * width
+    let G = 0.4 * width
     //just update particles
     //en attente d'une version stable du pop des projets
       for (i = 0 ; i < displayedparticules ; i++) {

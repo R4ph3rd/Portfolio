@@ -18,7 +18,7 @@ header{
   
 label .hamburger {
   position:fixed;
-  z-index:50;
+  z-index:100;
   background: rgba(220,220,220);
   -webkit-transform-origin: center;
   -o-transform-origin: center;

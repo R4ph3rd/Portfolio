@@ -2,20 +2,46 @@
     height:100vh;
 }
 
-
-
-.filtres{
-text-decoration:none;
-font-family: 'Raleway';
-font-weight:700;
-font-size: 1.8em;
-color:#F0F0F0;
-text-transform:uppercase;
-position: relative;
-text-align:left;
-width:100%;
+.grider{
+    display: grid;
+    grid-auto-columns: repeat(calc(100% / 150), 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(10px, 50px);
+    margin-top:20px;
+    grid-auto-flow:dense;
 }
 
+.projectone{
+grid-column: 1/2;
+grid-row: 4;
+}
+
+.projecttwo{
+    grid-column:6;
+    grid-row: 5;
+}
+
+.projectthree{
+    grid-column:  4;
+    grid-row:7;
+}
+
+.projectfour{
+    grid-column: 8;
+    grid-row:3;
+
+}
+
+.projectfive{
+    grid-column: 3;
+    grid-row: 1;
+}
+
+
+.experiments{
+    grid-column: 7;
+    grid-row:2;
+}
 
 h4 {
 text-decoration:none;
@@ -31,17 +57,8 @@ margin:0px;
     margin:10px;
 }
 
-.workfloating{
-    display:flex;
-    align-content: flex-start;
-    justify-content: left;
-    z-index:15;
-opacity:0.5;
-}
-
 .workfloating a{
 text-decoration:none;
-
 }
 
 
@@ -62,13 +79,12 @@ border-radius:2%;
 }
 
 
-
 .workfloating img{
     z-index:30;
-    display:inline;
     position:relative;
-    /*margin:50px; *//*pas top mais ça permet de les espacer en attendant que je place correctement enjs */ 
-}
+    max-width:180px;
+    max-height:150px;
+ }
 
 
 
@@ -83,7 +99,6 @@ right:50%;
     text-align:right;
 }
 
-/*solution rapide */
 #resize{
 object-fit: fill;
 -o-object-fit: fill;

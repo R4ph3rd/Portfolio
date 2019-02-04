@@ -74,6 +74,7 @@ footer label div {
     .bigfoot{display:initial;}
 
     .boiteimgLAT{
+        z-index:80
         fill:#F0F0F0;
        position:fixed;
        z-index:30;

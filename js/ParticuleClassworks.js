@@ -59,8 +59,8 @@ function Particle(x, y, _mass, _size, _seuil) {
         let bestNear = 50000
         let bestTarget = createVector()
         for (let i = 0; i < worksContent.length; i++) {
-            let x = worksContent[i].x + (worksContent[i].syze / 2)
-            let y = worksContent[i].y + (worksContent[i].syze / 2)
+            let x = worksContent[i].x + (worksContent[i].syze )
+            let y = worksContent[i].y + (worksContent[i].syze /2)
             let near = dist(this.location.x, this.location.y, x, y)
 
             if (near < bestNear) {

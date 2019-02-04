@@ -48,7 +48,7 @@ text-decoration:none;
 .workfloating div {
 white-space: nowrap;
 background-color:rgba(0,0,0,0.5);
-padding : 15px 20px 15px 20px;
+padding : 10px 15px 10px 15px;
 z-index:31;
 border-radius:2%;
 }
@@ -67,10 +67,13 @@ border-radius:2%;
     z-index:30;
     display:inline;
     position:relative;
+    filter: brightness(0.75) blur(0.8px) saturate(20%) hue-rotate(-98deg);
     /*margin:50px; *//*pas top mais ça permet de les espacer en attendant que je place correctement enjs */ 
 }
 
-
+.workfloating img:hover {
+    filter:initial
+}
 
 .sideright{
     left:50%;

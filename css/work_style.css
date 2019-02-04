@@ -36,7 +36,7 @@ margin:0px;
     align-content: flex-start;
     justify-content: left;
     z-index:15;
-opacity:0.5;
+/*opacity:0.5;*/
 }
 
 .workfloating a{

@@ -5,7 +5,7 @@ let displayedparticules
 let vitessemax = 4;
 let frictioncoef = 0.8; //coefficient of friction;
 let particulesmax; //will change depending on screen size
-let particules = [particulesmax];
+let particules = [1000];
 let centralPoint;
 let G = 9; //constant of gravitation
 let massPoint = 400; // will change depeing on screen size

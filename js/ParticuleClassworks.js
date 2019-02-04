@@ -65,7 +65,7 @@ function Particle(x, y, _mass, _size, _seuil) {
       
       if (near < bestNear) {
           bestNear = near
-          bestTarget = createVector(worksContent[i].x,worksContent[i].y)
+          bestTarget = createVector(worksContent[i].x + (worksContent[i].syze) ,worksContent[i].y + (worksContent[i].syze / 2))
       }            
     }
         //console.log("==============" + bestTarget+ " =========================")

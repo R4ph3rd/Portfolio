@@ -54,6 +54,23 @@ function Particle(x, y, _mass, _size, _seuil) {
         }
         return tangent;
     }
+    
+    this.calculateProxy = function(){
+        let  bestNear = 50000
+        let bestTarget = createVector()
+        for (let i = 0 ; i < worksContent.length ; i ++){
+            let x = worksContent[i].x + (worksContent[i].syze / 2)
+            let y = worksContent[i].y + (worksContent[i].syze / 2)
+      let near = dist(this.location.x, this.location.y, x, y)
+      
+      if (near < bestNear) {
+          bestNear = near
+          bestTarget = createVector(worksContent[i].x,worksContent[i].y)
+      }            
+    }
+        //console.log("==============" + bestTarget+ " =========================")
+    return bestTarget
+    }
 
     //ensure that the particles stay on screen
     this.check = function () {
@@ -77,6 +94,8 @@ function Particle(x, y, _mass, _size, _seuil) {
 
 
     this.update = function () {
+        let centralPoint = this.calculateProxy()
+       // console.log(centralPoint)
         let gravity = this.calculateGravity(centralPoint);
         //console.log("gravity" + gravity)
         let friction = this.calculateFriction();

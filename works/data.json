@@ -12,7 +12,7 @@
         },
         {
             "title" : "Patitap",
-            "resume": "Sound visualization",
+            "resume": "Creative coding",
              "img": "works/patitap/patitap.gif",
              "alt": "gif of the project",
             "link":"work2.html"
@@ -20,7 +20,7 @@
         },
            {
             "title" : "VOID",
-            "resume": "Video mapping, creative coding",
+            "resume": "Tangible creative coding",
              "img": "works/void/logo_void.svg",
              "alt": "logo of the project",
             "link":"work3.html"
@@ -36,34 +36,10 @@
         },
          {
             "title" : "ERSCI",
-            "resume": "Urban furniture",
+            "resume": "Urban furniture research",
              "img": "works/ERSCI/ersci_logo.png",
              "alt": "logo of the project",
             "link":"work5.html"
-           
-        },
-         {
-            "title" : "Twitter4j",
-            "resume": "Experiment",
-             "img": "works/experiments/void_review/void_review_mini.jpg",
-             "alt": "logo of the project",
-            "link":"work6.html"
-           
-        },
-          {
-            "title" : "Vanités",
-            "resume": "Vidéo",
-             "img": "works/experiments/vanites_/vanites.png",
-             "alt": "logo of the project",
-            "link":"work6.html"
-           
-        },
-        {
-            "title" : "Electricrime",
-            "resume": "Motion",
-             "img": "works/experiments/electricrime/electricrime.png",
-             "alt": "logo of the project",
-            "link":"work6.html"
            
         }
     ]

@@ -130,7 +130,7 @@ function displayData(data) {
 
 
 function displayProjects() {
-    console.log("****************************premier jet de positions *****************")
+    //console.log("****************************premier jet de positions *****************")
     for (let i = 0; i < worksContent.length; i++) {
         let siz = worksContent[i].syze
 
@@ -145,8 +145,8 @@ function displayProjects() {
         worksContent[i].x = random(borderLeft, borderRight)
         worksContent[i].y = random(borderTop, borderBottom)
 
-        console.log("X = " + worksContent[i].x)
-        console.log("Y = " + worksContent[i].y)
+       // console.log("X = " + worksContent[i].x)
+       // console.log("Y = " + worksContent[i].y)
 
         let posX = worksContent[i].x
         let posY = worksContent[i].y
@@ -181,7 +181,7 @@ function displayProjects() {
 
         let widthArticle = workArticle.size().width
         let heightArticle = workArticle.size().height
-        console.log("width = " + heightArticle)
+        //console.log("width = " + heightArticle)
         //and add class to put content on the good side
         let side = (int(random(0, 2)) == 0) ? 1 : -1
 
@@ -245,7 +245,7 @@ function setup() {
       }*/
     for (let i = 0; i < worksContent.length; i++) {
         let projay = select('.workfloating').position().x
-        console.log("projays = " + projay) //pourquoi n'ont pas du tout les valeurs de positions que je leur ai assignées ??
+        //console.log("projays = " + projay) //pourquoi n'ont pas du tout les valeurs de positions que je leur ai assignées ??
     }
     particulesmax = 1000;
     displayedparticules = particulesmax

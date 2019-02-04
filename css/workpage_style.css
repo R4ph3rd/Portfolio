@@ -23,7 +23,7 @@ font-weight:900;
 .titleP{
 background-color:rgba(0,0,0,0.65);
 align-content: left;
-padding : 5px 20px;
+padding : 15px 20px;
 display:inline
 }
 
@@ -36,7 +36,7 @@ h3{
     position: relative;
     text-align:left;
     width:100%;
-    margin: 15px 0px 0px 0px;
+    margin:0px
 }
 
 .flexPrez .titleP p {

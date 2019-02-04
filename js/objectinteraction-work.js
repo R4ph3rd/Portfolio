@@ -281,7 +281,7 @@ function draw() {
         particules[i].update()
         particules[i].display();
     }
-
+/*
     for (let i = 0; i < worksContent.length; i++) {
         push()
         fill(255, 0, 0)
@@ -289,5 +289,5 @@ function draw() {
         fill(0, 0, 255)
         ellipse(worksContent[i].x, worksContent[i].y + worksContent[i].syze / 2, 10, 10)
         pop()
-    }
+    }*/
 } //draw

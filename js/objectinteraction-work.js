@@ -95,7 +95,6 @@ function displayData(data) {
 
         //taille random
         let siz = random(100, 140)
-        if (i > 4) siz = random(25, 40)
         workImg.size(siz, siz)
 
         //positionnement dans la fenetre
@@ -132,6 +131,9 @@ function displayData(data) {
 function displayProjects() {
     //console.log("****************************premier jet de positions *****************")
     for (let i = 0; i < worksContent.length; i++) {
+        if (windowWidth < 600) {
+            worksContent[i].syze = windowWidth / 4
+        }
         let siz = worksContent[i].syze
 
         //encadrement de la zone de pop
@@ -145,43 +147,46 @@ function displayProjects() {
         worksContent[i].x = random(borderLeft, borderRight)
         worksContent[i].y = random(borderTop, borderBottom)
 
-       // console.log("X = " + worksContent[i].x)
-       // console.log("Y = " + worksContent[i].y)
-
-        let posX = worksContent[i].x
-        let posY = worksContent[i].y
+        // console.log("X = " + worksContent[i].x)
+        // console.log("Y = " + worksContent[i].y)
 
 
-        //à voir plus tard : ne pas superposer les projets
+
+        let foundAspot = false
+        let overlapping = false
         while (foundAspot == false) {
             worksContent[i].x = random(borderLeft, borderRight)
             worksContent[i].y = random(borderTop, borderBottom)
+            console.log("blop")
+
 
             //compare à toutes les positions des biscottes déjà affichées
-            overlapping = false
-            for (let j = 0 ; j < worksContent.length; j++) {
-                let distanceImg = dist(worksContent[i].x,worksContent[i].y,worksContent[j].x, worksContent[j].x)
+            for (let j = 0; j < i + 1; j++) {
+                let distanceImg = dist(worksContent[i].x, worksContent[i].y, worksContent[j].x, worksContent[j].x)
                 let sizj = worksContent[j].syze
-                if (distanceImg < siz + sizj + 10) {
+                
+                if (distanceImg > ((siz + sizj)/2) + 50) {
                     overlapping = true
                 }
             }
-            //reverify with new coordinates
-            if (overlapping == false) {
+                        //reverify with new coordinates
+            if (overlapping == true) {
                 foundAspot = true
             }
         }
+
+        let posX = worksContent[i].x
+        let posY = worksContent[i].y
 
 
         //ça devient tricky : x,y centre du cercle, pour retrouver x1,y1 pos de l'article
         worksContent[i].Ax = posX + (siz / 2)
         worksContent[i].Ay = posY + (siz / 2)
         let x = worksContent[i].Ax
-        let y = worksContent[i].Ax
+        let y = worksContent[i].Ay
 
         let widthArticle = workArticle.size().width
         let heightArticle = workArticle.size().height
-        //console.log("width = " + heightArticle)
         //and add class to put content on the good side
         let side = (int(random(0, 2)) == 0) ? 1 : -1
 
@@ -213,12 +218,7 @@ function windowResized() {
     Page = select('.bourin')
     heightPage = Page.size().height
     if (windowWidth > 1000) heightPage = windowHeight
-
     resizeCanvas(windowWidth, heightPage)
-    typoSize = (300 / 1600) * width
-
-    //    typoSize = (width * 0.8) /7
-    //    console.log("size = " + typoSize)
 
     //reinitialize paticles
     for (i = 0; i < particulesmax; i++) {
@@ -228,8 +228,8 @@ function windowResized() {
             random(1, 4), //size
             random(100, 150)); //seuil
     }
-    for (let p = 0; p < 6; p++) displayProjects()
 
+    for (let p = 0; p < 6; p++) displayProjects()
 }
 
 function setup() {
@@ -243,10 +243,7 @@ function setup() {
           console.log("x = " + worksContent[i].x)
           console.log("y = " + worksContent[i].y)
       }*/
-    for (let i = 0; i < worksContent.length; i++) {
-        let projay = select('.workfloating').position().x
-        //console.log("projays = " + projay) //pourquoi n'ont pas du tout les valeurs de positions que je leur ai assignées ??
-    }
+
     particulesmax = 1000;
     displayedparticules = particulesmax
     massPoint = width / 3
@@ -259,8 +256,6 @@ function setup() {
             random(1, 4), //size
             random(100, 150)); //seuil 
     }
-    //charge typo only if we are on home page
-    // console.log("arrays = " + X + "  " + Y)
 }
 
 
@@ -273,19 +268,26 @@ function draw() {
 
     fps = frameRate()
     //adapter le nombre de particules en fonction des fps & taille de l'écran
-    // if(frameCount%50 ==0) console.log(fps)
     displayedparticules = width / 1.6
     if (fps < 18) displayedparticules -= 100;
     if (fps < 25) displayedparticules -= 20;
     if ((fps > 40) && (displayedparticules < 1000)) displayedparticules += 10
 
+
     //particles
     let G = 0.05 * width
-    //just update particles
-    //en attente d'une version stable du pop des projets
     for (i = 0; i < displayedparticules; i++) {
         // console.log("centralpoint =" + centralPoint.x + "  " + centralPoint.y)
         particules[i].update()
         particules[i].display();
+    }
+
+    for (let i = 0; i < worksContent.length; i++) {
+        push()
+        fill(255, 0, 0)
+        ellipse(worksContent[i].x + worksContent[i].syze / 2, worksContent[i].y + worksContent[i].syze / 2, 10, 10)
+        fill(0, 0, 255)
+        ellipse(worksContent[i].x, worksContent[i].y + worksContent[i].syze / 2, 10, 10)
+        pop()
     }
 } //draw

@@ -54,22 +54,21 @@ function Particle(x, y, _mass, _size, _seuil) {
         }
         return tangent;
     }
-    
-    this.calculateProxy = function(){
-        let  bestNear = 50000
+
+    this.calculateProxy = function () {
+        let bestNear = 50000
         let bestTarget = createVector()
-        for (let i = 0 ; i < worksContent.length ; i ++){
+        for (let i = 0; i < worksContent.length; i++) {
             let x = worksContent[i].x + (worksContent[i].syze / 2)
             let y = worksContent[i].y + (worksContent[i].syze / 2)
-      let near = dist(this.location.x, this.location.y, x, y)
-      
-      if (near < bestNear) {
-          bestNear = near
-          bestTarget = createVector(worksContent[i].x + (worksContent[i].syze) ,worksContent[i].y + (worksContent[i].syze / 2))
-      }            
-    }
-        //console.log("==============" + bestTarget+ " =========================")
-    return bestTarget
+            let near = dist(this.location.x, this.location.y, x, y)
+
+            if (near < bestNear) {
+                bestNear = near
+                bestTarget = createVector(x, y)
+            }
+        }
+        return bestTarget
     }
 
     //ensure that the particles stay on screen
@@ -95,14 +94,12 @@ function Particle(x, y, _mass, _size, _seuil) {
 
     this.update = function () {
         let centralPoint = this.calculateProxy()
-       // console.log(centralPoint)
+        // console.log(centralPoint)
         let gravity = this.calculateGravity(centralPoint);
-        //console.log("gravity" + gravity)
         let friction = this.calculateFriction();
         let distance = dist(this.location.x, this.location.y, centralPoint.x, centralPoint.y);
         this.applyForce(gravity);
         this.applyForce(friction);
-        //index != pour éviter une mise en orbite lorsque je veux afficher la typo
         if ((distance <= this.seuil) && (this.scrollbound == 0)) {
             let tangent = (this.calculateTangent(gravity));
             this.applyForce(tangent);

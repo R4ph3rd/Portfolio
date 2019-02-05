@@ -47,7 +47,7 @@ text-decoration:none;
 
 .workfloating div {
 white-space: nowrap;
-background-color:rgba(0,0,0,0.5);
+background-color:rgba(0,0,0,0.65);
 padding : 10px 15px 10px 15px;
 z-index:31;
 border-radius:2%;

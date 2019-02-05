@@ -50,7 +50,8 @@ h4 {
 #portrait {
     margin-top: 20px;
     width: 45vw;
-    object-fit: contain;
+    object-fit: fill;
+    border-radius:50%;
     display: inline;
     order: 1;
     z-index:20
@@ -108,7 +109,7 @@ article {
     #pe {
         margin: 0px;
         line-height: 7vw;
-        padding-left: 19.8%;
+        padding-left: 19.6vw;
         margin-bottom: 35px;
     }
 
@@ -121,7 +122,12 @@ article {
 }
 
 @media (min-width:1000px){    
-    #hiddenbutton { display: initial}}
+    #hiddenbutton { display: initial}
+    #pe{
+        padding-left: 23vw;
+    }
+
+}
 
 @media (min-width:1153px) {
 

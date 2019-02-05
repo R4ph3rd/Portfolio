@@ -52,11 +52,10 @@ h3{
 
 .prezImg{
 
-    object-fit: contain;
-    -o-object:contain;
     margin: 5vh 18vw;
     width:30vw;
     max-width:300px;
+    max-height:300px;
     float: right;
 }
 
@@ -73,7 +72,7 @@ border-radius: 50%;
     padding : 30px 20px 30px 20px;
     margin-top:10vh;
     margin-bottom:10vh;
-    color: rgb(204, 202, 202);
+    color: rgb(219, 219, 221);
     font-family:"Source Sans Pro";
     font-weight:300;
     font-size: 1rem;
@@ -120,6 +119,8 @@ object-fit: cover;
 box-shadow: 5px 5px 60px rgba(0, 0, 0, 0.7), -5px -5px 60px rgba(0, 0, 0, 0.7)
 /*border: rgba(46,46,46,0.8) 20px  solid;*/
 }
+
+
 
 .imgVer{ 
     height: 50vh;

@@ -109,7 +109,7 @@ article {
     #pe {
         margin: 0px;
         line-height: 7vw;
-        padding-left: 19.6vw;
+        padding-left: 19.6%;
         margin-bottom: 35px;
     }
 
@@ -124,7 +124,7 @@ article {
 @media (min-width:1000px){    
     #hiddenbutton { display: initial}
     #pe{
-        padding-left: 23vw;
+        padding-left: 20.7%;
     }
 
 }
@@ -148,7 +148,7 @@ article {
     #pe {
         margin: 0px;
         line-height: 7vw;
-        padding-left: 18.7%;
+        padding-left: 19.8%;
         margin-bottom: 35px;
     }
 

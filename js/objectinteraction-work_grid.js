@@ -91,6 +91,13 @@ function displayData(data) {
 
 
         work.addClass('workfloating')
+        if (i == 0) work.addClass('projectone')
+        if (i == 1) work.addClass('projecttwo')
+        if (i == 2) work.addClass('projectthree')
+        if (i == 3) work.addClass('projectfour')
+        if (i == 4) work.addClass('projectfive')
+        if (i == 5) work.addClass('experiments')
+
         if ((title = "Patitap") || (title = "void_review") || (title = "What's the France ?")) workImg.id('resize')
         if (title = "ERSCI") workImg.addClass('slip')
 
@@ -130,47 +137,56 @@ function displayData(data) {
 
 
 function displayProjects() {
-
+  //  console.log("################ appel fonction ####################")
     for (let i = 0; i < worksContent.length; i++) {
-
-        let sizi = worksContent[i].syze
+       // console.log("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        console.log(worksContent.length)
+        if (windowWidth < 600) {
+            worksContent[i].syze = windowWidth / 4
+        }
+        let siz = worksContent[i].syze
 
         //encadrement de la zone de pop
         Page = select('.zonecentrale')
         testpage = document.querySelector(".slip").getBoundingClientRect().width
+        console.log("ZONE CENTRALE : " + Page.height + " select : " + worksContent[i].syze)
         let borderTop = (select('header').size().height) + 20
-        let borderRight = Page.position().x + Page.size().width - (sizi + 20)
-        let borderBottom = Page.size().height - (sizi + 20)
+        let borderRight = Page.position().x + Page.size().width - (siz + 20)
+        let borderBottom = Page.size().height - (siz + 20)
         let borderLeft = Page.position().x + 20
-
-        if (windowWidth < 650) {
-            //update new size
-            worksContent[i].syze = windowWidth / 4
-            sizi = worksContent[i].syze
-            let borderFoot = select('footer').size().height
-            // force the page height
-            Page.height = 6 * (sizi + 50) + borderTop + borderFoot + 100
-        }
 
         //défine new coordinates
         worksContent[i].x = random(borderLeft, borderRight)
         worksContent[i].y = random(borderTop, borderBottom)
 
+        console.log("============ BEFORE " + i + "=================")
+        console.log("X = " + worksContent[i].x)
+        console.log("Y = " + worksContent[i].y)
+        // fill(200,0,0)
+        //ellipse(worksContent[i].x, worksContent[i].y, 5, 5)
+
+
+
+
+
         let foundAspot = false
         while (foundAspot == false) {
-            //  console.log("new values")
+            console.log("new values")
             worksContent[i].x = random(borderLeft, borderRight)
             worksContent[i].y = random(borderTop, borderBottom)
 
             let overlapping = false
 
             //compare à toutes les positions des biscottes déjà affichées
-            for (let j = 0; j < i; j++) {
+            for (let j = 0 ; j < i ; j++) {
+                let distanceImg = dist(worksContent[i].x, worksContent[i].y, worksContent[j].x, worksContent[j].x)
+                console.log("DISTANCE = " + distanceImg)
                 let sizj = worksContent[j].syze
-                let distanceImg = dist(worksContent[i].x + (sizi / 2), worksContent[i].y + (sizi / 2), worksContent[j].x + (sizj / 2), worksContent[j].y + (sizj / 2))
+                console.log("SYZE = " + worksContent[j].syze)
 
-                if (distanceImg < (sizi / 2) + (sizj / 2) + 50) { //si dist inférieur au seuil, alors on relance une tournée
+                if (distanceImg </* ((siz + sizj) / 2)*/300 + 50) { //si dist inférieur au seuil, alors on relance une tournée
                     overlapping = true
+                    console.log("OVERLAP AGAIN " + i +"  " + j)
                 }
             }
             //reverify with new coordinates
@@ -179,12 +195,20 @@ function displayProjects() {
             }
         }
 
+        console.log("************ AFTER " + i + "***************")
+        console.log("X = " + worksContent[i].x)
+        console.log("Y = " + worksContent[i].y)
+        //fill(0,0,255)
+        //ellipse(worksContent[i].x, worksContent[i].y, 5, 5)
+
         let posX = worksContent[i].x
         let posY = worksContent[i].y
 
+
+
         //ça devient tricky : x,y centre du cercle, pour retrouver x1,y1 pos de l'article
-        worksContent[i].Ax = posX + (sizi / 2)
-        worksContent[i].Ay = posY + (sizi / 2)
+        worksContent[i].Ax = posX + (siz / 2)
+        worksContent[i].Ay = posY + (siz / 2)
         let x = worksContent[i].Ax
         let y = worksContent[i].Ay
 
@@ -212,8 +236,8 @@ function displayProjects() {
         if (ypos - heightArticle < 0) y1 = ypos
 
         // console.log("position work =" + X + "  " + Y + "\n" + "position article = " + x1, "  " + y1)
-        worksContent[i].div.position(posX, posY)
-        worksContent[i].divchild.position(x1, y1)
+       // worksContent[i].div.position(posX, posY)
+      //  worksContent[i].divchild.position(x1, y1)
     }
 }
 
@@ -221,16 +245,6 @@ function windowResized() {
     Page = select('.bourin')
     heightPage = Page.size().height
     if (windowWidth > 1000) heightPage = windowHeight
-
-    if (windowWidth < 650) {
-        //update new size
-        let bulleSize = windowWidth / 6
-        let borderTop = (select('header').size().height) + 20
-        let borderFoot = select('footer').size().height
-        // force the page height
-        Page.size().height = (6 * (bulleSize + 50)) + borderTop + borderFoot + 100
-    }
-
     resizeCanvas(windowWidth, heightPage)
 
     //reinitialize paticles
@@ -269,12 +283,6 @@ function setup() {
             random(1, 4), //size
             random(100, 150)); //seuil 
     }
-
-    for (let p = 0; p < worksContent.length; p++) {
-        console.log("***** pour P :  *******")
-        console.log("x = " + worksContent[p].x + "  y = " + worksContent[p].y)
-        console.log("size = " + worksContent[p].syze)
-    }
 }
 
 
@@ -295,11 +303,11 @@ function draw() {
 
     //particles
     let G = 0.05 * width
-    /*   for (i = 0; i < displayedparticules; i++) {
+       for (i = 0; i < displayedparticules; i++) {
            // console.log("centralpoint =" + centralPoint.x + "  " + centralPoint.y)
            particules[i].update()
            particules[i].display();
-       }*/
+       }
     /*
         for (let i = 0; i < worksContent.length; i++) {
             push()

@@ -2,6 +2,11 @@
     height:100vh;
 }
 
+@media (max-width:660px){
+    .zonecentrale{
+       height: 1300px;   
+    }
+}
 
 
 .filtres{
@@ -92,5 +97,3 @@ object-fit: fill;
 -o-object-fit: fill;
 border-radius: 50%;
 }
-
-@media (min-width:1200px)

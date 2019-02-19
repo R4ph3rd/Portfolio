@@ -1,15 +1,35 @@
 header{
   display: flex;
+  width:100%;
   align-items: center;
+  justify-content: space-between;
+
 }
 
-#logo{
-  height:50%;
-  text-align: left;
+
+.menubar a {
+  margin: 0px 0px 0px 1.5vw;
   color:white;
-  font-weight:bold;
-  font-size:2em;
+  text-decoration: none;
+  text-transform:uppercase;
+  font-size: 100%;
+  font-weight:400;
+  display:none;
+  white-space: nowrap;
+  line-height:1em;
+  top:50px;
+right:2vw;
+  
 }
+
+.menubar a:hover{
+  color:#1CAE87;
+}
+/*
+@media (min-width:1000px){
+  .menubar a{display:inline}
+  .hamburger{display:none}
+}*/
 
 #labelmenu{
   height:100%;

@@ -1,19 +1,23 @@
 
 h2{
-font-family: 'Raleway';
-font-weight:900;
+font-family: 'Source Sans Pro';
+font-weight:400;
 font-size: 1.8em;
 color:#F0F0F0;
 position: relative;
 text-align:left;
 line-height:1em;
-width:100%;
+width:45%;
 top:25px;
 margin:0px 0px 40px 0px;
-  }
+}
 
   h2 span {color:#1CAE87}
   
+  @media (max-width:600px){
+    h2{width:75%}
+  }
+
   form {
   position:relative;
     display: block;
@@ -43,9 +47,10 @@ width:700px;
     -moz-border-radius: 4px;
     -o-border-radius: 4px;
     background:#F0F0F0;
-    color:#7A7979;
+    color:rgb(71, 71, 71);
     font-family:'Raleway';
     font-weight:500;
+    font-size:1rem;
     padding:10px;
     box-shadow: 1px 1px 1px #4C6E91;
     text-align: left;

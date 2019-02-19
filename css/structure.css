@@ -33,7 +33,7 @@ font-family: 'Raleway';
 }   
 
 canvas {
-position:relative;
+position:relative; 
 z-index:1;
 height:100vh;
 }
@@ -55,7 +55,7 @@ text-transform:uppercase;
 position: relative;
 text-align:left;
 line-height:1em;
-width:100%;
+
 top:25px;
 margin:0px 0px 30px 0px
 }

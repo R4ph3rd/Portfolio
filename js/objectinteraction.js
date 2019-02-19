@@ -48,7 +48,7 @@ function windowResized() {
     //canvas on all page
 
     heightPage = Page.size().height
-    if (el == homepage || el == workpage) heightPage = windowHeight
+    if (el == homepage || el == workpage && windowWidth > 1000) heightPage = windowHeight
     if (el == contactpage || el == aboutpage){
         if( windowWidth > 1000) heightPage = windowHeight
     }
@@ -106,8 +106,10 @@ function finePage() {
 function setup() {
     Page = select('.bourin')
     heightPage = Page.size().height
-    if (el == homepage || el == workpage) heightPage = windowHeight
-    if (el == contactpage || el == aboutpage){
+    if (el == homepage ) {
+        heightPage = windowHeight
+    }
+    if (el == contactpage || el == aboutpage || el == workpage){
         if( windowWidth > 1000) heightPage = windowHeight
     }
 

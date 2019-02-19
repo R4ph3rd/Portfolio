@@ -295,11 +295,11 @@ function draw() {
 
     //particles
     let G = 0.05 * width
-    /*   for (i = 0; i < displayedparticules; i++) {
+       for (i = 0; i < displayedparticules; i++) {
            // console.log("centralpoint =" + centralPoint.x + "  " + centralPoint.y)
            particules[i].update()
            particules[i].display();
-       }*/
+       }
     /*
         for (let i = 0; i < worksContent.length; i++) {
             push()

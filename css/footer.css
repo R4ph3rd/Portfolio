@@ -22,6 +22,7 @@ footer a {
     display:none;
 }
 
+.bigfoot{display:none}
 
 
 footer a{
@@ -74,7 +75,7 @@ footer label div {
     .bigfoot{display:initial;}
 
     .boiteimgLAT{
-        z-index:80
+        z-index:80;
         fill:#F0F0F0;
        position:fixed;
        z-index:30;
@@ -102,6 +103,6 @@ footer label div {
     }   
 
     .zonecentrale{
-       width: 85%;
+       margin:0px 7.5% 0px 5% ;
     }
 }

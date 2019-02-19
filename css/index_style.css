@@ -1,18 +1,10 @@
 footer{
-    -webkit-transform: translateY(250%);
-    -moz-transform: translateY(250%);
-    -o-transform: translateY(250%);
-    transform: translateY(250%);
+position:absolute;
+top:100vh;
+margin-top:0px;
 }
 
-
-
-footer{
-    position:0px;
-    bottom:0px;
-}
-
-#home{margin-right:25px;   }
+#home{margin-right:25px}
 
 @media(max-width:400px){
     #home{font-size:1.5em}

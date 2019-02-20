@@ -5,7 +5,7 @@ let displayedparticules
 let vitessemax = 4;
 let frictioncoef = 0.8; //coefficient of friction;
 let particulesmax; //will change depending on screen size
-let particules = [1000];
+let particules = [900];
 let centralPoint;
 let G = 9; //constant of gravitation
 let massPoint = 400; // will change depeing on screen size
@@ -246,7 +246,10 @@ function windowResized() {
 }
 
 function setup() {
-    canvas = createCanvas(windowWidth, windowHeight);
+        Page = select('.bourin')
+    heightPage = Page.size().height
+    if (windowWidth > 1000) heightPage = windowHeight
+    canvas = createCanvas(windowWidth, heightPage);
     //pixelDensity(1)
     background(30);
     typoSize = (300 / 1600) * width

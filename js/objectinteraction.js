@@ -23,6 +23,7 @@ const el = location.pathname.substring(location.pathname.lastIndexOf("/") + 1)
 const workpage = "work.html"
 const aboutpage = "about.html"
 const homepage = "index.html"
+const home = ""
 const contactpage = "contact.html"
 const mywork = "work"
 let nameWorkPage = 20
@@ -48,7 +49,7 @@ function windowResized() {
     //canvas on all page
 
     heightPage = Page.size().height
-    if (el == homepage || el == workpage && windowWidth > 1000) heightPage = windowHeight
+    if (el == homepage || el == home || el == workpage && windowWidth > 1000) heightPage = windowHeight
     if (el == contactpage || el == aboutpage){
         if( windowWidth > 1000) heightPage = windowHeight
     }
@@ -106,7 +107,8 @@ function finePage() {
 function setup() {
     Page = select('.bourin')
     heightPage = Page.size().height
-    if (el == homepage ) {
+    console.log(el)
+    if (el == homepage || el == home) {
         heightPage = windowHeight
     }
     if (el == contactpage || el == aboutpage || el == workpage){
@@ -121,7 +123,7 @@ function setup() {
 
     centralPoint = createVector(mouseX, mouseY)
     //create gravitation points centered on differents objects depeding on the current page
-    if ((el == homepage) || (el == contactpage)) centralPoint = createVector(mouseX, mouseY)
+    if ((el == homepage) || (el == contactpage) || el == home) centralPoint = createVector(mouseX, mouseY)
 
     finePage()
 
@@ -139,7 +141,7 @@ function setup() {
             random(100, 150)); //seuil 
     }
     //charge typo only if we are on home page
-    if (el == homepage) {
+    if (el == homepage || el == home) {
         opentype.load('fonts/FreeSansNoPunch.otf', function (err, f) {
             if (err) {
                 print(err);
@@ -157,8 +159,8 @@ function setup() {
 
 //reset data of typography
 function handle(delta) {
-    scrollPos += delta;
-    if (el == homepage) {
+    scrollPos = delta;
+    if (el == homepage || el == home) {
         pnts = getPoints("Raphael Perraud");
         for (let i = 0; i < pnts.length; i++) {
             coordFixed[i] = pnts[i]
@@ -193,7 +195,7 @@ function draw() {
     fill(30, 20);
     rect(0, 0, width, height);
 
-    if ((el == homepage) || (el == contactpage)) centralPoint = createVector(mouseX, mouseY)
+    if ((el == homepage) || (el == contactpage) || el == home) centralPoint = createVector(mouseX, mouseY)
 
     fps = frameRate()
     //adapter le nombre de particules en fonction des fps & taille de l'écran
@@ -211,7 +213,7 @@ function draw() {
     //particles
 
     //verify : are we ovrpass the limit of scroll ?
-    if ((scrollPos > 50) && (el == homepage)) {
+    if ((scrollPos > 2 && el == homepage)) {
         overPassed = 1
         //set new positions of points (typography) if we want to draw the text
         G = 0.03125 * width // change attraction, yes, but proportionnaly to screen size to avoid some particles in this new attraction

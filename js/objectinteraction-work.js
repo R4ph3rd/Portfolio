@@ -92,7 +92,6 @@ function displayData(data) {
 
         work.addClass('workfloating')
         if ((title = "Patitap") || (title = "void_review") || (title = "What's the France ?")) workImg.id('resize')
-        if (title = "ERSCI") workImg.addClass('slip')
 
         //taille random
         let siz = random(100, 140)
@@ -137,7 +136,6 @@ function displayProjects() {
 
         //encadrement de la zone de pop
         Page = select('.zonecentrale')
-        testpage = document.querySelector(".slip").getBoundingClientRect().width
         let borderTop = (select('header').size().height) + 20
         let borderRight = Page.position().x + Page.size().width - (sizi + 20)
         let borderBottom = Page.size().height - (sizi + 20)
@@ -153,9 +151,6 @@ function displayProjects() {
         }
 
         //défine new coordinates
-        worksContent[i].x = random(borderLeft, borderRight)
-        worksContent[i].y = random(borderTop, borderBottom)
-
         let foundAspot = false
         while (foundAspot == false) {
             //  console.log("new values")
@@ -187,6 +182,7 @@ function displayProjects() {
         worksContent[i].Ay = posY + (sizi / 2)
         let x = worksContent[i].Ax
         let y = worksContent[i].Ay
+        let x1,y1
 
         let widthArticle = workArticle.size().width
         let heightArticle = workArticle.size().height
@@ -194,22 +190,22 @@ function displayProjects() {
         let side = (int(random(0, 2)) == 0) ? 1 : -1
 
         //vérifier qu'il déborde pas de l'écran en x
-        //widthArticle pas fiable pour l'instant (voire encadré qui couvre pas tout ce qu'il devrait), donc jouons sur des valeurs absolues en attendant
-        if (xpos + 180 > windowWidth || xpos - 180 < 0) side = side * -1
+        //widthArticle pas fiable pour l'instant (voir encadré qui couvre pas tout ce qu'il devrait), donc jouons sur des valeurs absolues en attendant
+        if (posX + widthArticle > windowWidth - 50 || posX - widthArticle < 0) side = side * -1
         //placer l'article
-        if (side == 1) {
+        if (side == 1 && workArticle.class() != 'sideright') {
             if (workArticle.class() == "sideleft") workArticle.removeClass('sideleft')
-            x1 = xpos
+            x1 = xpos + sizi + sizi
             y1 = ypos - heightArticle
             workArticle.addClass('sideright')
-        } else {
+        } else if (workArticle.class() != 'sideleft') { 
             if (workArticle.class() == "sideright") workArticle.removeClass('sideright')
             workArticle.addClass('sideleft')
-            x1 = xpos - widthArticle
+            x1 = xpos - (widthArticle + sizi)
             y1 = ypos - heightArticle
         }
         //ne pas sortir en y
-        if (ypos - heightArticle < 0) y1 = ypos
+        if (posY - heightArticle < 0) y1 = posY
 
         // console.log("position work =" + X + "  " + Y + "\n" + "position article = " + x1, "  " + y1)
         worksContent[i].div.position(posX, posY)
@@ -274,9 +270,9 @@ function setup() {
     }
 
     for (let p = 0; p < worksContent.length; p++) {
-        console.log("***** pour P :  *******")
-        console.log("x = " + worksContent[p].x + "  y = " + worksContent[p].y)
         console.log("size = " + worksContent[p].syze)
+    /*    let yu = document.querySelector(".slipou").getBoundingClientRect()
+        console.log(yu.width + "   " + yu.height)*/
     }
 }
 
@@ -303,6 +299,7 @@ function draw() {
            particules[i].update()
            particules[i].display();
        }
+    
     /*
         for (let i = 0; i < worksContent.length; i++) {
             push()

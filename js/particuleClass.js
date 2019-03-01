@@ -94,7 +94,7 @@ function Particle(x, y, _mass, _size, _seuil) {
     this.update = function (index, _G) {
         
         if (el == aboutpage) this.seuil = largeur  //radius de l'objet pour que les points pivotent autour
-        if ((scrollPos > 50) && (el == homepage)) {
+        if ((scrollPos > 2) && (el == homepage)) {
             centralPoint.x = pnts[index].x
             centralPoint.y = pnts[index].y
             this.scrollbound = 1

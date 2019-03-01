@@ -59,7 +59,14 @@ function Particle(x, y, _mass, _size, _seuil) {
         let bestNear = 50000
         let bestTarget = createVector()
         for (let i = 0; i < worksContent.length; i++) {
-            let x = worksContent[i].x + (worksContent[i].syze * 1.1)
+            //attention ça pique les yeux ! c'est carrément crade, mais correction des calculs de position en cours, donc en attedant...
+            let facteurDuNul = 0.75
+                        if ( windowWidth > 690) facteurDuNul = 0.8
+                        if ( windowWidth > 800) facteurDuNul = 0.9
+                        if ( windowWidth > 1000) facteurDuNul = 1
+                        if ( windowWidth > 1500) facteurDuNul = 1.1
+            
+            let x = worksContent[i].x + (worksContent[i].syze * facteurDuNul)
             let y = worksContent[i].y + (worksContent[i].syze /2)
             let near = dist(this.location.x, this.location.y, x, y)
 

@@ -4,25 +4,17 @@ let displayedparticules
 //values for gravitation equation
 let vitessemax = 4;
 let frictioncoef = 0.8; //coefficient of friction;
-let particulesmax; //will change depending on screen size
-let particules = [900];
+let particulesmax = 900; //will change depending on screen size
+let particules = [particulesmax];
 let centralPoint;
 let G = 9; //constant of gravitation
 let massPoint = 400; // will change depeing on screen size
 //pour le portrait dans about
-let position
-let largeur
-let hauteur
+let position, largeur, hauteur
 
 //affichage des projets
-let X = []
-let Y = []
-/*
-let xpos = []
-let ypos = []
-let x1 = []
-let y1 = []*/
-let xpos, ypos, x1, y1
+let X = [], Y =[]
+let xpos, ypos
 let foundAspot = true
 
 
@@ -43,9 +35,7 @@ let worksContent = []
 
 
 //for home page typo event
-var font
-let typoSize
-let index
+let index, typoSize, font
 
 //get scroll position
 let scrollPos = 0
@@ -93,16 +83,14 @@ function displayData(data) {
         work.addClass('workfloating')
         if ((title = "Patitap") || (title = "void_review") || (title = "What's the France ?")) workImg.id('resize')
 
-        //taille random
-        let siz = random(100, 140)
-        workImg.size(siz, siz)
-
-        //positionnement dans la fenetre
+        //prépositionnement dans la fenetre
+        // définir des valeurs obsolètes pour passer la première boucle de vérification
         Page = select('.zonecentrale')
         let X = Page.size().width / 2
         let Y = Page.size().height / 2
         let posx = X + 50
         let posy = Y - 50
+        let siz = random(100, 140)
 
 
         worksContent.push({
@@ -122,7 +110,8 @@ function displayData(data) {
 
         })
 
-        //foundAspot = false
+        console.log("size = " + worksContent.syze)
+
         displayProjects()
     }
 }
@@ -131,7 +120,6 @@ function displayData(data) {
 function displayProjects() {
 
     for (let i = 0; i < worksContent.length; i++) {
-
         let sizi = worksContent[i].syze
 
         //encadrement de la zone de pop
@@ -141,45 +129,48 @@ function displayProjects() {
         let borderBottom = Page.size().height - (sizi + 20)
         let borderLeft = Page.position().x + 20
 
-        if (windowWidth < 650) {
-            //update new size
-            worksContent[i].syze = windowWidth / 4
-            sizi = worksContent[i].syze
-            let borderFoot = select('footer').size().height
-            // force the page height
-            Page.height = 6 * (sizi + 50) + borderTop + borderFoot + 100
-        }
-
+    if (windowWidth > 700){
         //défine new coordinates
         let foundAspot = false
-        while (foundAspot == false) {
-            //  console.log("new values")
-            worksContent[i].x = random(borderLeft, borderRight)
-            worksContent[i].y = random(borderTop, borderBottom)
+            while (foundAspot == false) {
+                //  console.log("new values")
+                worksContent[i].x = random(borderLeft, borderRight)
+                worksContent[i].y = random(borderTop, borderBottom)
 
-            let overlapping = false
+                let overlapping = false
 
-            //compare à toutes les positions des biscottes déjà affichées
-            for (let j = 0; j < i; j++) {
-                let sizj = worksContent[j].syze
-                let distanceImg = dist(worksContent[i].x + (sizi / 2), worksContent[i].y + (sizi / 2), worksContent[j].x + (sizj / 2), worksContent[j].y + (sizj / 2))
+                //compare à toutes les positions des biscottes déjà affichées
+                for (let j = 0; j < i; j++) {
+                    let sizj = worksContent[j].syze
+                    let distanceImg = dist(worksContent[i].x + (sizi / 2), worksContent[i].y + (sizi / 2), worksContent[j].x + (sizj / 2), worksContent[j].y + (sizj / 2))
 
-                if (distanceImg < (sizi / 2) + (sizj / 2) + 50) { //si dist inférieur au seuil, alors on relance une tournée
-                    overlapping = true
+                    if (distanceImg < (sizi / 2) + (sizj / 2) + 50) { //si dist inférieur au seuil, alors on relance une tournée
+                        overlapping = true
+                    }
                 }
+                //reverify with new coordinates
+                if (overlapping == false) foundAspot = true
             }
-            //reverify with new coordinates
-            if (overlapping == false) {
-                foundAspot = true
-            }
-        }
+    } else {
+        //update new size
+        worksContent[i].syze = 110  
+        sizi = worksContent[i].syze
+        let borderFoot = select('footer').size().height
+        // force the page height
+        Page.height = 6 * (sizi + 50) + borderTop + borderFoot + 100
+        worksContent[i].x = random(borderLeft, borderRight)
+        worksContent[i].y = borderTop + 50
+        if (i > 0) worksContent[i].y = worksContent[i - 1].y + sizi + 70
+    }
 
+        //position de la div globale, qui correspond au coin gauche haut du bloc image
         let posX = worksContent[i].x
         let posY = worksContent[i].y
 
         //ça devient tricky : x,y centre du cercle, pour retrouver x1,y1 pos de l'article
-        worksContent[i].Ax = posX + (sizi / 2)
-        worksContent[i].Ay = posY + (sizi / 2)
+        //.Ax / .Ay = x/y qui correspondent au centre 
+        worksContent[i].Ax = posX + (worksContent[i].syze / 2)
+        worksContent[i].Ay = posY + (worksContent[i].syze / 2)
         let x = worksContent[i].Ax
         let y = worksContent[i].Ay
         let x1,y1
@@ -187,15 +178,24 @@ function displayProjects() {
         let widthArticle = workArticle.size().width
         let heightArticle = workArticle.size().height
         //and add class to put content on the good side
-        let side = (int(random(0, 2)) == 0) ? 1 : -1
+        let side = (random(0, 2) > 1) ? 1 : -1
 
         //vérifier qu'il déborde pas de l'écran en x
         //widthArticle pas fiable pour l'instant (voir encadré qui couvre pas tout ce qu'il devrait), donc jouons sur des valeurs absolues en attendant
-        if (posX + widthArticle > windowWidth - 50 || posX - widthArticle < 0) side = side * -1
+        console.log("**************************************************************")
+        console.log("before changes : " + side)
+        if (x + widthArticle > windowWidth - 50 || x - widthArticle < 50){
+             side = side * -1 
+             console.log( "work " + i + " inversion de côté") 
+             if (side == 1) console.log("side right, text align left")
+             else console.log("sideleft, text align right")
+
+        }
         //placer l'article
+        console.log( "verif sortie = " + x + widthArticle )
         if (side == 1 && workArticle.class() != 'sideright') {
             if (workArticle.class() == "sideleft") workArticle.removeClass('sideleft')
-            x1 = xpos + sizi + sizi
+            x1 = xpos + sizi 
             y1 = ypos - heightArticle
             workArticle.addClass('sideright')
         } else if (workArticle.class() != 'sideleft') { 
@@ -204,10 +204,9 @@ function displayProjects() {
             x1 = xpos - (widthArticle + sizi)
             y1 = ypos - heightArticle
         }
-        //ne pas sortir en y
-        if (posY - heightArticle < 0) y1 = posY
 
         // console.log("position work =" + X + "  " + Y + "\n" + "position article = " + x1, "  " + y1)
+        workImg.size(sizi, sizi)
         worksContent[i].div.position(posX, posY)
         worksContent[i].divchild.position(x1, y1)
     }
@@ -230,7 +229,7 @@ function windowResized() {
     resizeCanvas(windowWidth, heightPage)
 
     //reinitialize paticles
-    for (i = 0; i < particulesmax; i++) {
+    for (i = 0; i < displayedparticules; i++) {
         particules[i] = new Particle(random(0, width), //x
             random(0, height), //y
             random(2, 50), //mass
@@ -256,12 +255,12 @@ function setup() {
           console.log("y = " + worksContent[i].y)
       }*/
 
-    particulesmax = 1000;
     displayedparticules = particulesmax
-    massPoint = width / 3
+    if(width < 1500) massPoint = map(windowWidth,100,1500,100,500)
+    else massPoint = 500
 
     //reset balls positions
-    for (i = 0; i < particulesmax; i++) {
+    for (i = 0; i < displayedparticules; i++) {
         particules[i] = new Particle(random(0, width), //x
             random(0, height), //y
             random(2, 50), //mass
@@ -286,10 +285,16 @@ function draw() {
 
     fps = frameRate()
     //adapter le nombre de particules en fonction des fps & taille de l'écran
-    displayedparticules = width / 1.6
+    if (windowWidth < 1000 ) { 
+        displayedparticules = width / 1.6
     if (fps < 18) displayedparticules -= 100;
     if (fps < 25) displayedparticules -= 20;
-    if ((fps > 40) && (displayedparticules < 1000)) displayedparticules += 10
+    if ((fps > 40) && (displayedparticules < 900)) displayedparticules += 10
+    } else {
+    displayedparticules = map (fps, 25, 40, 400,900)
+    if ( displayedparticules < 18) displayedparticules = 200
+    if (displayedparticules > 900 ) displayedparticules = 900
+    }
 
 
     //particles

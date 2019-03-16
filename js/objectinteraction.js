@@ -2,19 +2,16 @@
 let fps;
 let displayedparticules
 //values for gravitation equation
-let vitessemax = 4;
-let frictioncoef = 0.8; //coefficient of friction;
-let particulesmax; //will change depending on screen size
-let particules = [particulesmax];
-let centralPoint;
+let vitessemax = 4
+let frictioncoef = 0.8 //coefficient of friction;
+let particulesmax = 1000 //will change depending on screen size
+let particules = [particulesmax]
+let centralPoint
 let G = 9; //constant of gravitation
-let massPoint = 400; // will change depeing on screen size
+let massPoint // will change depeing on screen size
 //pour le portrait dans about
-let position
-let largeur
-let hauteur
-let xpos
-let ypos
+let largeur, hauteur, position
+let xpos, ypos
 
 //get data from html
 let Page, heightPage
@@ -24,15 +21,13 @@ const workpage = "work.html"
 const aboutpage = "about.html"
 const homepage = "index.html"
 const home = ""
-const contactpage = "contact.html"
+const contactpage = "contact.php"
 const mywork = "work"
 let nameWorkPage = 20
 let workInPage = false
 
 //for home page typo event
-var font
-let typoSize
-let index
+var font, typoSize, index
 
 //get scroll position
 let scrollPos = 0
@@ -42,24 +37,21 @@ addEventListener("load", function () {
 });
 
 //typo
-let coordFixed = []
-let pnts = []
+let coordFixed = [], pnts = []
 
 function windowResized() {
     //canvas on all page
 
-    heightPage = Page.size().height
-    if (el == homepage || el == home || el == workpage && windowWidth > 1000) heightPage = windowHeight
-    if (el == contactpage || el == aboutpage){
-        if( windowWidth > 1000) heightPage = windowHeight
-    }
+    heightPage = Page.size().height + 200
+    if (el == contactpage || el == aboutpage || el == homepage || el == home || el == workpage && windowWidth > 1000) heightPage = windowHeight
+
     finePage()
     resizeCanvas(windowWidth, heightPage)
 
     typoSize = (300 / 1600) * width
 
     //reinitialize paticles
-    for (i = 0; i < particulesmax; i++) {
+    for (i = 0; i < displayedparticules; i++) {
         particules[i] = new Particle(random(0, width), //x
             random(0, height), //y
             random(2, 50), //mass
@@ -106,18 +98,15 @@ function finePage() {
 
 function setup() {
     Page = select('.bourin')
-    heightPage = Page.size().height
+    heightPage = Page.size().height + 200
     console.log(el)
-    if (el == homepage || el == home) {
-        heightPage = windowHeight
-    }
-    if (el == contactpage || el == aboutpage || el == workpage){
-        if( windowWidth > 1000) heightPage = windowHeight
-    }
+    if (el == homepage || el == home) heightPage = windowHeight
+    else if (el == contactpage || el == aboutpage || el == homepage || el == home || el == workpage && windowWidth > 1000) heightPage = windowHeight
+    
 
     // console.log("taille page = " + heightPage)
     canvas = createCanvas(windowWidth, heightPage);
-    //pixelDensity(1)
+    pixelDensity(1)
     background(30);
     typoSize = (300 / 1600) * width
 
@@ -126,14 +115,12 @@ function setup() {
     if ((el == homepage) || (el == contactpage) || el == home) centralPoint = createVector(mouseX, mouseY)
 
     finePage()
-
-
-    particulesmax = 1000;
     displayedparticules = particulesmax
-    massPoint = width / 3
+    if(width < 1500) massPoint = width / 3
+    else massPoint = 500
 
     //reset balls positions
-    for (i = 0; i < particulesmax; i++) {
+    for (i = 0; i < displayedparticules; i++) {
         particules[i] = new Particle(random(0, width), //x
             random(0, height), //y
             random(2, 50), //mass

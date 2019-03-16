@@ -45,6 +45,7 @@ margin:0px;
 /*opacity:0.5;*/
 }
 
+
 .workfloating a{
 text-decoration:none;
 
@@ -57,6 +58,8 @@ background-color:rgba(0,0,0,0.65);
 padding : 10px 15px 10px 15px;
 z-index:31;
 border-radius:2%;
+margin:15px;
+position:relative;
 }
 
 .workfloating p{

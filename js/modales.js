@@ -22,6 +22,9 @@ function twPopConstructeur(){
             var node=document.createElement("div");
             node.id = sNumero;
             node.className = "twAudessus";
+            if (relAttribute.toLowerCase().match("vertical")){
+                oImage.classList.add("verti");
+            } else oImage.classList.add("rise")
             node.appendChild(oLien);
             anchor.setAttribute("href","#"+sNumero);
       oParent.appendChild(node);

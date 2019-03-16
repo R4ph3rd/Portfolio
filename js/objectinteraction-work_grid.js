@@ -219,7 +219,7 @@ function displayProjects() {
 
         //vérifier qu'il déborde pas de l'écran en x
         //widthArticle pas fiable pour l'instant (voire encadré qui couvre pas tout ce qu'il devrait), donc jouons sur des valeurs absolues en attendant
-        if (xpos + 180 > windowWidth || xpos - 180 < 0) side = side * -1
+        if (xpos + 250 > windowWidth || xpos - 250 < 0) side = side * -1
         //placer l'article
         if (side == 1) {
             if (workArticle.class() == "sideleft") workArticle.removeClass('sideleft')

@@ -1,0 +1,142 @@
+
+
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/structure.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/hamburger.css">
+<link rel="stylesheet" href="css/contact_style.css">
+<title>Raphaël Perraud</title>
+<style> body {padding: 0; margin: 0;} </style>
+</head>
+
+<link rel="icon" href="favicon.png" />
+
+<body>
+<!--
+            <pre>
+
+ █     █░▓█████  ██▓     ▄████▄   ▒█████   ███▄ ▄███▓▓█████    
+▓█░ █ ░█░▓█   ▀ ▓██▒    ▒██▀ ▀█  ▒██▒  ██▒▓██▒▀█▀ ██▒▓█   ▀    
+▒█░ █ ░█ ▒███   ▒██░    ▒▓█    ▄ ▒██░  ██▒▓██    ▓██░▒███      
+░█░ █ ░█ ▒▓█  ▄ ▒██░    ▒▓▓▄ ▄██▒▒██   ██░▒██    ▒██ ▒▓█  ▄    
+░░██▒██▓ ░▒████▒░██████▒▒ ▓███▀ ░░ ████▓▒░▒██▒   ░██▒░▒████▒   
+░ ▓░▒ ▒  ░░ ▒░ ░░ ▒░▓  ░░ ░▒ ▒  ░░ ▒░▒░▒░ ░ ▒░   ░  ░░░ ▒░ ░   
+  ▒ ░ ░   ░ ░  ░░ ░ ▒  ░  ░  ▒     ░ ▒ ▒░ ░  ░      ░ ░ ░  ░   
+  ░   ░     ░     ░ ░   ░        ░ ░ ░ ▒  ░      ░      ░      
+    ░       ░  ░    ░  ░░ ░          ░ ░         ░      ░  ░ 
+        <br> Hi, sneaky visitor ! Are you searching for the awesome code of this amazing background animation or more informations about the mud behind the interface ?
+        Please, take a look !
+        </pre>
+-->
+<div class="bourin">
+    <div class=" zonecentrale">
+            <header>
+                    <h1 class="pageworks h1works">CONTACT   </h1>
+
+                    <div class="menuHead">
+                            <a href='index.html'>Home</a> 
+                        <a href='works.html'>Works</a> 
+                        <a href='about.html'>About</a> 
+                        <a href='contact.html'>Contact</a> 
+    </div>
+    
+            </header>
+<!--Content page-->
+<!--Formulaire en attente du cours PHP-->
+        <div id="formulaire">
+                <h2 class="h2contact">Feel free to <span>contact</span> me. I will get back as soon as possible.</h2>
+
+         <?php 
+         echo '<form action="" method="post">
+                    <input type="text" id="nom" name = "name" class="champs" placeholder="Your name" type="text" value="" required="" x-autocompletetype="family-name">
+    
+    
+                    <input type="email" id="mail" nom = "email" class="champs" placeholder="Email" type="text" value="" required="" x-autocompletetype="family-name">
+    
+                    <textarea name="" id="" name = "message" cols="" rows="10" placeholder="Your message" x-autocompletetype="email" class="champs textarea_"></textarea>
+                    <button type="submit" class="bouton buttonblack">submit</button>
+                </form>';
+                ?>
+        </div>
+
+    <!--Desktop version-->
+    <label id="labelmenu">
+        <input type='checkbox'>
+        <span class='hamburger'></span> 
+        <ul>
+            <li> <a href='index.html'>Home</a> </li>
+            <li> <a href='works.html'>Works</a> </li>
+            <li> <a href='about.html'>About</a> </li>
+            <li> <a href='contact.html'>Contact</a> </li>
+        </ul>
+    </label>
+
+        <div class="boiteimgLAT bigfoot">
+                <a href="https://www.behance.net/r4ph3rd">
+                    <img src="medias_portofolio/SVG/behance.svg" alt="Behance logo" class="changeColor">
+                </a>
+                <a href="https://twitter.com/r4ph3rd">
+                    <img src="medias_portofolio/SVG/Twitter_black.svg" alt="Dribble logo" class="changeColor">
+                </a>
+                <a href="https://github.com/R4ph3rd">
+                    <img src="medias_portofolio/SVG/github.svg" alt="github logo" class="changeColor">
+                </a>
+                <a href="https://www.linkedin.com/in/rapha%C3%ABl-perraud-3595b917a/">
+                    <img src="medias_portofolio/SVG/linkedn.svg" alt="linkedin logo" class="changeColor">
+                </a>
+                <a href="mailto:r.perraud@lecolededesign.com">
+                    <img src="medias_portofolio/SVG/mail.svg" alt="mail logo" class="changeColor">
+                </a>
+            </div>
+        <p class="copyr bigfoot">&copy;Raphaël Perraud 2019</p>
+</div>
+<!--End desktop version & footer for smaller screens-->
+    <footer>
+            <div class="boiteimg">
+                <a href="https://www.behance.net/r4ph3rd">
+                    <img src="medias_portofolio/1x/behance.png" alt="Behance logo">
+                </a>
+                <a href="https://twitter.com/r4ph3rd">
+                    <img src="medias_portofolio/1x/Twitter_black.png" alt="Dribble logo" >
+                </a>
+                <a href="https://github.com/R4ph3rd">
+                    <img src="medias_portofolio/1x/github.png" alt="github logo" >
+                </a>
+                <a href="https://www.linkedin.com/in/rapha%C3%ABl-perraud-3595b917a/">
+                    <img src="medias_portofolio/1x/linkedn.png" alt="linkedin logo" >
+                </a>
+                <a href="mailto:r.perraud@lecolededesign.com">
+                    <img src="medias_portofolio/1x/mail.png" alt="mail logo" >
+                </a>
+            </div>
+            <a href="Datas/CV.pdf"><button class="bouton"><p>My resume</p></button></a>
+            <p class="copyr">&copy;Raphaël Perraud 2019</p>
+        </footer>
+</div>
+
+<?php 
+if(isset($_POST['submit'])){
+    $to = 'contact@raphaelperraud.com'; // this is your Email address
+    $from = $_POST['email']; // this is the sender's Email address
+    $name = $_POST['name'];
+    $message = $_POST['message'];
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    };
+
+?>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
+<script src="js/objectinteraction.js"></script>
+<script src="js/particuleClass.js"></script>
+</body>
+
+</html>

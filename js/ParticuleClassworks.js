@@ -73,7 +73,9 @@ function Particle(x, y, _mass, _size, _seuil) {
             if (near < bestNear) {
                 bestNear = near
                 bestTarget = createVector(x, y)
-            }
+            }  
+
+            if( near < worksContent[i].syze / 2 + 1) this.resetValues()
         }
         return bestTarget
     }
@@ -118,6 +120,19 @@ function Particle(x, y, _mass, _size, _seuil) {
         this.location.add(this.velocity);
         this.check();
         this.acceleration.mult(0); //clear acceleration each frame
+
+             // reset values if they are too close to center
+    }
+
+
+    this.resetValues = function() {
+       this.location.x =  random(0, width)
+       this.location.y =  random(0, height)
+       this.mass = random(2, 50)
+       this.size = random(1, 4) 
+       this.seuil = random(100, 150)  
+       this.velocity.x = 0
+       this.velocity.y = 0
     }
 
     this.display = function () {

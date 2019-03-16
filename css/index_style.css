@@ -24,3 +24,7 @@ line-height:1.4rem;
     margin-top:0px;
     margin-bottom:0px;
 }
+
+@media (min-width:1000px){
+    .txtprez{width:50%}
+}

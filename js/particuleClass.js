@@ -83,7 +83,23 @@ function Particle(x, y, _mass, _size, _seuil) {
         if (this.location.y > y2border || this.location.y < y1border) {
             this.velocity.y = -this.velocity.y;
         }
+        
+        //check if particle is behind the portrait
+        if (el == aboutpage){
+        let near = dist(this.location.x, this.location.y, x, y)
+        if( near < worksContent[i].syze / 2 + 1) this.resetValues()
+        }
     }
+ 
+    this.resetValues = function() {
+        this.location.x =  random(0, width)
+        this.location.y =  random(0, height)
+        this.mass = random(2, 50)
+        this.size = random(1, 4) 
+        this.seuil = random(100, 150)  
+        this.velocity.x = 0
+        this.velocity.y = 0
+     }
 
     this.applyForce = function (force) {
         this.acceleration.add(p5.Vector.div(force, this.mass));
